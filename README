@@ -1,0 +1,11 @@
+
+                    What Happened
+                  =================
+
+A prototype dataware object container.  A cloud based service for retaining
+information about physical objects.  'What Happened' forms part of the infrastructure challenge of Horizon Digital Economy Research Institute.
+
+What Happened is a Rails/Hobo application.  Run in development mode with
+./scripts/server and access at http://localhost:3000
+
+
