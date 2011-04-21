@@ -1,0 +1,35 @@
+<page title="Home">
+
+  <body: class="front-page"/>
+
+  <content:>
+    <header class="content-header">
+      <h1>Welcome to <app-name/></h1>
+      <section class="welcome-message">
+        <h3>An experimental Object Container</h3>
+        <ul>
+          <li>Items are top level things like buildings or tea sets</li>
+          <li>Entities are the things which make in item (like plates or rooms)</li>
+          <li>Aspects are the things that can be reported on for an entity (location or temperature)</li>
+          <li>Reports are individual measurements</li>
+          <li>Witnesses are agents capable of making reports (such as sensors or cameras)</li>
+          <li>Properties are static facts about an entity or item (like that a room faces south, or a tea set was a wedding present)</li>
+
+        </ul>
+    
+        <% if User.count == 0 -%>
+          <h3 style="margin-top: 20px;">There are no user accounts - please provide the details of the site administrator</h3>
+          <do with="&User.new"><% this.exempt_from_edit_checks = true %>
+            <signup-form/>
+          </do>
+        <% end -%>
+        
+      
+      </section>
+    </header>
+
+    <section class="content-body">
+    </section>
+  </content:>
+  
+</page>
