@@ -41,3 +41,13 @@ Rails::Initializer.run do |config|
   # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}')]
   # config.i18n.default_locale = :de
 end
+
+require 'rubygems'
+require 'bundler/setup'
+require 'hpricot'
+require 'xmpp4r'
+require 'xmpp4r/client'
+require 'ruby-debug'
+require 'haml'
+require 'pacecar' #date inside outside queries
+

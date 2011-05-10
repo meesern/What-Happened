@@ -4,9 +4,7 @@
 <include src="taglibs/auto/rapid/pages"/>
 <include src="taglibs/auto/rapid/forms"/>
 
-<set-theme name="clean"/>
+<set-theme name="nice"/>
 
 <def tag="app-name">What Happened</def>
-
-<def tag="Wooo">Wooo</def>
 

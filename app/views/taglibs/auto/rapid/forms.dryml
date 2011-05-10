@@ -12,6 +12,18 @@
 
 
 
+<def tag="form" for="ClerksReport">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="witness, aspect, submitted_records, accepted_records, status" param/>
+    <div param="actions">
+      <submit label="#{ht 'clerks_reports.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
+
 <def tag="form" for="Entity">
   <form merge param="default">
     <error-messages param/>
@@ -51,7 +63,7 @@
 <def tag="form" for="Report">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="known_from, known_until, measurement, confidence, made_by, aspect" param/>
+    <field-list fields="known, measurement, confidence, aspect, clerks_report" param/>
     <div param="actions">
       <submit label="#{ht 'reports.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
@@ -96,7 +108,7 @@
 <def tag="form" for="Witness">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="name, description, veracity, character, aspect, user" param/>
+    <field-list fields="name, description, veracity, character, api_key, aspect, user" param/>
     <div param="actions">
       <submit label="#{ht 'witnesses.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>

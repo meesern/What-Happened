@@ -3,15 +3,14 @@ class Report < ActiveRecord::Base
   hobo_model # Don't put anything above this
 
   fields do
-    known_from     :datetime
-    known_until    :datetime
+    known          :datetime
     measurement    :text
     confidence     :float
-    made_by        :integer
     timestamps
   end
 
   belongs_to :aspect
+  belongs_to :clerks_report
 
 
   # --- Permissions --- #

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110406114246) do
+ActiveRecord::Schema.define(:version => 20110505150246) do
 
   create_table "aspects", :force => true do |t|
     t.string   "name"
@@ -21,6 +21,36 @@ ActiveRecord::Schema.define(:version => 20110406114246) do
   end
 
   add_index "aspects", ["entity_id"], :name => "index_aspects_on_entity_id"
+
+  create_table "bdrb_job_queues", :force => true do |t|
+    t.text     "args"
+    t.string   "worker_name"
+    t.string   "worker_method"
+    t.string   "job_key"
+    t.integer  "taken"
+    t.integer  "finished"
+    t.integer  "timeout"
+    t.integer  "priority"
+    t.datetime "submitted_at"
+    t.datetime "started_at"
+    t.datetime "finished_at"
+    t.datetime "archived_at"
+    t.string   "tag"
+    t.string   "submitter_info"
+    t.string   "runner_info"
+    t.string   "worker_key"
+    t.datetime "scheduled_at"
+  end
+
+  create_table "clerks_reports", :force => true do |t|
+    t.integer  "witness"
+    t.integer  "aspect"
+    t.decimal  "submitted_records"
+    t.decimal  "accepted_records"
+    t.text     "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "entities", :force => true do |t|
     t.string   "name"
@@ -55,7 +85,7 @@ ActiveRecord::Schema.define(:version => 20110406114246) do
   add_index "properties", ["item_id"], :name => "index_properties_on_item_id"
 
   create_table "reports", :force => true do |t|
-    t.datetime "known_from"
+    t.datetime "known"
     t.datetime "known_until"
     t.text     "measurement"
     t.float    "confidence"
@@ -63,9 +93,11 @@ ActiveRecord::Schema.define(:version => 20110406114246) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "aspect_id"
+    t.integer  "clerks_report_id"
   end
 
   add_index "reports", ["aspect_id"], :name => "index_reports_on_aspect_id"
+  add_index "reports", ["clerks_report_id"], :name => "index_reports_on_clerks_report_id"
 
   create_table "users", :force => true do |t|
     t.string   "crypted_password",          :limit => 40
@@ -92,6 +124,7 @@ ActiveRecord::Schema.define(:version => 20110406114246) do
     t.datetime "updated_at"
     t.integer  "user_id"
     t.integer  "aspect_id"
+    t.string   "api_key"
   end
 
   add_index "witnesses", ["aspect_id"], :name => "index_witnesses_on_aspect_id"

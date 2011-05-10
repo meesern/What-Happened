@@ -6,10 +6,10 @@
   <navigation class="main-nav" merge-attrs param="default">
     <nav-item href="#{base_url}/">Home</nav-item>
     <nav-item with="&Aspect"><ht key="aspects.nav_item">Aspects</ht></nav-item>
+    <nav-item with="&ClerksReport"><ht key="clerks_reports.nav_item">Clerks Reports</ht></nav-item>
     <nav-item with="&Entity"><ht key="entities.nav_item">Entities</ht></nav-item>
     <nav-item with="&Item"><ht key="items.nav_item">Items</ht></nav-item>
     <nav-item with="&Property"><ht key="properties.nav_item">Properties</ht></nav-item>
-    <nav-item with="&Witness"><ht key="witnesses.nav_item">Witnesses</ht></nav-item>
   </navigation>
 </def>
 
@@ -172,6 +172,126 @@
         </form>
       </section>
     </content:>
+  </page>
+</def>
+
+
+
+
+
+<!-- ====== ClerksReport Pages ====== -->
+
+<def tag="index-page" for="ClerksReport">
+  <page merge title="#{ht 'clerks_reports.index.title', :default=>['Clerks Reports'] }">
+    <body: class="index-page clerks-report" param/>
+
+    <content: param>
+      <header param="content-header">
+        <h2 param="heading">
+          <ht key="clerks_reports.index.heading">
+            Clerks Reports
+          </ht>
+        </h2>
+
+        <p param="count" if>
+          <ht key="clerks_reports.collection.count" count="&this.size">
+            There <count prefix="are"/>
+          </ht>
+        </p>
+      </header>
+
+      <section param="content-body">
+        <a action="new" to="&model" param="new-link">
+          <ht key="clerks_reports.actions.new">New Clerks Report</ht>
+        </a>
+
+        <page-nav param="top-page-nav"/>
+
+        <collection param/>
+
+        <page-nav param="bottom-page-nav"/>
+
+
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="ClerksReport">
+  <page merge title="#{ht 'clerks_reports.new.title', :default=>[' New Clerks Report'] }">
+    <body: class="new-page clerks-report" param/>
+
+    <content: param>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="clerks_reports.new.heading">
+            New Clerks Report
+          </ht>
+        </h2>
+      </section>
+
+      <section param="content-body">
+        <form param>
+          <submit: label="#{ht 'clerks_reports.actions.create', :default=>['Create Clerks Report']}"/>
+        </form>
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="ClerksReport">
+  <page merge title="#{ht 'clerks_reports.show.title', :default=>['Clerks Report'] }">
+
+    <body: class="show-page clerks-report" param/>
+
+    <content: param>
+          <header param="content-header">
+            <h2 param="heading">
+              <ht key="clerks_reports.show.heading" name="&this.respond_to?(:name) ? this.name : ''">
+                <name/>
+              </ht>
+            </h2>
+
+            <record-flags fields="" param/>
+
+            <a action="edit" if="&can_edit?" param="edit-link">
+              <ht key="clerks_reports.actions.edit" name="&this.respond_to?(:name) ? this.name : ''">
+                Edit Clerks Report
+              </ht>
+            </a>
+          </header>
+
+          <section param="content-body">
+            <field-list fields="witness, aspect, submitted_records, accepted_records, status" param/>
+          </section>
+    </content:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="ClerksReport">
+  <page merge title="#{ht 'clerks_reports.edit.title', :default=>['Edit Clerks Report'] }">
+
+    <body: class="edit-page clerks-report" param/>
+
+    <content:>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="clerks_reports.edit.heading" name="&this.respond_to?(:name) ? this.name : ''">
+            Edit <type-name/>
+          </ht>
+        </h2>
+        <delete-button label="#{ht 'clerks_reports.actions.delete', :default=>['Remove This Clerks Report']}" param/>
+      </section>
+
+      <section param="content-body">
+        <form param/>
+      </section>
+    </content:>
+
   </page>
 </def>
 
@@ -679,7 +799,7 @@
           </header>
 
           <section param="content-body">
-            <field-list fields="known_from, known_until, measurement, confidence, made_by" param/>
+            <field-list fields="known, measurement, confidence, clerks_report" param/>
           </section>
     </content:>
 
@@ -963,7 +1083,7 @@
 
           <section param="content-body">
             <view:description param="description"/>
-            <field-list fields="veracity, character, aspect, user" param/>
+            <field-list fields="veracity, character, api_key, aspect, user" param/>
           </section>
     </content:>
 
