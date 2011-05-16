@@ -1,21 +1,34 @@
 # This is a sample Capistrano config file for EC2 on Rails.
 # It should be edited and customized.
 
-set :application, "yourapp"
+#AMIs
+# ami-c9bc58a0    32-bit from readme (seems out of date)
+# ami-cbbc58a2    64-bit from readme (requires large instance)
+#
+# ami-1501e27c    From ami_ids.yml
+set :dashed_ip, "50-17-97-43"
 
-set :repository, "http://svn.foo.com/svn/#{application}/trunk"
+set :scm, :git
+set :ssh_options, { :forward_agent => true }
+
+set :application, "whathappened"
+
+set :repository, "git://github.com/meesern/What-Happened.git"
 
 # NOTE: for some reason Capistrano requires you to have both the public and
 # the private key in the same folder, the public key should have the 
 # extension ".pub".
-ssh_options[:keys] = ["#{ENV['HOME']}/.ssh/your-ec2-key"]
+ssh_options[:keys] = ["#{ENV['HOME']}/.ssh/rnm_horizon_key.pem"]
+
+set :user, 'root'
+set :use_sudo, false
 
 # Your EC2 instances. Use the ec2-xxx....amazonaws.com hostname, not
 # any other name (in case you have your own DNS alias) or it won't
 # be able to resolve to the internal IP address.
-role :web,      "ec2-12-xx-xx-xx.z-1.compute-1.amazonaws.com"
-role :memcache, "ec2-12-xx-xx-xx.z-1.compute-1.amazonaws.com"
-role :db,       "ec2-56-xx-xx-xx.z-1.compute-1.amazonaws.com", :primary => true
+role :web,      "ec2-#{dashed_ip}.compute-1.amazonaws.com"
+role :memcache, "ec2-#{dashed_ip}.compute-1.amazonaws.com"
+role :db,       "ec2-#{dashed_ip}.compute-1.amazonaws.com", :primary => true
 # role :db,       "ec2-56-xx-xx-xx.z-1.compute-1.amazonaws.com", :primary => true, :ebs_vol_id => 'vol-12345abc'
 # optinally, you can specify Amazon's EBS volume ID if the database is persisted 
 # via Amazon's EBS.  See the main README for more information.
@@ -30,7 +43,7 @@ set :rails_env, "production"
 set :ec2onrails_config, {
   # S3 bucket and "subdir" used by the ec2onrails:db:restore task
   # NOTE: this only applies if you are not using EBS
-  :restore_from_bucket => "your-bucket",
+  :restore_from_bucket => "horizon_trackable_tableware",
   :restore_from_bucket_subdir => "database",
   
   # S3 bucket and "subdir" used by the ec2onrails:db:archive task
@@ -38,7 +51,7 @@ set :ec2onrails_config, {
   # just for manually archiving a db snapshot to a different bucket if 
   # desired.
   # NOTE: this only applies if you are not using EBS
-  :archive_to_bucket => "your-other-bucket",
+  :archive_to_bucket => "horizon_trackable_tableware",
   :archive_to_bucket_subdir => "db-archive/#{Time.new.strftime('%Y-%m-%d--%H-%M-%S')}",
   
   # Set a root password for MySQL. Run "cap ec2onrails:db:set_root_password"
@@ -47,18 +60,19 @@ set :ec2onrails_config, {
   # connections on the public network interface (you should block the MySQL
   # port with the firewall anyway). 
   # If you don't care about setting the mysql root password then remove this.
-  :mysql_root_password => "your-mysql-root-password",
+  #:mysql_root_password => "your-mysql-root-password",
   
   # Any extra Ubuntu packages to install if desired
   # If you don't want to install extra packages then remove this.
-  :packages => ["logwatch", "imagemagick"],
+  :packages => ["logwatch", "imagemagick", "screen"],
   
   # Any extra RubyGems to install if desired: can be "gemname" or if a 
   # particular version is desired "gemname -v 1.0.1"
   # If you don't want to install extra rubygems then remove this
   # NOTE: if you are using rails 2.1, ec2onrails calls 'sudo rake gem:install',
   # which will install gems defined in your rails configuration
-  :rubygems => ["rmagick", "rfacebook -v 0.9.7"],
+  #:rubygems => ["rmagick", "rfacebook -v 0.9.7"],
+  :rubygems => [],
   
   # extra security measures are taken if this is true, BUT it makes initial
   # experimentation and setup a bit tricky.  For example, if you do not
@@ -93,7 +107,7 @@ set :ec2onrails_config, {
   # Set an email address to forward admin mail messages to. If you don't
   # want to receive mail from the server (e.g. monit alert messages) then
   # remove this.
-  :mail_forward_address => "you@yourdomain.com",
+  :mail_forward_address => "rupert.meese@nottingham.ac.uk",
   
   # Set this if you want SSL to be enabled on the web server. The SSL cert 
   # and key files need to exist on the server, The cert file should be in
@@ -101,3 +115,10 @@ set :ec2onrails_config, {
   # /etc/ssl/private/default.key (see :server_config_files_root).
   :enable_ssl => true
 }
+
+require 'ec2onrails/recipes'
+#Do these again here because ec2onrails overwrites them!!
+set :user, 'root'
+set :use_sudo,false
+
+

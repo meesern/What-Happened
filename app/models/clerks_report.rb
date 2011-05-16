@@ -1,6 +1,13 @@
-class ClerksReport < ActiveRecord::Base
+#
+# requires in environment.rb do not seem to be enough here.
+require 'rubygems'
+require 'bundler/setup'
+require 'pacecar'
 
+class ClerksReport < ActiveRecord::Base
   hobo_model # Don't put anything above this
+  include Pacecar
+
 
   fields do
     witness :integer
@@ -43,17 +50,33 @@ class ClerksReport < ActiveRecord::Base
   # Initially we will be very liberal - tell us it and we will believe you
   # almost without question.  
   #
+  def report_a_file( parms )
+
+  end
+
+  def self.recent_report_for(witness, aspect)
+    #use the same Clerks Report if there is a recent one.
+    #NOTE May not be the most efficeient way of getting a recent report
+    self.updated_after(20.seconds.ago).witness_equals(witness).aspect_equals(aspect).last  || self.new
+  end
 
   def self.file( html )
-    cr = self.new
-    #TODO these parameters are bogus for now
-    cr.work(:witness=> 0,
-             :aspect=> Aspect.find_by_name("Hat Location").id,
-             :blob=> html )
-    cr.save! unless cr.reports.empty?
+    #TODO witness and aspect are bogus for now
+    witness = 0
+    aspect = Aspect.find_by_name("Hat Location").id
+
+    #Get a clerks report
+    cr = self.recent_report_for(witness, aspect)
+
+    cr.work(:witness=> witness,
+            :aspect=> aspect,
+            :blob=>   html )
+
+    cr.save! if cr.changed?
   end
 
   def work( params )
+    print "."
     self.witness = params[:witness]
     self.aspect = params[:aspect]
     #ignore witness for now
@@ -66,7 +89,7 @@ class ClerksReport < ActiveRecord::Base
     #pp doc #uncomment to print doc for debug
     #look for <t>'s which indicate time based measurement
     tstamps = doc.search("//t")
-    submitted_records = tstamps.length
+    self.submitted_records = (submitted_records || 0) + tstamps.length
     tstamps.each do |ts|
       m = ts.next_sibling
       # TODO This is better done by validating against a schema
@@ -78,9 +101,8 @@ class ClerksReport < ActiveRecord::Base
         rep.measurement = m.inner_html
         rep.clerks_report = self  #update if udating the record
         rep.save!
-        print "."
         #deal with nul instead of zero in first instance
-        accepted_records = (accepted_records || 0 ) + 1
+        self.accepted_records = (accepted_records || 0 ) + 1
       end
     end
 

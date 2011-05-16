@@ -40,6 +40,8 @@ class XmppWorker < BackgrounDRb::MetaWorker
     begin
       parse_message(message.body) unless message.body.nil?
     rescue 
+      #Catch errors as ordinary crash reporting does not work from the
+      #xmpp4r callback
       puts $!
       raise
     end
