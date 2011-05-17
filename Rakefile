@@ -1,12 +1,28 @@
-# Add your own tasks in files placed in lib/tasks ending in .rake,
-# for example lib/tasks/capistrano.rake, and they will automatically be available to Rake.
-
-require(File.join(File.dirname(__FILE__), 'config', 'boot'))
-
 require 'rake'
 require 'rake/testtask'
 require 'rake/rdoctask'
 
-require 'tasks/rails'
+if ARGV.grep(/rubber:/).empty?
+  require(File.join(File.dirname(__FILE__), 'config', 'boot'))
 
-require 'hobo/tasks/rails'
+  env = ENV['RUBBER_ENV'] ||= (ENV['RAILS_ENV'] || 'development')
+  RAILS_ENV = ENV['RAILS_ENV'] = env
+  root = File.dirname(__FILE__)
+
+  require 'rubber'
+
+  Rubber::initialize(root, env)
+
+  require 'rubber/tasks/rubber'
+
+  task :console do
+    ARGV.clear
+    require "irb"
+    IRB.start
+  end
+
+  require 'hobo/tasks/rails'
+  require 'tasks/rails'
+else
+  load File.join(File.dirname(__FILE__), 'lib/tasks/rubber.rake')
+end

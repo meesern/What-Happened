@@ -1,124 +1,56 @@
-# This is a sample Capistrano config file for EC2 on Rails.
-# It should be edited and customized.
+# This is a sample Capistrano config file for rubber
 
-#AMIs
-# ami-c9bc58a0    32-bit from readme (seems out of date)
-# ami-cbbc58a2    64-bit from readme (requires large instance)
-#
-# ami-1501e27c    From ami_ids.yml
-set :dashed_ip, "50-17-97-43"
+set :rails_env, RUBBER_ENV
 
-set :scm, :git
-set :ssh_options, { :forward_agent => true }
+on :load do
+  set :application, rubber_env.app_name
+  set :runner,      rubber_env.app_user
+  set :deploy_to,   "/mnt/#{application}-#{RUBBER_ENV}"
+  set :copy_exclude, [".git/*", ".bundle/*", "log/*"]
+end
 
-set :application, "whathappened"
+# Use a simple directory tree copy here to make demo easier.
+# You probably want to use your own repository for a real app
+set :scm, :none
+set :repository, "."
+set :deploy_via, :copy
 
-set :repository, "git://github.com/meesern/What-Happened.git"
-
-# NOTE: for some reason Capistrano requires you to have both the public and
-# the private key in the same folder, the public key should have the 
-# extension ".pub".
-ssh_options[:keys] = ["#{ENV['HOME']}/.ssh/rnm_horizon_key.pem"]
-
+# Easier to do system level config as root - probably should do it through
+# sudo in the future.  We use ssh keys for access, so no passwd needed
 set :user, 'root'
-set :use_sudo, false
+set :password, nil
 
-# Your EC2 instances. Use the ec2-xxx....amazonaws.com hostname, not
-# any other name (in case you have your own DNS alias) or it won't
-# be able to resolve to the internal IP address.
-role :web,      "ec2-#{dashed_ip}.compute-1.amazonaws.com"
-role :memcache, "ec2-#{dashed_ip}.compute-1.amazonaws.com"
-role :db,       "ec2-#{dashed_ip}.compute-1.amazonaws.com", :primary => true
-# role :db,       "ec2-56-xx-xx-xx.z-1.compute-1.amazonaws.com", :primary => true, :ebs_vol_id => 'vol-12345abc'
-# optinally, you can specify Amazon's EBS volume ID if the database is persisted 
-# via Amazon's EBS.  See the main README for more information.
+# Use sudo with user rails for cap deploy:[stop|start|restart]
+# This way exposed services (mongrel) aren't running as a privileged user
+set :use_sudo, true
 
-# Whatever you set here will be taken set as the default RAILS_ENV value
-# on the server. Your app and your hourly/daily/weekly/monthly scripts
-# will run with RAILS_ENV set to this value.
-set :rails_env, "production"
+# How many old releases should be kept around when running "cleanup" task
+set :keep_releases, 3
 
-# EC2 on Rails config. 
-# NOTE: Some of these should be omitted if not needed.
-set :ec2onrails_config, {
-  # S3 bucket and "subdir" used by the ec2onrails:db:restore task
-  # NOTE: this only applies if you are not using EBS
-  :restore_from_bucket => "horizon_trackable_tableware",
-  :restore_from_bucket_subdir => "database",
-  
-  # S3 bucket and "subdir" used by the ec2onrails:db:archive task
-  # This does not affect the automatic backup of your MySQL db to S3, it's
-  # just for manually archiving a db snapshot to a different bucket if 
-  # desired.
-  # NOTE: this only applies if you are not using EBS
-  :archive_to_bucket => "horizon_trackable_tableware",
-  :archive_to_bucket_subdir => "db-archive/#{Time.new.strftime('%Y-%m-%d--%H-%M-%S')}",
-  
-  # Set a root password for MySQL. Run "cap ec2onrails:db:set_root_password"
-  # to enable this. This is optional, and after doing this the
-  # ec2onrails:db:drop task won't work, but be aware that MySQL accepts 
-  # connections on the public network interface (you should block the MySQL
-  # port with the firewall anyway). 
-  # If you don't care about setting the mysql root password then remove this.
-  #:mysql_root_password => "your-mysql-root-password",
-  
-  # Any extra Ubuntu packages to install if desired
-  # If you don't want to install extra packages then remove this.
-  :packages => ["logwatch", "imagemagick", "screen"],
-  
-  # Any extra RubyGems to install if desired: can be "gemname" or if a 
-  # particular version is desired "gemname -v 1.0.1"
-  # If you don't want to install extra rubygems then remove this
-  # NOTE: if you are using rails 2.1, ec2onrails calls 'sudo rake gem:install',
-  # which will install gems defined in your rails configuration
-  #:rubygems => ["rmagick", "rfacebook -v 0.9.7"],
-  :rubygems => [],
-  
-  # extra security measures are taken if this is true, BUT it makes initial
-  # experimentation and setup a bit tricky.  For example, if you do not
-  # have your ssh keys setup correctly, you will be locked out of your
-  # server after 3 attempts for upto 3 months.  
-  :harden_server => false,
-  
-  #if you want to harden the server, or setup email signing, you will need to set the domain
-  #if you use Capistrano's multistage extension (recommended!), you can add a line like this to your
-  #environment specific file:
-  #      ec2onrails_config[:service_domain] = 'staging.mydomain.com'
-  :service_domain => nil,
-  
-  # Set the server timezone. run "cap -e ec2onrails:server:set_timezone" for 
-  # details
-  :timezone => "UTC",
-  
-  # Files to deploy to the server (they'll be owned by root). It's intended
-  # mainly for customized config files for new packages installed via the 
-  # ec2onrails:server:install_packages task. Subdirectories and files inside
-  # here will be placed in the same structure relative to the root of the
-  # server's filesystem. 
-  # If you don't need to deploy customized config files to the server then
-  # remove this.
-  :server_config_files_root => "../server_configs",
-  
-  # If config files are deployed, some services might need to be restarted.
-  # If you don't need to deploy customized config files to the server then
-  # remove this.
-  :services_to_restart => %w(postfix sysklogd),
-  
-  # Set an email address to forward admin mail messages to. If you don't
-  # want to receive mail from the server (e.g. monit alert messages) then
-  # remove this.
-  :mail_forward_address => "rupert.meese@nottingham.ac.uk",
-  
-  # Set this if you want SSL to be enabled on the web server. The SSL cert 
-  # and key files need to exist on the server, The cert file should be in
-  # /etc/ssl/certs/default.pem and the key file should be in
-  # /etc/ssl/private/default.key (see :server_config_files_root).
-  :enable_ssl => true
-}
+# Lets us work with staging instances without having to checkin config files
+# (instance*.yml + rubber*.yml) for a deploy.  This gives us the
+# convenience of not having to checkin files for staging, as well as 
+# the safety of forcing it to be checked in for production.
+set :push_instance_config, RUBBER_ENV != 'production'
 
-require 'ec2onrails/recipes'
-#Do these again here because ec2onrails overwrites them!!
-set :user, 'root'
-set :use_sudo,false
+# Allows the tasks defined to fail gracefully if there are no hosts for them.
+# Comment out or use "required_task" for default cap behavior of a hard failure
+rubber.allow_optional_tasks(self)
+# Wrap tasks in the deploy namespace that have roles so that we can use FILTER
+# with something like a deploy:cold which tries to run deploy:migrate but can't
+# because we filtered out the :db role
+namespace :deploy do
+  rubber.allow_optional_tasks(self)
+  tasks.values.each do |t|
+    if t.options[:roles]
+      task t.name, t.options, &t.body
+    end
+  end
+end
 
+# load in the deploy scripts installed by vulcanize for each rubber module
+Dir["#{File.dirname(__FILE__)}/rubber/deploy-*.rb"].each do |deploy_file|
+  load deploy_file
+end
 
+after "deploy", "deploy:cleanup"
