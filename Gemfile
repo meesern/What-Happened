@@ -1,6 +1,6 @@
 
 source "http://rubygems.org"
-gem "rails"
+gem "rails", "2.3.11"
 gem "hobo"
 gem "hpricot"
 gem "xmpp4r"

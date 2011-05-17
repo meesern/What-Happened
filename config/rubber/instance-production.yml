@@ -1,11 +1,11 @@
 --- 
 - !ruby/object:Rubber::Configuration::InstanceItem 
   domain: tableware.dyndns-web.com
-  external_host: ec2-50-19-68-250.compute-1.amazonaws.com
-  external_ip: 50.19.68.250
-  instance_id: i-e514e88b
-  internal_host: ip-10-212-187-131.ec2.internal
-  internal_ip: 10.212.187.131
+  external_host: ec2-174-129-52-34.compute-1.amazonaws.com
+  external_ip: 174.129.52.34
+  instance_id: i-9d4eb2f3
+  internal_host: ip-10-203-1-247.ec2.internal
+  internal_ip: 10.203.1.247
   name: production
   platform: linux
   roles: 
