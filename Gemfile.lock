@@ -96,7 +96,7 @@ DEPENDENCIES
   hpricot
   pacecar!
   packet
-  rails
+  rails (= 2.3.11)
   rubber
   ruby-debug
   sqlite3
