@@ -159,6 +159,7 @@ packages: [postfix, build-essential, git-core, ec2-ami-tools,
 # For example, gem: [[rails, 2.2.2], open4, aws-s3]
 gems: [open4, aws-s3, bundler, [rubber, "#{Rubber.version}"],
      ParseTree,
+     ruby2ruby,
      mysql,
     [rails, 2.3.11],
      hobo,

@@ -3,6 +3,7 @@
 
 source "http://rubygems.org"
 gem "ParseTree"
+gem "ruby2ruby"
 gem "mysql"
 gem "rails", "2.3.11"
 gem "hobo"
