@@ -158,8 +158,6 @@ packages: [postfix, build-essential, git-core, ec2-ami-tools,
 # You can install a specific version of a gem by using a sub-array of gem, version
 # For example, gem: [[rails, 2.2.2], open4, aws-s3]
 gems: [
-     [builder, 2.1.2],
-     [highline, 1.6.1],
      open4, aws-s3, bundler, [rubber, "#{Rubber.version}"],
      ParseTree,
      ruby2ruby,
