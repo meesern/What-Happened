@@ -157,11 +157,14 @@ packages: [postfix, build-essential, git-core, ec2-ami-tools,
 # OPTIONAL: The gems to install on all instances
 # You can install a specific version of a gem by using a sub-array of gem, version
 # For example, gem: [[rails, 2.2.2], open4, aws-s3]
-gems: [open4, aws-s3, bundler, [rubber, "#{Rubber.version}"],
+gems: [
+     [builder, 2.1.2],
+     [highline, 1.6.1],
+     open4, aws-s3, bundler, [rubber, "#{Rubber.version}"],
      ParseTree,
      ruby2ruby,
      mysql,
-    [rails, 2.3.11],
+     [rails, 2.3.11],
      hobo,
      hpricot,
      xmpp4r,
@@ -170,8 +173,7 @@ gems: [open4, aws-s3, bundler, [rubber, "#{Rubber.version}"],
      haml,
      packet,
      chronic,
-     sqlite3,
-     rubber
+     sqlite3
 ]
 
 # OPTIONAL: A string prepended to shell command strings that cause multi
