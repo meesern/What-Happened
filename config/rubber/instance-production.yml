@@ -1,11 +1,11 @@
 --- 
 - !ruby/object:Rubber::Configuration::InstanceItem 
-  domain: tableware.dyndns-web.com
-  external_host: ec2-174-129-52-34.compute-1.amazonaws.com
-  external_ip: 174.129.52.34
-  instance_id: i-9d4eb2f3
-  internal_host: ip-10-203-1-247.ec2.internal
-  internal_ip: 10.203.1.247
+  domain: socksforlife.co.uk
+  external_host: ec2-174-129-125-83.compute-1.amazonaws.com
+  external_ip: 174.129.125.83
+  instance_id: i-b3e718dd
+  internal_host: ip-10-196-19-32.ec2.internal
+  internal_ip: 10.196.19.32
   name: production
   platform: linux
   roles: 
@@ -30,6 +30,10 @@
     options: {}
 
   - !ruby/object:Rubber::Configuration::RoleItem 
+    name: web_tools
+    options: {}
+
+  - !ruby/object:Rubber::Configuration::RoleItem 
     name: db
     options: 
       primary: true
@@ -41,6 +45,7 @@
   security_groups: 
   - whathappened_production_default
   - whathappened_production_web
+  - whathappened_production_web_tools
   - whathappened_production_production
   - whathappened_production_haproxy
   - whathappened_production_app

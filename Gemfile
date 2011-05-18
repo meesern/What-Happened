@@ -1,5 +1,8 @@
 
+#And in rubber.yml
+
 source "http://rubygems.org"
+gem "mysql"
 gem "rails", "2.3.11"
 gem "hobo"
 gem "hpricot"

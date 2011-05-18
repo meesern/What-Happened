@@ -30,7 +30,7 @@ timezone: UTC
 
 # REQUIRED: the domain all the instances should be associated with
 #
-domain: tableware.dyndns-web.com
+domain: socksforlife.co.uk
 
 # OPTIONAL: See rubber-dns.yml for dns configuration
 # This lets rubber update a dynamic dns service with the instance alias
@@ -156,7 +156,20 @@ packages: [postfix, build-essential, git-core, ec2-ami-tools ]
 # OPTIONAL: The gems to install on all instances
 # You can install a specific version of a gem by using a sub-array of gem, version
 # For example, gem: [[rails, 2.2.2], open4, aws-s3]
-gems: [open4, aws-s3, bundler, [rubber, "#{Rubber.version}"]]
+gems: [open4, aws-s3, bundler, [rubber, "#{Rubber.version}"],
+     mysql,
+    [rails, 2.3.11],
+     hobo,
+     hpricot,
+     xmpp4r,
+     ruby-debug,
+     flutie,
+     haml,
+     packet,
+     chronic,
+     sqlite3,
+     rubber
+]
 
 # OPTIONAL: A string prepended to shell command strings that cause multi
 # statement shell commands to fail fast.  You may need to comment this out
