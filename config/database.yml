@@ -15,8 +15,9 @@ test:
   pool: 5
   timeout: 5000
 
+# Actually rubber seems to set this up
 production:
   adapter: mysql
   database: whathappened_production
-  pool: 5
-  timeout: 5000
+  encoding: utf8
+
