@@ -4,5 +4,7 @@
 
 /usr/sbin/service ejabberd restart
 
+/bin/sleep 3
+
 /usr/sbin/ejabberdctl register <%=rubber_env.app_name%> <%=rubber_env.domain%> F47Ajj9iB
 
