@@ -1,0 +1,8 @@
+<% @path = "/etc/ejabberd/restart" %>
+<% @post = @path %>
+<% @perms = 0744 %>
+
+/usr/sbin/service ejabberd restart
+
+/usr/sbin/ejabberdctl register <%=rubber_env.app_name%> <%=rubber_env.domain%> F47Ajj9iB
+
