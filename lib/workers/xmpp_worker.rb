@@ -1,4 +1,4 @@
-
+require 'rubber'
 include Jabber
 
 class XmppWorker < BackgrounDRb::MetaWorker
@@ -6,9 +6,9 @@ class XmppWorker < BackgrounDRb::MetaWorker
   def create(opts = nil)
     # this method is called, when worker is loaded for the first time
     opts ||= {}
-    opts[:username] ||= 'whathappened'
-    opts[:server]   ||= 'greenbean'
-    opts[:password] ||= 'jabber'
+    opts[:username] ||= RUBBER_CONFIG.app_name
+    opts[:server]   ||= RUBBER_CONFIG.domain
+    opts[:password] ||= RUBBER_CONFIG.jabber_password
     $username =  opts[:username]
     $server =    opts[:server]
     $password =  opts[:password]

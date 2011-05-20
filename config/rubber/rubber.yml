@@ -25,12 +25,15 @@ admin_email: rupert.meese@nottingham.ac.uk
 web_tools_user: admin
 web_tools_password: admin<og1n
 
+# Jabber password
+jabber_password: F47Ajj9iB
+
 # REQUIRED: The timezone the server should be in
 timezone: UTC
 
 # REQUIRED: the domain all the instances should be associated with
 #
-domain: socksforlife.co.uk
+domain: "#{RAILS_ENV == 'production' ? 'socksforlife.co.uk':'greenbean'}"
 
 # OPTIONAL: See rubber-dns.yml for dns configuration
 # This lets rubber update a dynamic dns service with the instance alias

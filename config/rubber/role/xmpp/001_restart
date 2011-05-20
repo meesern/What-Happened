@@ -6,5 +6,5 @@
 
 /bin/sleep 3
 
-/usr/sbin/ejabberdctl register <%=rubber_env.app_name%> <%=rubber_env.domain%> F47Ajj9iB
+/usr/sbin/ejabberdctl register <%=rubber_env.app_name%> <%=rubber_env.domain%> <%=rubber_env.jabber_password%>
 
