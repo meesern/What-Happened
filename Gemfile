@@ -16,6 +16,6 @@ gem 'pacecar', :git => 'git://github.com/thoughtbot/pacecar.git', :branch => 'ra
 gem "packet"    #for backgroundRb
 gem "chronic"   #for backgroundRb
 gem "sqlite3"   #for backgroundRb
-#gem "rubber"   #do not include rubber - it's not needed in the app
+gem "rubber" 
 
 

@@ -1,4 +1,64 @@
 --- 
+- !ruby/object:Rubber::Configuration::InstanceItem 
+  domain: socksforlife.co.uk
+  external_host: ec2-50-16-61-75.compute-1.amazonaws.com
+  external_ip: 50.16.61.75
+  instance_id: i-f9b16597
+  internal_host: ip-10-212-231-64.ec2.internal
+  internal_ip: 10.212.231.64
+  name: production
+  platform: linux
+  roles: 
+  - !ruby/object:Rubber::Configuration::RoleItem 
+    name: web
+    options: {}
+
+  - !ruby/object:Rubber::Configuration::RoleItem 
+    name: haproxy
+    options: {}
+
+  - !ruby/object:Rubber::Configuration::RoleItem 
+    name: app
+    options: {}
+
+  - !ruby/object:Rubber::Configuration::RoleItem 
+    name: passenger
+    options: {}
+
+  - !ruby/object:Rubber::Configuration::RoleItem 
+    name: apache
+    options: {}
+
+  - !ruby/object:Rubber::Configuration::RoleItem 
+    name: web_tools
+    options: {}
+
+  - !ruby/object:Rubber::Configuration::RoleItem 
+    name: xmpp
+    options: {}
+
+  - !ruby/object:Rubber::Configuration::RoleItem 
+    name: db
+    options: 
+      primary: true
+  - !ruby/object:Rubber::Configuration::RoleItem 
+    name: mysql_master
+    options: {}
+
+  root_device_type: instance-store
+  security_groups: 
+  - whathappened_production_default
+  - whathappened_production_web
+  - whathappened_production_web_tools
+  - whathappened_production_production
+  - whathappened_production_haproxy
+  - whathappened_production_app
+  - whathappened_production_passenger
+  - whathappened_production_apache
+  - whathappened_production_xmpp
+  - whathappened_production_db
+  - whathappened_production_mysql_master
+  zone: us-east-1b
 - volumes: {}
 
   static_ips: {}
