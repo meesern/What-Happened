@@ -16,6 +16,6 @@ gem 'pacecar', :git => 'git://github.com/thoughtbot/pacecar.git', :branch => 'ra
 gem "packet"    #for backgroundRb
 gem "chronic"   #for backgroundRb
 gem "sqlite3"   #for backgroundRb
-gem "rubber" 
+gem "rubber", ">1.13.0"
 
 
