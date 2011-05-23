@@ -12,7 +12,7 @@ end
 # Use a simple directory tree copy here to make demo easier.
 # You probably want to use your own repository for a real app
 set :scm, :git
-set :repository, "git@github.com:meesern/What-Happened.git"
+set :repository, "git://github.com/meesern/What-Happened.git"
 #set :deploy_via, :copy
 set :deploy_via, :remote_cache
 
