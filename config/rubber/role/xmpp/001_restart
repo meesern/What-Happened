@@ -1,10 +1,15 @@
+#!/bin/bash
 <% @path = "/etc/ejabberd/restart" %>
-<% @post = @path %>
 <% @perms = 0744 %>
 
 /usr/sbin/service ejabberd restart
 
 /bin/sleep 3
 
-/usr/sbin/ejabberdctl register <%=rubber_env.app_name%> <%=rubber_env.domain%> <%=rubber_env.jabber_password%>
+if /usr/sbin/ejabberdctl check-account <%=rubber_env.app_name%> <%=rubber_env.domain%>; then 
+  echo <%=rubber_env.app_name%> exists
+else
+  echo registering <%=rubber_env.app_name%> 
+  /usr/sbin/ejabberdctl register <%=rubber_env.app_name%> <%=rubber_env.domain%> <%=rubber_env.jabber_password%>
+fi
 
