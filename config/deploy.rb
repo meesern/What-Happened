@@ -1,5 +1,8 @@
 # This is a sample Capistrano config file for rubber
 
+# Fix for bad rake 0.9
+set :rake, 'bundle exec rake'
+
 set :rails_env, RUBBER_ENV
 
 on :load do

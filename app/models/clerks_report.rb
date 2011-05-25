@@ -50,9 +50,6 @@ class ClerksReport < ActiveRecord::Base
   # Initially we will be very liberal - tell us it and we will believe you
   # almost without question.  
   #
-  def report_a_file( parms )
-
-  end
 
   def self.recent_report_for(witness, aspect)
     #use the same Clerks Report if there is a recent one.
@@ -60,10 +57,9 @@ class ClerksReport < ActiveRecord::Base
     self.updated_after(20.seconds.ago).witness_equals(witness).aspect_equals(aspect).last  || self.new
   end
 
-  def self.file( html )
-    #TODO witness and aspect are bogus for now
+  def self.file( html, aspect )
+    #TODO witness is bogus for now
     witness = 0
-    aspect = Aspect.find_by_name("Hat Location").id
 
     #Get a clerks report
     cr = self.recent_report_for(witness, aspect)

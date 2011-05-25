@@ -5,7 +5,7 @@ ActionController::Routing::Routes.draw do |map|
 
   Hobo.add_routes(map)
 
-  map.connect 'file_a_report/:aspect', :controller => 'clerks_report', :action => 'file'
+  map.connect 'file_a_report/:aspect', :controller => 'clerks_reports', :action => 'file', :method => 'post'
 
   # The priority is based upon order of creation: first created -> highest priority.
 

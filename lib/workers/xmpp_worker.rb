@@ -49,7 +49,8 @@ class XmppWorker < BackgrounDRb::MetaWorker
 
   def parse_message(body)
     #ClerksReport.file( Hpricot(body).to_plain_text )
-    ClerksReport.file( body )
+    # Bogus aspect id
+    ClerksReport.file( body, 3 )
   end
 
 end
