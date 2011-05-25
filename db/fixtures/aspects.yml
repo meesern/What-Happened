@@ -1,0 +1,29 @@
+--- 
+a1: 
+  name: Location
+  created_at: 2011-04-06 10:36:55
+  updated_at: 2011-04-06 10:36:55
+  entity_id: 1
+  id: 1
+  pattern: <xml wrapper for each report>
+  description: Location within the visual field of the camera.  This probably needs to be a formal definition of the meaning of the aspect being measured.
+a2:
+  name: Temperature of A28
+  created_at: 2011-04-06 11:13:57
+  updated_at: 2011-04-06 11:14:53
+  entity_id: 4
+  id: 2
+  pattern: |
+    <formal description of the measurements i.e. degrees C, resolution 0.1 degree, sensor error +- 0.4 degrees >
+
+  description: "Again description is more of a development nicety than a first class aspect of the object container.\r\n\
+    \r\n\
+    How does one enforce making the pattern a rigorous description of the data? "
+a3:
+  name: Hat Location
+  created_at: 2011-04-07 16:15:24
+  updated_at: 2011-04-07 16:15:24
+  entity_id: 5
+  id: 3
+  pattern: ""
+  description: The location of my hat (or GPS really).

@@ -1,0 +1,14 @@
+--- 
+u1:
+  salt: 3ba7c0f9e187a92250ea92e2dd1ba183b96416ca
+  name: Rupert Meese
+  key_timestamp: 
+  created_at: 2011-04-05 12:46:42
+  crypted_password: e7331f0e51f2928db5a1010945398bdd009b3a82
+  remember_token_expires_at: 2011-05-17 15:29:24
+  updated_at: 2011-05-03 15:29:24
+  id: 1
+  administrator: t
+  remember_token: 9c7b2886e5bbac99d62b95a4c091ef22d876fc13
+  email_address: rupert.meese@nottingham.ac.uk
+  state: active

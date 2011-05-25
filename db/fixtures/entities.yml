@@ -1,0 +1,36 @@
+--- 
+e1:
+  name: Plate 1
+  created_at: 2011-04-05 12:47:55
+  updated_at: 2011-04-06 10:31:21
+  id: 1
+  description: This should be a shit load of XML
+  item_id: 1
+e2:
+  name: Plate 2
+  created_at: 2011-04-06 10:31:53
+  updated_at: 2011-04-06 10:31:53
+  id: 2
+  description: The big round one!
+  item_id: 1
+e3:
+  name: Plate 3
+  created_at: 2011-04-06 10:32:55
+  updated_at: 2011-04-06 10:32:55
+  id: 3
+  description: The one with the dog with a flower in it's mouth.
+  item_id: 1
+e4:
+  name: Room A28
+  created_at: 2011-04-06 11:10:56
+  updated_at: 2011-04-06 11:10:56
+  id: 4
+  description: A nice south facing room with lots of natural light.  The description field should be replaced by properties.
+  item_id: 2
+e5:
+  name: Rue's Hat
+  created_at: 2011-04-07 16:14:01
+  updated_at: 2011-04-14 14:12:17
+  id: 5
+  description: The actual GPS box - it's a bit lame I know but we could pretend it's a trackable hat.
+  item_id: 3

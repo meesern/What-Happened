@@ -14,9 +14,12 @@ end
 
 # Use a simple directory tree copy here to make demo easier.
 # You probably want to use your own repository for a real app
+#set :scm, :none
+#set :repository, "."
+#set :deploy_via, :copy
+#NOTE Currently using git fails with "Instance not found for host production" since the instance-production.yml is not in git.
 set :scm, :git
 set :repository, "git://github.com/meesern/What-Happened.git"
-#set :deploy_via, :copy
 set :deploy_via, :remote_cache
 
 # Easier to do system level config as root - probably should do it through
@@ -57,4 +60,15 @@ Dir["#{File.dirname(__FILE__)}/rubber/deploy-*.rb"].each do |deploy_file|
   load deploy_file
 end
 
+namespace :rake do
+  desc "Run a task on a remote server"
+  # run like: cap staging rake:invoke task=a_certain_task
+  task :invoke do
+    run("cd #{deploy_to}/current; /usr/bin/env rake #{ENV['task']} RAILS_ENV=#{rails_env}")
+  end
+end
+
 after "deploy", "deploy:cleanup"
+#RNM extend deploy cold to initialise database
+after "deploy:cold", "rake:invoke task=db:seed" 
+

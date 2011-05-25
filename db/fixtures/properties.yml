@@ -1,0 +1,26 @@
+--- 
+p1:
+  box: Jessie likes this one best
+  created_at: 2011-04-06 10:33:55
+  updated_at: 2011-04-06 10:33:55
+  entity_id: 1
+  id: 1
+  item_id: 
+p2:
+  box: "Bought for us by uncle fester.  "
+  created_at: 2011-04-06 10:34:42
+  updated_at: 2011-04-06 10:34:42
+  entity_id: 
+  id: 2
+  item_id: 1
+p3:
+  box: |-
+    
+    <some xml to describe this as the url that it is>
+    https://www.horizon.ac.uk/
+    </>
+  created_at: 2011-04-06 11:05:56
+  updated_at: 2011-04-06 11:05:56
+  entity_id: 
+  id: 3
+  item_id: 2

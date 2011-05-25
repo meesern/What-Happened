@@ -3,5 +3,4 @@
 .bundle
 /tmp
 /log
-config/rubber/instance-production.yml
 
