@@ -61,6 +61,10 @@ Dir["#{File.dirname(__FILE__)}/rubber/deploy-*.rb"].each do |deploy_file|
   load deploy_file
 end
 
+def remote_file_exists?(full_path)
+  'true' ==  capture("if [ -e #{full_path} ]; then echo 'true'; fi").strip
+end
+
 namespace :db do
   desc "Run a task on a remote server"
   # run like: cap staging rake:invoke task=a_certain_task
@@ -74,12 +78,13 @@ namespace :rake do
   desc "Run a task on a remote server"
   # run like: cap staging rake:invoke task=a_certain_task
   task :invoke do
-    run("cd #{deploy_to}/current; /usr/bin/env bundle exec rake #{ENV['task']} RAILS_ENV=#{rails_env}")
+    path = deploy_to+"/current" 
+    path = release_path unless remote_file_exists?(path)
+    run("cd #{path}; /usr/bin/env bundle exec rake #{ENV['task']} RAILS_ENV=#{rails_env}")
   end
 end
 
 after "deploy", "deploy:cleanup"
 #RNM extend deploy cold to initialise database
-after "deploy:cold", "db:seed" 
-after "rubber:bootstrap", "db:seed" 
+after "rubber:create_staging", "db:seed" 
 

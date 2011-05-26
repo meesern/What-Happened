@@ -59,7 +59,7 @@ class ClerksReport < ActiveRecord::Base
 
   def self.file( html, aspect )
     #TODO witness is bogus for now
-    witness = 0
+    witness = 1
 
     #Get a clerks report
     cr = self.recent_report_for(witness, aspect)
