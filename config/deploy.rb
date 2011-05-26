@@ -14,13 +14,13 @@ end
 
 # Use a simple directory tree copy here to make demo easier.
 # You probably want to use your own repository for a real app
-set :scm, :none
-set :repository, "."
-set :deploy_via, :copy
-#NOTE Currently using git fails with "Instance not found for host production" since the instance-production.yml is not in git.
-#set :scm, :git
-#set :repository, "git://github.com/meesern/What-Happened.git"
-#set :deploy_via, :remote_cache
+#set :scm, :none
+#set :repository, "."
+#set :deploy_via, :copy
+#NOTE Using git fails with "Instance not found for host production" since the instance-production.yml is not in git unless push_instance_config is true.
+set :scm, :git
+set :repository, "git://github.com/meesern/What-Happened.git"
+set :deploy_via, :remote_cache
 
 # Easier to do system level config as root - probably should do it through
 # sudo in the future.  We use ssh keys for access, so no passwd needed
@@ -38,7 +38,8 @@ set :keep_releases, 3
 # (instance*.yml + rubber*.yml) for a deploy.  This gives us the
 # convenience of not having to checkin files for staging, as well as 
 # the safety of forcing it to be checked in for production.
-set :push_instance_config, RUBBER_ENV != 'production'
+#set :push_instance_config, RUBBER_ENV != 'production'
+set :push_instance_config, true
 
 # Allows the tasks defined to fail gracefully if there are no hosts for them.
 # Comment out or use "required_task" for default cap behavior of a hard failure
