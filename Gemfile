@@ -20,4 +20,5 @@ gem "rubber", ">1.13.0"
 gem "andand"
 gem "backup"
 gem "whenever"
+gem "fog", "0.7.0"   #for backup
 
