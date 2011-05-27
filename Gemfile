@@ -17,6 +17,7 @@ gem "packet"    #for backgroundRb
 gem "chronic"   #for backgroundRb
 gem "sqlite3"   #for backgroundRb
 gem "rubber", ">1.13.0"
-
-
+gem "andand"
+gem "backup"
+gem "whenever"
 

@@ -175,7 +175,10 @@ gems: [
      haml,
      packet,
      chronic,
-     sqlite3
+     sqlite3,
+     backup,
+     whenever,
+     andand
 ]
 
 # OPTIONAL: A string prepended to shell command strings that cause multi
