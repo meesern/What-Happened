@@ -14,7 +14,8 @@
 # When you're finished configuring this configuration file,
 # you can run it from the command line by issuing the following command:
 #
-# $ backup -t my_backup -c <%=@path%>
+# $ backup -t my_backup -c <%=@path%> 
+# See conf/rubber/rubber-mysql.s3
 
 Backup::Model.new(:database_s3_backup, "Backup gem's S3 backup") do
 
