@@ -13,6 +13,10 @@ class Aspect < ActiveRecord::Base
   has_many   :reports
   has_many   :witnesses
 
+  def report_data
+    self.reports.map { |r| "<t>#{r.known}</t><ment>#{r.measurement}</ment>" }
+  end
+
 
   # --- Permissions --- #
 

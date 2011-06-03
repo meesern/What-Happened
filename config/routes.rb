@@ -7,6 +7,8 @@ ActionController::Routing::Routes.draw do |map|
 
   map.connect 'file_a_report/:aspect', :controller => 'clerks_reports', :action => 'file', :method => 'post'
 
+  map.connect 'data/:aspect', :controller => 'aspects', :action => 'data'
+
   # The priority is based upon order of creation: first created -> highest priority.
 
   # Sample of regular route:
