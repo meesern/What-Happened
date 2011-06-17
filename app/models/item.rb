@@ -14,6 +14,17 @@ class Item < ActiveRecord::Base
   has_many   :properties
 
 
+  def self.tree
+    items = self.find :all
+    items.map{ |item| item.tree }
+  end
+
+  def tree
+    branch = self.attributes.except "created_at","updated_at"
+    branch.merge({"entities" => self.entities.map{ |e| e.tree }})
+  end
+
+
   # --- Permissions --- #
 
   def create_permitted?

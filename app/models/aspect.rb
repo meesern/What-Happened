@@ -13,10 +13,16 @@ class Aspect < ActiveRecord::Base
   has_many   :reports
   has_many   :witnesses
 
-  def report_data
-    self.reports.map { |r| "<t>#{r.known}</t><ment>#{r.measurement}</ment>" }
+  def tree
+    self.attributes.except "created_at","updated_at","item_id"
   end
 
+
+  def report_data
+    #Limit 20 first 10000 to prevent timeout
+    #TODO implement paging in the API
+    c = self.reports.paginate(:page=>1, :per_page=>1000)
+  end
 
   # --- Permissions --- #
 

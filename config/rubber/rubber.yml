@@ -175,12 +175,17 @@ gems: [
      ruby-debug,
      flutie,
      haml,
+     RedCloth,
+     maruku,
+     WikiCreole,
      packet,
      chronic,
      sqlite3,
      backup,
      whenever,
      andand,
+     cobravsmongoose,
+     json,
      [fog, 0.7.0]
 ]
 

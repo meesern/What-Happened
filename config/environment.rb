@@ -50,5 +50,10 @@ require 'xmpp4r'
 require 'xmpp4r/client'
 require 'ruby-debug'
 require 'haml'
+require 'RedCloth'
+require 'maruku'
+require 'wiki_creole'
 require 'pacecar' #date inside outside queries
+require 'cobravsmongoose'
+require 'json'
 

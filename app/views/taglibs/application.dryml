@@ -8,3 +8,21 @@
 
 <def tag="app-name">What Happened</def>
 
+<def tag="markdown-page">
+<page>
+  <content:>
+    <div class="markdown" param="default"/>
+  </content>
+</page>
+</def>
+
+<extend tag="show-page" for="Aspect">
+  <old-show-page merge>
+    <collection: replace>
+      <page-nav with="&@reports" param="top-page-nav"/>
+      <collection with="&@reports" />
+      <page-nav with="&@reports" param="bottom-page-nav"/>
+    </collection>
+  </old-show-page>
+</extend>
+

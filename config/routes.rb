@@ -5,9 +5,10 @@ ActionController::Routing::Routes.draw do |map|
 
   Hobo.add_routes(map)
 
-  map.connect 'file_a_report/:aspect', :controller => 'clerks_reports', :action => 'file', :method => 'post'
+  map.connect 'v1.0/file_a_report/:aspect', :controller => 'clerks_reports', :action => 'file', :method => 'post'
 
-  map.connect 'data/:aspect', :controller => 'aspects', :action => 'data'
+  map.connect 'v1.0/data/:aspect', :controller => 'aspects', :action => 'data'
+  map.connect 'v1.0/items/',       :controller => 'items',   :action => 'apiindex'
 
   # The priority is based upon order of creation: first created -> highest priority.
 

@@ -12,6 +12,9 @@ gem "xmpp4r"
 gem "ruby-debug"
 gem "flutie"
 gem "haml"
+gem "WikiCreole"
+gem "maruku"
+gem "RedCloth"
 gem 'pacecar', :git => 'git://github.com/thoughtbot/pacecar.git', :branch => 'rails2'
 gem "packet"    #for backgroundRb
 gem "chronic"   #for backgroundRb
@@ -22,4 +25,7 @@ gem "backup"
 gem "whenever"
 gem "fog", "0.7.0"   #for backup
 gem "mail", "2.2.15" #for backup
+gem "cobravsmongoose"
+gem "json"
+
 

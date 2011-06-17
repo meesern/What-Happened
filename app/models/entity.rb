@@ -12,6 +12,10 @@ class Entity < ActiveRecord::Base
   has_many    :aspects
   has_many    :properties
 
+  def tree
+    branch = self.attributes.except "created_at","updated_at","item_id"
+    branch.merge({"aspects" => self.aspects.map{|a| a.tree }})
+  end
 
   # --- Permissions --- #
 
