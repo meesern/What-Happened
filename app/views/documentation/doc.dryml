@@ -1,0 +1,4 @@
+<markdown-page>
+<%= @markup %>
+</markdown-page>
+

@@ -1,0 +1,135 @@
+
+= What Happened API
+
+== Overview
+Results are returned as XML.  There will be future support for JSON.
+
+
+== Object Model
+
+| User: 	| Curates data about an Item. |
+| Item: 	| A composite of one or more physical entities (for example a Building may be composed of rooms).|
+| Entity: 	| A uniquely identifiable thing|
+| Property:	| Static information about an entity|
+| Aspect:	| Time series information about an entity|
+| Witness:	| A reporting entity (such as a camera or a sensor)|
+| Report:	| A measurement of an aspect at a single point in time (for example 18degrees at 10.30 1/3/2011 UTC)|
+| Clerks Report:| 	A record of receiving information from a witness.|
+
+
+
+== Authentication
+
+Users are authenticated by password and have access rights only to Items, Entities, Properties, Aspects, Witnesses and Reports that they create.
+
+<**//Future//**>
+
+Key is presented in the http request header  (X-OcApiKey: YOUR_KEY)
+Keys are hierarchical 
+
+| UserKey:	| Access to User's Items and Witnesses    |
+| ItemKey:       | Access to an Item and its Entities      |
+| EntityKey:	| Access to an Entities and its Aspects   |
+| AspectKey:	| Access to an Aspect                     |
+
+Keys can be time bound, giving access to reports only within a specific range of times.
+
+Keys can be generated at
+* http://socksforlife.co.uk/v1.0/keygen/
+
+
+=====example:
+{{{
+
+    curl --request GET --header "X-OcApiKey: YOUR_KEY" http://socksforlife.co.uk/V1.0/data/745
+
+}}}
+
+
+== Items
+
+The list of items and their associated entities and aspects accessible for the current user or with the given API Key: 
+
+* http://socksforlife.co.uk/v1.0/items
+
+=====example:
+{{{
+
+    curl --request GET http://socksforlife.co.uk/v1.0/items
+
+    response
+    ========
+
+    <items>
+        <item> 590_dinnerservice
+
+        <entity name='plate_1'>
+	  <aspect name='camera_1_location'>
+	  </aspect>
+	  <aspect name='camera_2_location'>
+
+
+
+== Item Registration
+
+To allow easy creation of the structures necessary for recoding an objects data the API supports a one stop setup request.  A POST request is made with an XML request of the required structure.  WhatHappened attempts to match existing structures; creates any necessary new structures and returns XML populated with id's.
+
+An item must exist before item registration can be used to update the structure.
+
+* http://socksforlife.co.uk/v1.0/item/<item_id>
+
+=====example:
+{{{
+
+    curl --request POST --header "X-OcApiKey: YOUR_KEY" --data @item_request  http://socksforlife.co.uk/v1.0/item/590_dinnerservice
+
+    item_request
+    ============
+
+    <item>
+        <entity name='plate_1'>
+	  <aspect name='camera_1_location'>
+	  </aspect>
+	  <aspect name='camera_2_location'>
+	  </aspect>
+	</entity>
+	<entity name='plate_2'>
+	  <aspect name='camera_1_location'>
+	  </aspect>
+	  <aspect name='camera_2_location'>
+	</entity>
+    </item> 
+
+
+    response
+    ========
+
+    <item>
+        <entity name='plate_1' id='23432'>
+	  <aspect name='camera_1_location' id='454'>
+	  </aspect>
+	  <aspect name='camera_2_location' id='334'>
+	  </aspect>
+	</entity>
+	<entity name='plate_2' id='3423'>
+	  <aspect name='camera_1_location' id='232'>
+	  </aspect>
+	  <aspect name='camera_2_location' id='464'>
+	  <property id='3895' />
+	</entity>
+    </item> 
+
+}}}
+
+
+
+== Submit Data
+
+* http://socksforlife.co.uk/v1.0/file_a_report/<aspect_id>
+
+
+== Retrieve Data
+
+* http://socksforlife.co.uk/v1.0/data/<aspect_id>
+
+

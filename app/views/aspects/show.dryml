@@ -1,0 +1,43 @@
+
+<!--<def tag="show-page" for="Aspect">
+  <page merge title="#{ht 'aspects.show.title', :default=>['Aspect'] }">
+
+    <body: class="show-page aspect" param/>
+
+    <content: param>
+          <header param="content-header">
+            <a:entity param="parent-link">&laquo; <ht key="aspects.actions.back" to="entity"><name/></ht></a:entity>
+            <h2 param="heading">
+              <ht key="aspects.show.heading" name="&this.respond_to?(:name) ? this.name : ''">
+                <name/>
+              </ht>
+            </h2>
+
+            <record-flags fields="" param/>
+
+            <a action="edit" if="&can_edit?" param="edit-link">
+              <ht key="aspects.actions.edit" name="&this.respond_to?(:name) ? this.name : ''">
+                Edit Aspect
+              </ht>
+            </a>
+          </header>
+
+          <section param="content-body">
+            <view:description param="description"/>
+            <field-list fields="pattern" param/>
+            <section param="collection-section">
+              <h3 param="collection-heading">
+                <ht key="aspects.collection.heading.other" >
+                  Reports
+                </ht>
+              </h3>
+
+              <collection:reports param/>
+            </section>
+          </section>
+    </content:>
+  </page>
+</def>
+-->
+
+<show-page/>
