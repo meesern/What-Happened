@@ -12,6 +12,7 @@ class Aspect < ActiveRecord::Base
   belongs_to :entity
   has_many   :reports
   has_many   :witnesses
+  has_many   :clerks_reports
 
   def tree
     self.attributes.except "created_at","updated_at","item_id"

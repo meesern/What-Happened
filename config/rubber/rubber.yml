@@ -184,7 +184,7 @@ gems: [
      backup,
      whenever,
      andand,
-     cobravsmongoose,
+     xml-simple,
      json,
      [fog, 0.7.0]
 ]

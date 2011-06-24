@@ -264,7 +264,7 @@
           </header>
 
           <section param="content-body">
-            <field-list fields="witness, aspect, submitted_records, accepted_records, status" param/>
+            <field-list fields="submitted_records, accepted_records, status, aspect, witness" param/>
           </section>
     </content:>
 
@@ -1083,7 +1083,7 @@
 
           <section param="content-body">
             <view:description param="description"/>
-            <field-list fields="veracity, character, api_key, aspect, user" param/>
+            <field-list fields="veracity, character, api_key, user" param/>
           </section>
     </content:>
 

@@ -54,6 +54,6 @@ require 'RedCloth'
 require 'maruku'
 require 'wiki_creole'
 require 'pacecar' #date inside outside queries
-require 'cobravsmongoose'
+require 'xmlsimple'
 require 'json'
 

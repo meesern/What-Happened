@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110505150246) do
+ActiveRecord::Schema.define(:version => 20110622111228) do
 
   create_table "aspects", :force => true do |t|
     t.string   "name"
@@ -43,14 +43,17 @@ ActiveRecord::Schema.define(:version => 20110505150246) do
   end
 
   create_table "clerks_reports", :force => true do |t|
-    t.integer  "witness"
-    t.integer  "aspect"
     t.decimal  "submitted_records"
     t.decimal  "accepted_records"
     t.text     "status"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "aspect_id"
+    t.integer  "witness_id"
   end
+
+  add_index "clerks_reports", ["aspect_id"], :name => "index_clerks_reports_on_aspect_id"
+  add_index "clerks_reports", ["witness_id"], :name => "index_clerks_reports_on_witness_id"
 
   create_table "entities", :force => true do |t|
     t.string   "name"
@@ -86,10 +89,8 @@ ActiveRecord::Schema.define(:version => 20110505150246) do
 
   create_table "reports", :force => true do |t|
     t.datetime "known"
-    t.datetime "known_until"
     t.text     "measurement"
     t.float    "confidence"
-    t.integer  "made_by"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "aspect_id"
@@ -123,11 +124,9 @@ ActiveRecord::Schema.define(:version => 20110505150246) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
-    t.integer  "aspect_id"
     t.string   "api_key"
   end
 
-  add_index "witnesses", ["aspect_id"], :name => "index_witnesses_on_aspect_id"
   add_index "witnesses", ["user_id"], :name => "index_witnesses_on_user_id"
 
 end

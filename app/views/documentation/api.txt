@@ -87,37 +87,54 @@ An item must exist before item registration can be used to update the structure.
     ============
 
     <item>
-        <entity name='plate_1'>
-	  <aspect name='camera_1_location'>
-	  </aspect>
-	  <aspect name='camera_2_location'>
-	  </aspect>
+      <id>3472</id>
+      <name>Tea Service</name>
+      <entities>
+	<entity>
+	  <name>Plate 1</name>
+	  <id>23876</id>
+	  <aspects>
+	    <aspect>
+	      <name>Camera 1 Location</name>
+	      <id>87234</id>
+	    </aspect>
+	  </aspects>
 	</entity>
-	<entity name='plate_2'>
-	  <aspect name='camera_1_location'>
-	  </aspect>
-	  <aspect name='camera_2_location'>
+	<entity>
+	  <name>Plate 2</name>
+	  <id>2</id>
+	  <aspects />
+	  <description>The big round one!</description>
 	</entity>
-    </item> 
-
+      </entities>
+    </item>
 
     response
     ========
 
     <item>
-        <entity name='plate_1' id='23432'>
-	  <aspect name='camera_1_location' id='454'>
-	  </aspect>
-	  <aspect name='camera_2_location' id='334'>
-	  </aspect>
+      <id>3472</id>
+      <name>Tea Service</name>
+      <entities>
+	<entity>
+	  <name>Plate 1</name>
+	  <id>23876</id>
+	  <aspects>
+	    <aspect>
+	      <name>Camera 1 Location</name>
+	      <id>87234</id>
+	    </aspect>
+	  </aspects>
 	</entity>
-	<entity name='plate_2' id='3423'>
-	  <aspect name='camera_1_location' id='232'>
-	  </aspect>
-	  <aspect name='camera_2_location' id='464'>
-	  <property id='3895' />
+	<entity>
+	  <name>Plate 2</name>
+	  <id>2</id>
+	  <aspects />
+	  <description>The big round one!</description>
 	</entity>
-    </item> 
+      </entities>
+    </item>
+
 
 }}}
 

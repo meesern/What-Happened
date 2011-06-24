@@ -10,15 +10,17 @@ class ClerksReport < ActiveRecord::Base
 
 
   fields do
-    witness :integer
-    aspect  :integer
     submitted_records   :decimal
     accepted_records    :decimal
+    witness_id          :integer  #need to be explicit for pacecar
+    aspect_id           :integer 
     status  :text
     timestamps
   end
 
-  has_many :reports
+  has_many   :reports
+  belongs_to    :aspect
+  belongs_to    :witness
 
   # --- Permissions --- #
 
@@ -54,12 +56,12 @@ class ClerksReport < ActiveRecord::Base
   def self.recent_report_for(witness, aspect)
     #use the same Clerks Report if there is a recent one.
     #NOTE May not be the most efficeient way of getting a recent report
-    self.updated_after(20.seconds.ago).witness_equals(witness).aspect_equals(aspect).last  || self.new
+    self.updated_after(20.seconds.ago).witness_id_equals(witness).aspect_id_equals(aspect).last  || self.new
   end
 
   def self.file( html, aspect )
     #TODO witness is bogus for now
-    witness = 1
+    witness = Witness.find :first
 
     #Get a clerks report
     cr = self.recent_report_for(witness, aspect)
@@ -77,12 +79,10 @@ class ClerksReport < ActiveRecord::Base
     self.aspect = params[:aspect]
     #ignore witness for now
     # Exception of not found....
-    asp = Aspect.find(aspect)
     blob = params[:blob]
     #blob is constrained to be xml but Hpricot will parse just about anything
     #without choking
     doc = Hpricot(blob)
-    #pp doc #uncomment to print doc for debug
     #look for <t>'s which indicate time based measurement
     tstamps = doc.search("//t")
     self.submitted_records = (submitted_records || 0) + tstamps.length
@@ -91,9 +91,9 @@ class ClerksReport < ActiveRecord::Base
       # TODO This is better done by validating against a schema
       if (m.pathname == "ment")
         time = Time.parse(ts.inner_text)
-        rep = asp.reports.find_by_known(time) 
+        rep = aspect.reports.find_by_known(time) 
         #update or create a new record
-        rep = rep || Report.new( :aspect => asp, :known => time )
+        rep = rep || Report.new( :aspect => aspect, :known => time )
         rep.measurement = m.inner_html
         rep.clerks_report = self  #update if udating the record
         rep.save!

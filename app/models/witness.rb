@@ -16,7 +16,8 @@ class Witness < ActiveRecord::Base
   attr_readonly :api_key
 
   belongs_to    :user
-  belongs_to    :aspect
+  has_many      :aspect
+  has_many      :clerks_reports
 
   after_initialize { api_key = "777" }
 

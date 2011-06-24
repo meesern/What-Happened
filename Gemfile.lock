@@ -44,7 +44,6 @@ GEM
       net-ssh (>= 2.0.14)
       net-ssh-gateway (>= 1.1.0)
     chronic (0.3.0)
-    cobravsmongoose (0.0.2)
     columnize (0.3.2)
     excon (0.6.3)
     flutie (1.1.8)
@@ -145,7 +144,6 @@ DEPENDENCIES
   andand
   backup
   chronic
-  cobravsmongoose
   flutie
   fog (= 0.7.0)
   haml
@@ -163,4 +161,5 @@ DEPENDENCIES
   ruby2ruby
   sqlite3
   whenever
+  xml-simple
   xmpp4r

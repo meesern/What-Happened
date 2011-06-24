@@ -25,7 +25,7 @@ gem "backup"
 gem "whenever"
 gem "fog", "0.7.0"   #for backup
 gem "mail", "2.2.15" #for backup
-gem "cobravsmongoose"
+gem "xml-simple"
 gem "json"
 
 
