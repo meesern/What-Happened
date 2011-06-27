@@ -22,7 +22,7 @@ class Aspect < ActiveRecord::Base
   def report_data
     #Limit 20 first 10000 to prevent timeout
     #TODO implement paging in the API
-    c = self.reports.paginate(:page=>1, :per_page=>1000)
+    c = self.reports.paginate(:page=>1, :per_page=>10000)
   end
 
   # --- Permissions --- #

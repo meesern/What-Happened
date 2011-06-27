@@ -75,6 +75,7 @@ class ClerksReport < ActiveRecord::Base
 
   def work( params )
     print "."
+    dbg_count = 0
     self.witness = params[:witness]
     self.aspect = params[:aspect]
     #ignore witness for now
@@ -91,12 +92,19 @@ class ClerksReport < ActiveRecord::Base
       # TODO This is better done by validating against a schema
       if (m.pathname == "ment")
         time = Time.parse(ts.inner_text)
-        rep = aspect.reports.find_by_known(time) 
-        #update or create a new record
-        rep = rep || Report.new( :aspect => aspect, :known => time )
+        #Do not update existing records but rather add a new one unless it
+        #is a complete duplicate
+        #rep = aspect.reports.find_by_known(time) 
+        rep = Report.new( :aspect => aspect, :known => time )
         rep.measurement = m.inner_html
         rep.clerks_report = self  #update if udating the record
-        rep.save!
+        #Avoid duplicates at the expense of a non indexed lookup for each record
+        print (dbg_count+=1) 
+        dup = aspect.reports.find(:all, :conditions=>
+             ["known = :k and measurement = :m", 
+             {:k=>rep.known, :m=>rep.measurement}])
+        print 'x' unless dup.empty?
+        rep.save! if dup.empty?
         #deal with nul instead of zero in first instance
         self.accepted_records = (accepted_records || 0 ) + 1
       end
