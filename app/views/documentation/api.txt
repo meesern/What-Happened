@@ -17,6 +17,17 @@ Results are returned as XML.  There will be future support for JSON.
 | Clerks Report:| 	A record of receiving information from a witness.|
 
 
+== HTTP
+
+The API sets out to correctly use HTTP response codes for HTTP API request status.  API clients should handle any valid HTTP response code including redirect.  Possible response codes include:
+
+| 200 | OK             | Request successful - response contains valid data |
+| 400 | Bad Request    | The request was not well formed or required parameters were missing |
+| 403 | Not Authorized | Authentication failed.  API key may be unrecognised or not authorised for to access the data at the given URL |
+| 404 | Not Found      | The API was not found |
+| 500 | Internal Server Error | Problem with the service. |
+
+
 
 == Authentication
 
@@ -35,7 +46,7 @@ Keys are hierarchical
 Keys can be time bound, giving access to reports only within a specific range of times.
 
 Keys can be generated at
-* http://socksforlife.co.uk/v1.0/keygen/
+* {{{http://socksforlife.co.uk/v1/keygen/}}}
 
 
 =====example:
@@ -50,25 +61,56 @@ Keys can be generated at
 
 The list of items and their associated entities and aspects accessible for the current user or with the given API Key: 
 
-* http://socksforlife.co.uk/v1.0/items
+* {{{http://socksforlife.co.uk/v1/items}}}
 
 =====example:
 {{{
 
-    curl --request GET http://socksforlife.co.uk/v1.0/items
+    curl --request GET http://socksforlife.co.uk/v1/items
 
     response
     ========
 
-    <items>
-        <item> 590_dinnerservice
+  <itemtree>
+  <items>
+    <name>Tea Service</name>
+    <entities>
+      <name>plate 1</name>
+      <id>6</id>
+      <aspects>
+        <name>camera 1</name>
+        <id>60</id>
+        <description></description>
+      </aspects>
+      <aspects>
+        <name>camera 2</name>
+        <id>61</id>
+        <description></description>
+      </aspects>
+    </entities>
+    <entities>
+      <name>plate 2</name>
+      <id>7</id>
+      <aspects>
+        <name>camera 1</name>
+        <id>62</id>
+        <description></description>
+      </aspects>
+      <aspects>
+        <name>camera 2</name>
+        <id>63</id>
+        <description></description>
+      </aspects>
+      <description></description>
+    </entities>
+    <id>1</id>
+    <user_id>1</user_id>
+    <description>My dinner plates with funky dtouch designs.</description>
+  </items>
+  </itemtree>
 
-        <entity name='plate_1'>
-	  <aspect name='camera_1_location'>
-	  </aspect>
-	  <aspect name='camera_2_location'>
 
-
+}}}
 
 == Item Registration
 
@@ -76,12 +118,13 @@ To allow easy creation of the structures necessary for recoding an objects data 
 
 An item must exist before item registration can be used to update the structure.
 
-* http://socksforlife.co.uk/v1.0/item/<item_id>
+* {{{http://socksforlife.co.uk/v1/item/<item_id>}}}
+
 
 =====example:
 {{{
 
-    curl --request POST --header "X-OcApiKey: YOUR_KEY" --data @item_request  http://socksforlife.co.uk/v1.0/item/590_dinnerservice
+    curl --request POST --header "X-OcApiKey: YOUR_KEY" --data @item_request  http://socksforlife.co.uk/v1/item/590_dinnerservice
 
     item_request
     ============
@@ -142,11 +185,58 @@ An item must exist before item registration can be used to update the structure.
 
 == Submit Data
 
-* http://socksforlife.co.uk/v1.0/file_a_report/<aspect_id>
+* {{{http://socksforlife.co.uk/v1/file_a_report/<aspect_id>}}}
 
 
 == Retrieve Data
 
-* http://socksforlife.co.uk/v1.0/data/<aspect_id>
+* {{{http://socksforlife.co.uk/v1/data/<aspect_id>}}}
+
+
+== Retrieve Record Counts
+
+* {{{http://socksforlife.co.uk/v1/counts/<aspect_id>/}}}
+* {{{http://socksforlife.co.uk/v1/counts/<aspect_id>/<year>}}}
+* {{{http://socksforlife.co.uk/v1/counts/<aspect_id>/<year>/<day_of_year>}}}
+* {{{http://socksforlife.co.uk/v1/counts/<aspect_id>/<year>/<day_of_year>/<minute_of_day>}}}
+
+
+Return the counts for the number of records held for an given aspect.
+
+The first form returns counts per year.  The second form returns the counts for each day of a given year (up to 366).  The third form returns the counts for each minute of a given day (upto 1440) the fourth reports the counts for each second of a given minute (upto 60).
+
+The purpose of this call is to allow an application to display only timespans which contain interesting data.
+
+records with counts of zero are not returned.
+
+=====example 1:
+{{{
+
+    curl --request GET http://socksforlife.co.uk/v1/counts/457
+
+    response
+    ========
+
+    <history>
+      <count date='1987'>2368</count>
+      <count year='1988'>2481</count>
+      <count year='1989'>2397</count>
+    </history>
+
+}}}
+
+=====example 2:
+{{{
+    curl --request GET http://socksforlife.co.uk/v1/counts/457/1987
+
+    response
+    ========
+
+    <history>
+      <count year='1987' day='17' >36</count>
+      <count year='1987' day='18' >36</count>
+      ...
+    </history>
+}}}
 
 

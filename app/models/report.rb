@@ -1,3 +1,9 @@
+#
+# requires in environment.rb do not seem to be enough here.
+require 'rubygems'
+require 'bundler/setup'
+require 'pacecar'
+
 class Report < ActiveRecord::Base
 
   hobo_model # Don't put anything above this
@@ -8,6 +14,8 @@ class Report < ActiveRecord::Base
     confidence     :float
     timestamps
   end
+  
+  include Pacecar
 
   belongs_to :aspect
   belongs_to :clerks_report

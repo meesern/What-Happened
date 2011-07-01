@@ -9,12 +9,17 @@ html, body {color: #193440; background: url(../images/300-222-fff.png) repeat-x 
   background: url(../images/30-3E547A-242E42.png) repeat-x #242E42;
 }
 
-.page-header h1 {
+h1, h2  {
   text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.698);
 }
 
+.search {
+  position: relative;
+  left: -9999em
+}
+
 .app-name {
-  min-height: 160px;
+  min-height: 80px;
 }
 
 .markdown {
@@ -361,3 +366,17 @@ ul.check-many li input { vertical-align: -20%;}
 table.app-summary { border: 1px solid; border-collapse: collapse; }
 table.app-summary td { padding: 2px;  border: 1px dotted #bbb; }
 table.app-summary th { padding: 2px; border-bottom: 1px solid; background: #acd3e6; }
+
+
+/* Tables */
+table {
+  border: 1px solid grey;
+  border-radius: 9px;
+  margin: 20px;
+  padding: 20px;
+  background-color: white
+}
+
+td {
+  padding-right: 6px;
+}

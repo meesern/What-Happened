@@ -5,11 +5,20 @@ ActionController::Routing::Routes.draw do |map|
 
   Hobo.add_routes(map)
 
-  map.connect 'v1.0/file_a_report/:aspect', :controller => 'clerks_reports', :action => 'file', :method => 'post'
+  #Data interface
+  map.connect 'v1/file_a_report/:aspect', :controller => 'clerks_reports', :action => 'file', :method => 'post'
 
-  map.connect 'v1.0/data/:aspect', :controller => 'aspects', :action => 'data'
-  map.connect 'v1.0/items/',       :controller => 'items',   :action => 'apiindex', :method => 'get'
-  map.connect 'v1.0/items/:id',  :controller => 'items',   :action => 'apicreate', :method => 'post'
+  map.connect 'v1/data/:aspect', :controller => 'aspects', :action => 'data'
+
+  #Counts interface
+  map.connect 'v1/counts/:aspect/:year/:day/:minute', :controller => 'aspects', :action => 'counts'
+  map.connect 'v1/counts/:aspect/:year/:day', :controller => 'aspects', :action => 'counts'
+  map.connect 'v1/counts/:aspect/:year', :controller => 'aspects', :action => 'counts'
+  map.connect 'v1/counts/:aspect', :controller => 'aspects', :action => 'counts'
+
+  #items interface
+  map.connect 'v1/items/',       :controller => 'items',   :action => 'apiindex', :method => 'get'
+  map.connect 'v1/items/:id',  :controller => 'items',   :action => 'apicreate', :method => 'post'
 
   # The priority is based upon order of creation: first created -> highest priority.
 
