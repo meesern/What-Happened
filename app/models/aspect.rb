@@ -26,6 +26,7 @@ class Aspect < ActiveRecord::Base
     c = self.reports.paginate(:page=>1, :per_page=>10000)
   end
 
+  #Better if DRYer
   def report_counts(level, t_start, t_end)
     t_start  ||= self.reports.by_known.first.known
     t_end    ||= self.reports.by_known.last.known
@@ -38,29 +39,57 @@ class Aspect < ActiveRecord::Base
         counts << {:year=>year, :count=>count} unless count.zero?
       end
     when :year
-      time_iterate(t_start,t_end,1.day) do |time, idx|
-        count = self.reports.known_inside(time,time+1.day).length
-        counts << {:year=>t_start.year, 
-                   :day=>idx+1, 
-                   :count=>count} unless count.zero?
+      this_block = self.reports.known_inside(t_start,t_end).by_known(:asc)
+      counts = []
+      count = {}
+      last_div = nil
+      this_block.each do |report|
+        this_div = report.known.yday
+        if (this_div != last_div)
+          counts << count unless count.empty?
+          count = {:year=>t_start.year, 
+            :day=>this_div, :count => 1}
+          last_div = this_div
+        else
+          count[:count] += 1
+        end
       end
+      counts << count unless count.empty?
     when :day
-      time_iterate(t_start,t_end,1.minute) do |time, idx|
-        count = self.reports.known_inside(time,time+1.minute).length
-        counts << {:year=>t_start.year, 
-                   :day=>t_start.yday, 
-                   :minute=>idx, 
-                   :count=>count} unless count.zero?
+      this_day = self.reports.known_inside(t_start,t_end).by_known(:asc)
+      counts = []
+      count = {}
+      last_minute = nil
+      this_day.each do |report|
+        this_minute = report.known.hour*60+report.known.min
+        if (this_minute != last_minute)
+          counts << count unless count.empty?
+          count = {:year=>t_start.year, 
+            :day=>t_start.yday, :minute=>this_minute, :count => 1}
+          last_minute = this_minute
+        else
+          count[:count] += 1
+        end
       end
+      counts << count unless count.empty?
     when :minute
-      time_iterate(t_start,t_end,1.second) do |time, idx|
-        count = self.reports.known_inside(time,time+1.second).length
-        counts << {:year=>t_start.year, 
-                   :day=>t_start.yday, 
-                   :minute=>t_start.hour*60+t_start.min, 
-                   :second=>idx, 
-                   :count=>count} unless count.zero?
+      this_minute = self.reports.known_inside(t_start,t_end).by_known(:asc)
+      counts = []
+      count = {}
+      last_second = nil
+      this_minute.each do |report|
+        this_second = report.known.sec
+        if (this_second != last_second)
+          counts << count unless count.empty?
+          count = {:year=>t_start.year, 
+            :day=>t_start.yday, :minute=>report.known.hour*60+report.known.min,
+            :second=>this_second, :count => 1}
+          last_second = this_second
+        else
+          count[:count] += 1
+        end
       end
+      counts << count unless count.empty?
     end
     counts
   end
