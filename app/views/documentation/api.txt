@@ -192,6 +192,29 @@ An item must exist before item registration can be used to update the structure.
 
 * {{{http://socksforlife.co.uk/v1/data/<aspect_id>}}}
 
+Specify 'from' and 'until' parameters as well formatted times to restrict the range of data that is retreived.  Data is limited to 10000 reports per query.  Use a restricted time range to access data in multiple requests if necessary.
+
+| Parameter | Format                                  | Notes |
+| from      | iso8601: e.g. 2011-07-11T10:59:19+01:00 | Omit to specify from beginning of records. |
+| until     | iso8601: e.g. 2011-07-11T10:59:19+01:00 | Omit to specify until current time. |
+
+
+=====example:
+{{{
+
+    curl --request GET http://socksforlife.co.uk/v1/counts/457?from="2011-07-11T10:30:00"\&until="2011-07-11T10:34:59"
+
+    response
+    ========
+
+    <report>
+      <ment t='2011-07-11 10:31:42 UTC'>....</ment>
+      <ment t='2011-07-11 10:33:15 UTC'>....</ment>
+      <ment t='2011-07-11 10:34:51 UTC'>....</ment>
+    </report>
+
+}}}
+
 
 == Retrieve Record Counts
 
@@ -205,9 +228,25 @@ Return the counts for the number of records held for an given aspect.
 
 The first form returns counts per year.  The second form returns the counts for each day of a given year (up to 366).  The third form returns the counts for each minute of a given day (upto 1440) the fourth reports the counts for each second of a given minute (upto 60).
 
+Specify 'from' and 'until' parameters as well formatted times to restrict the range of data that is retreived.  Data is limited to 10000 reports per query.  Use a restricted time range to access data in multiple requests if necessary.
+
+Specify 'grain' as 'year', 'day', 'minute' or 'second' to force a granularity at least as fine as the granularity implied by the url (for example specifying a url with <day_of_year> and 'grain' of 'year' will return counts by the finest granularity  - i.e. by minute.
+
+Specify 'grain' as a number _n_ to force the granularity required to return at least _n_ divisions within the speified time.  If _n_ divisions are not available the service will return all qualifying counts at second granularity.  
+
+Where the returned granularity is variable the granularity chosen can be infered from the granularity of the returned xml attributes.
+
+
+| Parameter | Format                                  | Notes |
+| from      | iso8601: e.g. 2011-07-11T10:59:19+01:00 | Omit to specify from beginning of records. |
+| until     | iso8601: e.g. 2011-07-11T10:59:19+01:00 | Omit to specify until current time. |
+| grain     | 'day','minute','second'                 | grain of 'day' reports per day counts etc. |
+| grain     | divisions                               | Use the coarsest grain that returns at least 'divisions' divisions |
+
+
 The purpose of this call is to allow an application to display only timespans which contain interesting data.
 
-records with counts of zero are not returned.
+Records with counts of zero are not returned.
 
 =====example 1:
 {{{
@@ -217,26 +256,37 @@ records with counts of zero are not returned.
     response
     ========
 
-    <history>
-      <count date='1987'>2368</count>
+    <counts>
       <count year='1988'>2481</count>
       <count year='1989'>2397</count>
-    </history>
+    </counts>
 
 }}}
 
 =====example 2:
 {{{
-    curl --request GET http://socksforlife.co.uk/v1/counts/457/1987
+    curl --request GET http://socksforlife.co.uk/v1/counts/457/2011/166/878
 
     response
     ========
 
-    <history>
-      <count year='1987' day='17' >36</count>
-      <count year='1987' day='18' >36</count>
+    <counts>
+      <count year='2011' day='166' minute='878' second='39' >8</count>
+      <count year='2011' day='166' minute='878' second='40' >42</count>
+    </counts>
+}}}
+
+=====example 3:
+{{{
+    curl --request GET http://socksforlife.co.uk/v1/counts/457?grain=200
+
+
+    response
+    ========
+
+    <counts>
       ...
-    </history>
+    </counts>
 }}}
 
 

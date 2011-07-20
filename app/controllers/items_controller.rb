@@ -1,13 +1,9 @@
 class ItemsController < ApplicationController
 
   hobo_model_controller
+  before_filter :allow_cross_domain_access, :only=>[:apiindex, :apicreate]
 
   auto_actions :all
-
-  def xmlresponse(xml)
-    logger.info "responding with #{xml}"
-    render :text => xml
-  end
 
   # Get current item tree for api
   def apiindex
@@ -44,6 +40,12 @@ class ItemsController < ApplicationController
                             'SuppressEmpty'=>nil)
       xmlresponse(xml)
     end
+  end
+
+  protected
+  def xmlresponse(xml)
+    logger.info "responding with #{xml}"
+    render :text => xml
   end
 
   def valid(struct)

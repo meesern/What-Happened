@@ -1,7 +1,8 @@
 include ApplicationHelper
 class Aspect < ActiveRecord::Base
-
   hobo_model # Don't put anything above this
+
+  MAX_RETURN = 10000
   
   fields do
     name        :string
@@ -20,10 +21,10 @@ class Aspect < ActiveRecord::Base
   end
 
 
-  def report_data
-    #Limit 20 first 10000 to prevent timeout
+  def report_data(from, to)
+    #Limit to first 10000 to prevent timeout
     #TODO implement paging in the API
-    c = self.reports.paginate(:page=>1, :per_page=>10000)
+    c = self.reports.known_inside(from,to).paginate(:page=>1, :per_page=>MAX_RETURN)
   end
 
   #Better if DRYer
@@ -47,7 +48,7 @@ class Aspect < ActiveRecord::Base
         this_div = report.known.yday
         if (this_div != last_div)
           counts << count unless count.empty?
-          count = {:year=>t_start.year, 
+          count = {:year=>report.known.year, 
             :day=>this_div, :count => 1}
           last_div = this_div
         else
@@ -64,9 +65,10 @@ class Aspect < ActiveRecord::Base
         this_minute = report.known.hour*60+report.known.min
         if (this_minute != last_minute)
           counts << count unless count.empty?
-          count = {:year=>t_start.year, 
-            :day=>t_start.yday, :minute=>this_minute, :count => 1}
+          count = {:year=>report.known.year, 
+            :day=>report.known.yday, :minute=>this_minute, :count => 1}
           last_minute = this_minute
+          break if (counts.length >= MAX_RETURN)
         else
           count[:count] += 1
         end
@@ -81,10 +83,11 @@ class Aspect < ActiveRecord::Base
         this_second = report.known.sec
         if (this_second != last_second)
           counts << count unless count.empty?
-          count = {:year=>t_start.year, 
-            :day=>t_start.yday, :minute=>report.known.hour*60+report.known.min,
+          count = {:year=>report.known.year, 
+            :day=>report.known.yday, :minute=>report.known.hour*60+report.known.min,
             :second=>this_second, :count => 1}
           last_second = this_second
+          break if (counts.length >= MAX_RETURN)
         else
           count[:count] += 1
         end

@@ -1,6 +1,13 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
 
+  #ensure from and to are valid times
+  def spanify(from,to)
+    from = Time.parse(from || Time.at(0).to_s)
+    to = Time.parse(to || "now")
+    [from,to]
+  end
+
   def yearspan(year)
     [Time.utc(year), Time.utc(year.to_i+1)-1]
   end
