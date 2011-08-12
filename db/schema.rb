@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110622111228) do
+ActiveRecord::Schema.define(:version => 20110810131414) do
 
   create_table "aspects", :force => true do |t|
     t.string   "name"
@@ -87,6 +87,18 @@ ActiveRecord::Schema.define(:version => 20110622111228) do
   add_index "properties", ["entity_id"], :name => "index_properties_on_entity_id"
   add_index "properties", ["item_id"], :name => "index_properties_on_item_id"
 
+  create_table "replays", :force => true do |t|
+    t.text     "name"
+    t.decimal  "rate"
+    t.decimal  "gapskip"
+    t.datetime "from"
+    t.datetime "until"
+    t.boolean  "running"
+    t.datetime "playtime"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "reports", :force => true do |t|
     t.datetime "known"
     t.text     "measurement"
@@ -125,6 +137,7 @@ ActiveRecord::Schema.define(:version => 20110622111228) do
     t.datetime "updated_at"
     t.integer  "user_id"
     t.string   "api_key"
+    t.boolean  "append_only"
   end
 
   add_index "witnesses", ["user_id"], :name => "index_witnesses_on_user_id"

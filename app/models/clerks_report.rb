@@ -8,7 +8,6 @@ class ClerksReport < ActiveRecord::Base
   hobo_model # Don't put anything above this
   include Pacecar
 
-
   fields do
     submitted_records   :decimal
     accepted_records    :decimal
@@ -85,31 +84,30 @@ class ClerksReport < ActiveRecord::Base
     #without choking
     doc = Hpricot(blob)
     #look for <t>'s which indicate time based measurement
-    tstamps = doc.search("//t")
+    ments = doc.search("//ment")
     self.submitted_records = (submitted_records || 0) + tstamps.length
-    tstamps.each do |ts|
-      m = ts.next_sibling
-      # TODO This is better done by validating against a schema
-      if (m.pathname == "ment")
-        time = Time.parse(ts.inner_text)
-        #Do not update existing records but rather add a new one unless it
-        #is a complete duplicate
-        #rep = aspect.reports.find_by_known(time) 
-        rep = Report.new( :aspect => aspect, :known => time )
-        rep.measurement = m.inner_html
-        rep.clerks_report = self  #update if udating the record
-        #Avoid duplicates at the expense of a non indexed lookup for each record
-        print (dbg_count+=1) 
-        dup = aspect.reports.find(:all, :conditions=>
-             ["known = :k and measurement = :m", 
-             {:k=>rep.known, :m=>rep.measurement}])
-        print 'x' unless dup.empty?
-        rep.save! if dup.empty?
-        #deal with nul instead of zero in first instance
-        self.accepted_records = (accepted_records || 0 ) + 1
-      end
+    ments.each do |m|
+      time = Time.parse(m[:t])
+      #Do not update existing records but rather add a new one unless it
+      #is a complete duplicate
+      rep = Report.new( :aspect => aspect, :known => time )
+      rep.measurement = m.inner_html
+      rep.clerks_report = self  #update if udating the record
+      #Avoid duplicates at the expense of a non indexed lookup for each record
+      print (dbg_count+=1) 
+      dup = find_existing(rep.known, rep.measurement) unless witness.append_only
+      print 'x' unless dup.empty?
+      rep.save! if dup.empty?
+      #deal with nul instead of zero in first instance
+      self.accepted_records = (accepted_records || 0 ) + 1
     end
 
+  end
+
+  def find_existing(time, val)
+      aspect.reports.find(:all, :conditions=>
+           ["known = :k and measurement = :m", 
+           {:k=>time, :m=>val}])
   end
 
 end

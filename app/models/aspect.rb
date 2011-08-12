@@ -1,4 +1,5 @@
 include ApplicationHelper
+
 class Aspect < ActiveRecord::Base
   hobo_model # Don't put anything above this
 

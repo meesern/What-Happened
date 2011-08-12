@@ -1,6 +1,10 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
 
+  def xmlurl(replay)
+    "/replay/#{replay.name || replay.id}"
+  end
+
   #ensure from and to are valid times
   def spanify(from,to)
     from = Time.parse(from || Time.at(0).to_s)

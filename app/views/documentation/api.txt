@@ -192,7 +192,7 @@ An item must exist before item registration can be used to update the structure.
 
 * {{{http://socksforlife.co.uk/v1/data/<aspect_id>}}}
 
-Specify 'from' and 'until' parameters as well formatted times to restrict the range of data that is retreived.  Data is limited to 10000 reports per query.  Use a restricted time range to access data in multiple requests if necessary.
+Specify 'from' and 'until' parameters as well formatted times to restrict the range of data that is retrieved.  Data is limited to 10000 reports per query.  Use a restricted time range to access data in multiple requests if necessary.
 
 | Parameter | Format                                  | Notes |
 | from      | iso8601: e.g. 2011-07-11T10:59:19+01:00 | Omit to specify from beginning of records. |
@@ -228,13 +228,13 @@ Return the counts for the number of records held for an given aspect.
 
 The first form returns counts per year.  The second form returns the counts for each day of a given year (up to 366).  The third form returns the counts for each minute of a given day (upto 1440) the fourth reports the counts for each second of a given minute (upto 60).
 
-Specify 'from' and 'until' parameters as well formatted times to restrict the range of data that is retreived.  Data is limited to 10000 reports per query.  Use a restricted time range to access data in multiple requests if necessary.
+Specify 'from' and 'until' parameters as well formatted times to restrict the range of data that is retrieved.  Data is limited to 10000 reports per query.  Use a restricted time range to access data in multiple requests if necessary.
 
 Specify 'grain' as 'year', 'day', 'minute' or 'second' to force a granularity at least as fine as the granularity implied by the url (for example specifying a url with <day_of_year> and 'grain' of 'year' will return counts by the finest granularity  - i.e. by minute.
 
-Specify 'grain' as a number _n_ to force the granularity required to return at least _n_ divisions within the speified time.  If _n_ divisions are not available the service will return all qualifying counts at second granularity.  
+Specify 'grain' as a number _n_ to force the granularity required to return at least _n_ divisions within the specified time.  If _n_ divisions are not available the service will return all qualifying counts at second granularity.  
 
-Where the returned granularity is variable the granularity chosen can be infered from the granularity of the returned xml attributes.
+Where the returned granularity is variable the granularity chosen can be inferred from the granularity of the returned xml attributes.
 
 
 | Parameter | Format                                  | Notes |
@@ -288,5 +288,45 @@ Records with counts of zero are not returned.
       ...
     </counts>
 }}}
+
+
+== Replay
+
+Stream data can be replayed via an XMPP pub-sub service.  A replay can be started by sending a POST request to the URL below specifying the aspect, start and end times, rate and gap skip properties.
+
+* {{{http://socksforlife.co.uk/v1/replay-create/<aspect_id>/}}}
+* {{{http://socksforlife.co.uk/v1/replay-control/<replay_id>/}}}
+
+| Parameter | Format                                  | Notes |
+| from      | iso8601: e.g. 2011-07-11T10:59:19+01:00 | Omit to specify from beginning of records. |
+| until     | iso8601: e.g. 2011-07-11T10:59:19+01:00 | Omit to specify until current time. |
+| rate      | 0.01 - 10000                            | Speed factor for replaying the stream data |
+| gapskip  | seconds                                  | The minimum number of seconds to consider skip |
+| replayid    | [a-Z0-9-_]                            | alphanumeric requested replay ID |
+| start     | 1                                       | a start command |
+| stop      | 1                                       | a stop command |
+
+The POST request to replay-create returns a plain text address of the pub-sub node to which the client can subscribe to receive the replay.
+
+A POST request to replay-control updates the parameters of the replay and optionally starts the replay.  The request returns the current state of the replay.
+
+The above parameters can be used with either replay-create or replay-control.  This allows a single request to replay-create to create and start a replay.
+
+Gap skipping allows a replay to skip long periods between records.  The gap skip parameter specifies the minimum number of seconds that will be considered a gap before the replay should skip to the next available record.
+
+Once a replay is started the first matching record of the aspect is published to the XMPP pubsub node at
+{{{ /replay/<replay_id> }}}
+
+A POST may be made to replay-create that specifies a start command. In this case the replay will start before the client has had a chance to subscribe to the pubsub node and it is to be expected at least some of the first measurements will be missed by the client. 
+
+A replay ID may be requested as a parameter during node creation.  If the replay id is available (i.e. not registered on that aspect by another user) then it will be used for the replay. This allows the pubsub node to be known in advance of the replay.
+
+POSTs to replay-control during a replay that is currently running on that aspect and replay id will update the parameters (rate, gapskip and until) for the running replay (allowing dynamic rate changes).
+
+Once a replay is running, after publishing each message the service waits the time difference between that message and the subsequent one multiplied by the rate parameter.  That is if the rate parameter is 1 the data is replayed with the same relative timing as it was received.  Replay may have jitter of up to a few seconds due to loading.
+
+If the specified rate results in attempting to deliver messages faster than it is possible then all messages will still be attempted and the actual rate will be lower than that specified.
+
+A replay will run indefinitely if data is submitted to the stream at a faster rate than the replay and an end time is not specified.
 
 

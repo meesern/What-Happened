@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :replays
+
 
   map.site_search  'search', :controller => 'front', :action => 'search'
   map.root :controller => 'front', :action => 'index'
@@ -19,6 +21,10 @@ ActionController::Routing::Routes.draw do |map|
   #items interface
   map.connect 'v1/items/',       :controller => 'items',   :action => 'apiindex', :method => 'get'
   map.connect 'v1/items/:id',  :controller => 'items',   :action => 'apicreate', :method => 'post'
+  
+  #replay interface
+  map.connect 'v1/replay-create/:aspect',     :controller => 'replays',   :action => 'create', :method => 'post'
+  map.connect 'v1/replay-control/:replay',  :controller => 'replays',   :action => 'control', :method => 'post'
 
   # The priority is based upon order of creation: first created -> highest priority.
 

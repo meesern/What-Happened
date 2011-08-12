@@ -1,5 +1,13 @@
 require 'rubber'
+require 'xmpp4r'
+require 'xmpp4r/pubsub'
+require 'xmpp4r/pubsub/helper/servicehelper.rb'
+require 'xmpp4r/pubsub/helper/nodebrowser.rb'
+require 'xmpp4r/pubsub/helper/nodehelper.rb'
+
 include Jabber
+
+Jabber::debug = true
 
 class XmppWorker < BackgrounDRb::MetaWorker
   set_worker_name :xmpp_worker
@@ -51,6 +59,42 @@ class XmppWorker < BackgrounDRb::MetaWorker
     #ClerksReport.file( Hpricot(body).to_plain_text )
     # Bogus aspect id
     ClerksReport.file( body, 3 )
+  end
+
+  def xmpp_create_node(replay)
+    path = xmlurl(replay)
+    create_replay_node(path)
+  end
+
+  def xmpp_replay_start(replay)
+    logger.info("********************!!!!!!!!!!!!!!!!!***************")
+  end
+
+  def xmpp_replay_stop(replay)
+  end
+
+  #
+  # Pub-sub replay publishing
+  #
+
+  def pubsub
+    @lpubsub ||= PubSub::ServiceHelper.new(client, service)
+  end
+
+  def create_root_node
+    pubsub.create_node('replay')
+  end
+
+  def create_replay_node(path)
+    pubsub.create_node(path)
+    node
+  end
+
+  #message should be the xml measurement
+  def publish(node, message)
+    item = Jabber::PubSub::Item.new
+    item.add(message)
+    pubsub.publish_item_to(node,item)
   end
 
 end

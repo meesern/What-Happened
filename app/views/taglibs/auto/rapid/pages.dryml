@@ -709,6 +709,126 @@
 
 
 
+<!-- ====== Replay Pages ====== -->
+
+<def tag="index-page" for="Replay">
+  <page merge title="#{ht 'replays.index.title', :default=>['Replays'] }">
+    <body: class="index-page replay" param/>
+
+    <content: param>
+      <header param="content-header">
+        <h2 param="heading">
+          <ht key="replays.index.heading">
+            Replays
+          </ht>
+        </h2>
+
+        <p param="count" if>
+          <ht key="replays.collection.count" count="&this.size">
+            There <count prefix="are"/>
+          </ht>
+        </p>
+      </header>
+
+      <section param="content-body">
+        <a action="new" to="&model" param="new-link">
+          <ht key="replays.actions.new">New Replay</ht>
+        </a>
+
+        <page-nav param="top-page-nav"/>
+
+        <collection param/>
+
+        <page-nav param="bottom-page-nav"/>
+
+
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="Replay">
+  <page merge title="#{ht 'replays.new.title', :default=>[' New Replay'] }">
+    <body: class="new-page replay" param/>
+
+    <content: param>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="replays.new.heading">
+            New Replay
+          </ht>
+        </h2>
+      </section>
+
+      <section param="content-body">
+        <form param>
+          <submit: label="#{ht 'replays.actions.create', :default=>['Create Replay']}"/>
+        </form>
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="Replay">
+  <page merge title="#{ht 'replays.show.title', :default=>['Replay'] }">
+
+    <body: class="show-page replay" param/>
+
+    <content: param>
+          <header param="content-header">
+            <h2 param="heading">
+              <ht key="replays.show.heading" name="&this.respond_to?(:name) ? this.name : ''">
+                <name/>
+              </ht>
+            </h2>
+
+            <record-flags fields="running" param/>
+
+            <a action="edit" if="&can_edit?" param="edit-link">
+              <ht key="replays.actions.edit" name="&this.respond_to?(:name) ? this.name : ''">
+                Edit Replay
+              </ht>
+            </a>
+          </header>
+
+          <section param="content-body">
+            <field-list fields="rate, gapskip, from, playtime, aspect" param/>
+          </section>
+    </content:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="Replay">
+  <page merge title="#{ht 'replays.edit.title', :default=>['Edit Replay'] }">
+
+    <body: class="edit-page replay" param/>
+
+    <content:>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="replays.edit.heading" name="&this.respond_to?(:name) ? this.name : ''">
+            Edit <type-name/>
+          </ht>
+        </h2>
+        <delete-button label="#{ht 'replays.actions.delete', :default=>['Remove This Replay']}" param/>
+      </section>
+
+      <section param="content-body">
+        <form param/>
+      </section>
+    </content:>
+
+  </page>
+</def>
+
+
+
+
+
 <!-- ====== Report Pages ====== -->
 
 <def tag="index-page" for="Report">
@@ -1072,7 +1192,7 @@
               </ht>
             </h2>
 
-            <record-flags fields="" param/>
+            <record-flags fields="append_only" param/>
 
             <a action="edit" if="&can_edit?" param="edit-link">
               <ht key="witnesses.actions.edit" name="&this.respond_to?(:name) ? this.name : ''">

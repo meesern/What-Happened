@@ -10,6 +10,7 @@ class Witness < ActiveRecord::Base
     veracity    :text
     character   :text
     api_key     :string
+    append_only :boolean
     timestamps
   end
 

@@ -1,0 +1,4 @@
+
+erlc -I/usr/lib/ejabberd/include -pz/usr/lib/ejabberd/ebin mod_bridge.erl
+cp mod_bridge.beam /usr/lib/ejabberd/ebin
+

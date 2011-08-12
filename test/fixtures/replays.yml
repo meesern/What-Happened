@@ -1,0 +1,19 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyText
+  rate: 9.99
+  gapskip: 9.99
+  from: 2011-08-10 14:14:14
+  until: 2011-08-10 14:14:14
+  running: false
+  playtime: 2011-08-10 14:14:14
+
+two:
+  name: MyText
+  rate: 9.99
+  gapskip: 9.99
+  from: 2011-08-10 14:14:14
+  until: 2011-08-10 14:14:14
+  running: false
+  playtime: 2011-08-10 14:14:14

@@ -60,6 +60,18 @@
 
 
 
+<def tag="form" for="Replay">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="name, rate, gapskip, from, running, playtime, aspect" param/>
+    <div param="actions">
+      <submit label="#{ht 'replays.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
+
 <def tag="form" for="Report">
   <form merge param="default">
     <error-messages param/>
@@ -108,7 +120,7 @@
 <def tag="form" for="Witness">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="name, description, veracity, character, api_key, user" param/>
+    <field-list fields="name, description, veracity, character, api_key, append_only, user" param/>
     <div param="actions">
       <submit label="#{ht 'witnesses.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
