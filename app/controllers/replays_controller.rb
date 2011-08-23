@@ -8,14 +8,18 @@ class ReplaysController < ApplicationController
   def control
     hobo_edit do
       @replay.action(params)
-      render :text=>"yey"
+      render :text=>"yey\n"
     end
   end
 
   def create
     hobo_create do
-      @replay.action(params)
-      render :text=>"woo"
+      if @replay.associate(params[:aspect])
+        @replay.action(params)
+        render :text=>"woo\n"
+      else
+        render :text=>"invalid aspect\n", :status => 400
+      end
     end
   end
 

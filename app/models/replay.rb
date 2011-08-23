@@ -8,10 +8,11 @@ require 'backgroundrb'
 class Replay < ActiveRecord::Base
   hobo_model # Don't put anything above this
   include Pacecar
-  after_initialize   :create_node
+  after_validation   :create_node
   before_validation  :default_values
   validates_uniqueness_of :name, :allow_nil=>true
-  attr_protected     :running
+  validates_associated :aspect
+  attr_protected     [:running, :playhead]
 
   fields do
     name        :text 
@@ -19,6 +20,7 @@ class Replay < ActiveRecord::Base
     gapskip     :decimal 
     from        :datetime 
     to          :datetime 
+    playhead    :datetime
     running     :boolean 
     playtime    :datetime 
     timestamps
@@ -53,6 +55,15 @@ class Replay < ActiveRecord::Base
     self.running ||= false
   end
 
+  def associate(asp)
+    begin
+      self.aspect = Aspect.find(asp)
+      save!
+    rescue
+    end
+    self.aspect
+  end
+
   def action(params)
     self.start if params[:start]
     self.stop  if params[:stop]
@@ -61,18 +72,22 @@ class Replay < ActiveRecord::Base
   def start
     unless self.running
       logger.info("starting replay")
-      MiddleMan.worker(:xmpp_worker).xmpp_replay_start(self)
       self.running = true
       save!
+      MiddleMan.worker(:xmpp_worker).xmpp_replay_start(:arg=>self.id)
     end
   end
 
   def stop
     if self.running
-      MiddleMan.worker(:xmpp_worker).xmpp_replay_stop(self)
+      MiddleMan.worker(:xmpp_worker).xmpp_replay_stop(:arg=>self.id)
       self.running = false
       save!
     end
+  end
+
+  def node
+    xmlurl(self)
   end
 
   # The action point for creating replays 
@@ -82,7 +97,7 @@ class Replay < ActiveRecord::Base
   #
   def create_node
     logger.info("create_node #{self.id} id ")
-    MiddleMan.worker(:xmpp_worker).xmpp_create_node(self)
+    MiddleMan.worker(:xmpp_worker).xmpp_create_node(:arg=>self.node)
   end
 
 end

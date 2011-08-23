@@ -301,7 +301,7 @@ Stream data can be replayed via an XMPP pub-sub service.  A replay can be starte
 | from      | iso8601: e.g. 2011-07-11T10:59:19+01:00 | Omit to specify from beginning of records. |
 | until     | iso8601: e.g. 2011-07-11T10:59:19+01:00 | Omit to specify until current time. |
 | rate      | 0.01 - 10000                            | Speed factor for replaying the stream data |
-| gapskip  | seconds                                  | The minimum number of seconds to consider skip |
+| gapskip  | seconds                                  | The minimum number of seconds in replay time to consider skip |
 | replayid    | [a-Z0-9-_]                            | alphanumeric requested replay ID |
 | start     | 1                                       | a start command |
 | stop      | 1                                       | a stop command |

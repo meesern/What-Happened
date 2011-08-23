@@ -56,4 +56,5 @@ require 'wiki_creole'
 require 'pacecar' #date inside outside queries
 require 'xmlsimple'
 require 'json'
+require 'andand'
 

@@ -2,14 +2,16 @@
 module ApplicationHelper
 
   def xmlurl(replay)
-    "/replay/#{replay.name || replay.id}"
+    name = replay.name
+    name = replay.id if name.blank?
+    "replay/#{name}"
   end
 
   #ensure from and to are valid times
   def spanify(from,to)
-    from = Time.parse(from || Time.at(0).to_s)
-    to = Time.parse(to || "now")
-    [from,to]
+    fr = Time.parse(from.andand.to_s || Time.at(0).to_s)
+    tw = Time.parse(to.andand.to_s || "now")
+    [fr,tw]
   end
 
   def yearspan(year)

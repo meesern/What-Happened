@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110810131414) do
+ActiveRecord::Schema.define(:version => 20110822132115) do
 
   create_table "aspects", :force => true do |t|
     t.string   "name"
@@ -92,12 +92,16 @@ ActiveRecord::Schema.define(:version => 20110810131414) do
     t.decimal  "rate"
     t.decimal  "gapskip"
     t.datetime "from"
-    t.datetime "until"
+    t.datetime "to"
     t.boolean  "running"
     t.datetime "playtime"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "aspect_id"
+    t.datetime "playhead"
   end
+
+  add_index "replays", ["aspect_id"], :name => "index_replays_on_aspect_id"
 
   create_table "reports", :force => true do |t|
     t.datetime "known"
