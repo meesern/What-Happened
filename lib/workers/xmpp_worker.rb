@@ -62,8 +62,7 @@ class XmppWorker < BackgrounDRb::MetaWorker
     ClerksReport.file( body, 3 )
   end
 
-  def xmpp_create_node(node)
-    path = "/home/#{$server}/#{$username}/#{node}"
+  def xmpp_create_node(path)
     create_replay_node(path)
     path
   end

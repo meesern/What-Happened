@@ -8,9 +8,9 @@ require 'backgroundrb'
 class Replay < ActiveRecord::Base
   hobo_model # Don't put anything above this
   include Pacecar
-  after_validation   :create_node
   before_validation  :default_values
   validates_uniqueness_of :name, :allow_nil=>true
+  validates_format_of     :name, :with=>/\A\w*\z/, :allow_nil=>true
   validates_associated :aspect
   attr_protected     [:running, :playhead]
 
@@ -65,8 +65,14 @@ class Replay < ActiveRecord::Base
   end
 
   def action(params)
+    self.rate    = params[:rate]
+    self.gapskip = params[:gapskip]
+    self.from    = params[:from]
+    self.to      = params[:to]
+    self.name    = params[:replayid]
     self.start if params[:start]
     self.stop  if params[:stop]
+    save! if self.changed?
   end
 
   def start
@@ -96,8 +102,12 @@ class Replay < ActiveRecord::Base
   # self is newly created but not saved
   #
   def create_node
-    logger.info("create_node #{self.id} id ")
-    MiddleMan.worker(:xmpp_worker).xmpp_create_node(:arg=>self.node)
+    username = RUBBER_CONFIG.app_name
+    server = RUBBER_CONFIG.domain
+    path = "/home/#{server}/#{username}/#{self.node}"
+    logger.info("create_node #{path}")
+    MiddleMan.worker(:xmpp_worker).xmpp_create_node(:arg=>path)
+    path
   end
 
 end

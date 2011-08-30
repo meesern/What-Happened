@@ -6,17 +6,19 @@ class ReplaysController < ApplicationController
   auto_actions :all, :except=>[:create]
 
   def control
-    hobo_edit do
-      @replay.action(params)
-      render :text=>"yey\n"
-    end
+    logger.info("Replay Control")
+    @replay = Replay.find params[:replay]
+    logger.info("Updating #{@replay}")
+    @replay.action(params)
+    render :text=>"Success\n"
   end
 
   def create
     hobo_create do
       if @replay.associate(params[:aspect])
         @replay.action(params)
-        render :text=>"woo\n"
+        path = @replay.create_node
+        render :text=> path
       else
         render :text=>"invalid aspect\n", :status => 400
       end
