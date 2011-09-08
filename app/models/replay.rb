@@ -93,7 +93,9 @@ class Replay < ActiveRecord::Base
   end
 
   def node
-    xmlurl(self)
+    username = RUBBER_CONFIG.app_name
+    server = RUBBER_CONFIG.domain
+    "/home/#{server}/#{username}/#{xmlurl(self)}"
   end
 
   # The action point for creating replays 
@@ -102,11 +104,8 @@ class Replay < ActiveRecord::Base
   # self is newly created but not saved
   #
   def create_node
-    username = RUBBER_CONFIG.app_name
-    server = RUBBER_CONFIG.domain
-    path = "/home/#{server}/#{username}/#{self.node}"
-    logger.info("create_node #{path}")
-    MiddleMan.worker(:xmpp_worker).xmpp_create_node(:arg=>path)
+    logger.info("create_node #{self.node}")
+    MiddleMan.worker(:xmpp_worker).xmpp_create_node(:arg=>self.node)
     path
   end
 

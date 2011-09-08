@@ -89,8 +89,8 @@ class XmppWorker < BackgrounDRb::MetaWorker
     start,fin = spanify(from,to)
     report, report2 = @replay.aspect.reports.known_inside(start,fin).limited(2)
     if !report.nil? && @replay.running
-      logger.info("publishing #{report.measurement}")
-      publish(@replay.node,report.measurement)
+      logger.info("publishing #{report.xml}")
+      publish(@replay.node,report.xml)
       later = report2.andand.known || report.known
       delay = later - report.known
       rate = @replay.rate || 1
@@ -99,7 +99,7 @@ class XmppWorker < BackgrounDRb::MetaWorker
       delay = @replay.gapskip if (@replay.gapskip > 0 && delay > @replay.gapskip)
       delay = 1 if delay < 1
       logger.info("scheduling for #{delay}secs")
-      add_timer(delay) { 
+      add_timer(0.1) { 
         @replay.reload
         pubstep(later,to) 
       }
@@ -133,7 +133,6 @@ class XmppWorker < BackgrounDRb::MetaWorker
   #message should be the xml measurement
   def publish(node, message)
     item = Jabber::PubSub::Item.new
-    message = message[1..-2] if message[0] == ?"
     item.add(REXML::Document.new(message))
     pubsub.publish_item_to(node,item)
   end

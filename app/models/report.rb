@@ -39,4 +39,10 @@ class Report < ActiveRecord::Base
     true
   end
 
+  def xml
+    message = self.measurement
+    message = message[1..-2] if message[0] == ?"
+    "<ment t='#{self.known}'>#{message}</ment>" 
+  end
+
 end

@@ -21,7 +21,7 @@ class AspectsController < ApplicationController
     from,to = spanify(params[:from], params[:until])
     data =  a.report_data(from,to)
     c = data.map { |r| 
-      "<ment t='#{r.known}'>#{r.measurement}</ment>" 
+      r.xml
     }
     xml = "<report>\n#{c}</report>\n"
     render :text => xml
