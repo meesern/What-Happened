@@ -80,13 +80,13 @@ class Replay < ActiveRecord::Base
       logger.info("starting replay")
       self.running = true
       save!
-      MiddleMan.worker(:xmpp_worker).xmpp_replay_start(:arg=>self.id)
+      MiddleMan.worker(:xmpp_worker).async_xmpp_replay_start(:arg=>self.id)
     end
   end
 
   def stop
     if self.running
-      MiddleMan.worker(:xmpp_worker).xmpp_replay_stop(:arg=>self.id)
+      MiddleMan.worker(:xmpp_worker).async_xmpp_replay_stop(:arg=>self.id)
       self.running = false
       save!
     end
@@ -105,8 +105,8 @@ class Replay < ActiveRecord::Base
   #
   def create_node
     logger.info("create_node #{self.node}")
-    MiddleMan.worker(:xmpp_worker).xmpp_create_node(:arg=>self.node)
-    path
+    MiddleMan.worker(:xmpp_worker).async_xmpp_create_node(:arg=>self.node)
+    self.node
   end
 
 end

@@ -64,7 +64,7 @@ class XmppWorker < BackgrounDRb::MetaWorker
 
   def xmpp_create_node(path)
     create_replay_node(path)
-    path
+    true
   end
 
   def xmpp_replay_start(replayid)
@@ -79,32 +79,36 @@ class XmppWorker < BackgrounDRb::MetaWorker
     find_replay(replayid)
     @replay.running = false
     @replay.save!
+    true
   end
 
   def find_replay(replayid)
     @replay = Replay.find(replayid)
   end
 
+  #TODO this is a bit dense and grimy
   def pubstep(from,to)
     start,fin = spanify(from,to)
     report, report2 = @replay.aspect.reports.known_inside(start,fin).limited(2)
-    if !report.nil? && @replay.running
+    if !report.nil? && !report2.nil? && @replay.running
       logger.info("publishing #{report.xml}")
-      publish(@replay.node,report.xml)
-      later = report2.andand.known || report.known
+      publish(@replay.node,[report.xml])
+      later = report2.known
+      later += 1.second if report.known == report2.known
       delay = later - report.known
       rate = @replay.rate || 1
       rate = 1 if rate.zero?
-      delay = delay * rate 
+      delay = delay / rate 
       delay = @replay.gapskip if (@replay.gapskip > 0 && delay > @replay.gapskip)
-      delay = 1 if delay < 1
+      delay = 0.1 if delay < 0.1
       logger.info("scheduling for #{delay}secs")
-      add_timer(0.1) { 
+      add_timer(delay) { 
         @replay.reload
         pubstep(later,to) 
       }
     else
       xmpp_replay_stop(@replay.id)
+      publish(@replay.node,["<replay_control id='#{@replay.id}' stopped='1'/>"])
     end
   end
 
@@ -130,10 +134,10 @@ class XmppWorker < BackgrounDRb::MetaWorker
     path
   end
 
-  #message should be the xml measurement
-  def publish(node, message)
+  #publish the list of xml measurements
+  def publish(node, mlist)
     item = Jabber::PubSub::Item.new
-    item.add(REXML::Document.new(message))
+    mlist.each{ |m| item.add(REXML::Document.new(m)) }
     pubsub.publish_item_to(node,item)
   end
 
