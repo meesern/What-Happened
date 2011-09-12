@@ -27,5 +27,4 @@ gem "fog", "0.7.0"   #for backup
 gem "mail", "2.2.15" #for backup
 gem "xml-simple"
 gem "json"
-gem 'backgroundrb', :git => 'git://github.com/gnufied/backgroundrb.git'
 
