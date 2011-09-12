@@ -23,7 +23,7 @@ admin_email: rupert.meese@nottingham.ac.uk
 # OPTIONAL: If not set, you won't be able to access web_tools
 # server (munin stats, monit status, etc)
 web_tools_user: admin
-web_tools_password: admin<og1n
+web_tools_password: adminog1n
 
 # Jabber password
 jabber_password: F47Ajj9iB
@@ -134,11 +134,11 @@ security_groups:
     rules:
       - source_group_name: xmpp
         source_group_account: "#{cloud_providers.aws.account}"
-      - protocol: xmpp
+      - protocol: tcp
         from_port: 5222
         to_port: 5222
         source_ips: [0.0.0.0/0]
-      - protocol: bosh
+      - protocol: tcp
         from_port: 5280
         to_port: 5280
         source_ips: [0.0.0.0/0]
@@ -178,6 +178,7 @@ packages: [postfix, build-essential, git-core, ec2-ami-tools,
 # For example, gem: [[rails, 2.2.2], open4, aws-s3]
 gems: [
      open4, aws-s3, bundler, [rubber, "#{Rubber.version}"],
+     [ZenTest, 4.4.2],
      ParseTree,
      ruby2ruby,
      mysql,

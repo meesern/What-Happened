@@ -19,7 +19,7 @@ gem 'pacecar', :git => 'git://github.com/thoughtbot/pacecar.git', :branch => 'ra
 gem "packet"    #for backgroundRb
 gem "chronic"   #for backgroundRb
 gem "sqlite3"   #for backgroundRb
-gem "rubber", ">1.13.0"
+gem "rubber", "1.13.0"
 gem "andand"
 gem "backup"
 gem "whenever"
@@ -27,5 +27,5 @@ gem "fog", "0.7.0"   #for backup
 gem "mail", "2.2.15" #for backup
 gem "xml-simple"
 gem "json"
-
+gem 'backgroundrb', :git => 'git://github.com/gnufied/backgroundrb.git'
 

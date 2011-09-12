@@ -37,7 +37,7 @@ GEM
     backup (3.0.15)
       thor (~> 0.14.6)
     builder (2.1.2)
-    capistrano (2.6.0)
+    capistrano (2.8.0)
       highline
       net-scp (>= 1.0.0)
       net-sftp (>= 2.0.0)
@@ -58,7 +58,7 @@ GEM
       ruby-hmac
     formatador (0.1.4)
     haml (3.1.1)
-    highline (1.6.1)
+    highline (1.6.2)
     hobo (1.0.3)
       hobofields (= 1.0.3)
       hobosupport (= 1.0.3)
@@ -69,7 +69,7 @@ GEM
       rails (>= 2.2.2, < 3.0.0)
     hobosupport (1.0.3)
     hpricot (0.8.4)
-    httpclient (2.2.0.2)
+    httpclient (2.2.1)
     i18n (0.6.0)
     json (1.5.1)
     linecache (0.43)
@@ -81,7 +81,7 @@ GEM
     maruku (0.6.0)
       syntax (>= 1.0.0)
     mime-types (1.16)
-    mumboe-soap4r (1.5.8.3)
+    mumboe-soap4r (1.5.8.4)
       httpclient (>= 2.1.1)
     mysql (2.8.1)
     net-scp (1.0.4)
@@ -105,7 +105,7 @@ GEM
       activesupport (= 2.3.11)
       rake (>= 0.8.3)
     rake (0.8.7)
-    rubber (1.13.2)
+    rubber (1.13.0)
       amazon-ec2 (>= 0.9.17)
       aws-s3
       capistrano (>= 2.4.0)
@@ -156,7 +156,7 @@ DEPENDENCIES
   pacecar!
   packet
   rails (= 2.3.11)
-  rubber (> 1.13.0)
+  rubber (= 1.13.0)
   ruby-debug
   ruby2ruby
   sqlite3
