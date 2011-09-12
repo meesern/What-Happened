@@ -178,7 +178,7 @@ packages: [postfix, build-essential, git-core, ec2-ami-tools,
 # For example, gem: [[rails, 2.2.2], open4, aws-s3]
 gems: [
      open4, aws-s3, bundler, [rubber, "#{Rubber.version}"],
-     [activeresource, 3.0.7]
+     [activeresource, 3.0.7],
      [ZenTest, 4.4.2],
      ParseTree,
      ruby2ruby,
