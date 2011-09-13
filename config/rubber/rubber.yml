@@ -27,6 +27,7 @@ web_tools_password: adminog1n
 
 # Jabber password
 jabber_password: F47Ajj9iB
+jabber_guest_password: jabber
 
 # REQUIRED: The timezone the server should be in
 timezone: UTC
