@@ -4,7 +4,6 @@ w1:
   veracity: "<flaws:  misidentifies at a certain rate, breaks down quit often>"
   created_at: 2011-04-06 13:06:52
   character: <formal description of the data reported by this witness>
-  aspect_id: 1
   updated_at: 2011-04-06 13:06:52
   api_key: 
   id: 1
@@ -15,7 +14,6 @@ w2:
   veracity: <pretty good but fails when the batteries run out>
   created_at: 2011-04-06 13:09:37
   character: ""
-  aspect_id: 2
   updated_at: 2011-04-06 13:09:37
   api_key: 
   id: 2
@@ -26,7 +24,6 @@ w3:
   veracity: "?"
   created_at: 2011-05-04 09:15:33
   character: "?"
-  aspect_id: 3
   updated_at: 2011-05-04 09:15:33
   api_key: 
   id: 3
