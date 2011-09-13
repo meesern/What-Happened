@@ -84,7 +84,32 @@ namespace :rake do
   end
 end
 
+#RNM Add backgroundrb tasks
+desc <<-DESC
+Stop the backgroundrb server
+DESC
+task :stop_backgroundrb , :roles => :app do
+  run "#{current_path}/script/backgroundrb/stop"
+end
+
+desc <<-DESC
+Start the backgroundrb server
+DESC
+task :start_backgroundrb , :roles => :app do
+  run "#{current_path}/script/backgroundrb/start -d"
+end
+
+desc <<-DESC
+Start the backgroundrb server
+DESC
+task :restart_backgroundrb , :roles => :app do
+  stop_backgroundrb
+  start_backgroundrb
+end
+
+
 after "deploy", "deploy:cleanup"
 #RNM extend deploy cold to initialise database
+after "deploy", "restart_backgroundrb"
 after "rubber:create_staging", "db:seed" 
 
