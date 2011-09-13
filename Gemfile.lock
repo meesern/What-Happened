@@ -37,7 +37,7 @@ GEM
     backup (3.0.15)
       thor (~> 0.14.6)
     builder (2.1.2)
-    capistrano (2.8.0)
+    capistrano (2.7.0)
       highline
       net-scp (>= 1.0.0)
       net-sftp (>= 2.0.0)
@@ -88,7 +88,7 @@ GEM
       net-ssh (>= 1.99.1)
     net-sftp (2.0.5)
       net-ssh (>= 2.0.9)
-    net-ssh (2.1.4)
+    net-ssh (2.2.1)
     net-ssh-gateway (1.1.0)
       net-ssh (>= 1.99.1)
     nettica (0.4.0)
@@ -143,6 +143,7 @@ DEPENDENCIES
   WikiCreole
   andand
   backup
+  capistrano (< 2.8.0)
   chronic
   flutie
   fog (= 0.7.0)

@@ -2,6 +2,7 @@
 #And in rubber.yml
 
 source "http://rubygems.org"
+gem "capistrano", "<2.8.0"   #stop bundle installing 2.8.0 which doesn't work
 gem "ParseTree"
 gem "ruby2ruby"
 gem "mysql"
