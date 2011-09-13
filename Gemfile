@@ -3,6 +3,7 @@
 
 source "http://rubygems.org"
 gem "capistrano", "<2.8.0"   #stop bundle installing 2.8.0 which doesn't work
+gem "builder", "<3.0.0"      #stop zerigo_dns conflicting with rubber
 gem "ParseTree"
 gem "ruby2ruby"
 gem "mysql"
@@ -28,4 +29,5 @@ gem "fog", "0.7.0"   #for backup
 gem "mail", "2.2.15" #for backup
 gem "xml-simple"
 gem "json"
+
 
