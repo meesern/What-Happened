@@ -83,9 +83,8 @@ class ClerksReport < ActiveRecord::Base
     #blob is constrained to be xml but Hpricot will parse just about anything
     #without choking
     doc = Hpricot(blob)
-    #look for <t>'s which indicate time based measurement
     ments = doc.search("//ment")
-    self.submitted_records = (submitted_records || 0) + tstamps.length
+    self.submitted_records = (submitted_records || 0) + ments.length
     ments.each do |m|
       time = Time.parse(m[:t])
       #Do not update existing records but rather add a new one unless it
