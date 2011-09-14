@@ -30,9 +30,12 @@ class Aspect < ActiveRecord::Base
 
   #Better if DRYer
   def report_counts(level, t_start, t_end)
-    t_start  ||= self.reports.by_known.first.known
-    t_end    ||= self.reports.by_known.last.known
+    t_start  ||= self.reports.by_known.first.andand.known
+    t_end    ||= self.reports.by_known.last.andand.known
     counts = []
+    #stop if we have no counts
+    return counts if t_start.nil?
+    #otherwise scan at the requested granularity
     case level
     when :history
       (t_start.year..t_end.year).each do |year|

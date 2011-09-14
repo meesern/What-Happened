@@ -1,11 +1,11 @@
 --- 
 - !ruby/object:Rubber::Configuration::InstanceItem 
   domain: socksforlife.co.uk
-  external_host: ec2-107-20-91-214.compute-1.amazonaws.com
-  external_ip: 107.20.91.214
-  instance_id: i-e6369286
-  internal_host: ip-10-118-70-63.ec2.internal
-  internal_ip: 10.118.70.63
+  external_host: ec2-184-72-168-26.compute-1.amazonaws.com
+  external_ip: 184.72.168.26
+  instance_id: i-86ea48e6
+  internal_host: domU-12-31-39-05-65-12.compute-1.internal
+  internal_ip: 10.241.102.224
   name: production
   platform: linux
   roles: 
@@ -58,7 +58,7 @@
   - whathappened_production_apache
   - whathappened_production_db
   - whathappened_production_mysql_master
-  zone: us-east-1b
+  zone: us-east-1a
 - volumes: {}
 
   static_ips: {}
