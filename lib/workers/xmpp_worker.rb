@@ -15,7 +15,7 @@ class XmppWorker < BackgrounDRb::MetaWorker
     # this method is called, when worker is loaded for the first time
     opts ||= {}
     opts[:username] ||= RUBBER_CONFIG.app_name
-    opts[:server]   ||= RUBBER_CONFIG.domain
+    opts[:server]   ||= RUBBER_CONFIG.full_domain
     opts[:password] ||= RUBBER_CONFIG.jabber_password
     $username =  opts[:username]
     $server =    opts[:server]

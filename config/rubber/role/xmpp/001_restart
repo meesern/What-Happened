@@ -6,11 +6,11 @@
 
 /bin/sleep 3
 
-if /usr/sbin/ejabberdctl check-account <%=rubber_env.app_name%> <%=rubber_env.domain%>; then 
+if /usr/sbin/ejabberdctl check-account <%=rubber_env.app_name%> <%=rubber_env.full_domain%>; then 
   echo <%=rubber_env.app_name%> exists
 else
   echo registering <%=rubber_env.app_name%> 
-  /usr/sbin/ejabberdctl register <%=rubber_env.app_name%> <%=rubber_env.domain%> <%=rubber_env.jabber_password%>
-  /usr/sbin/ejabberdctl register test <%=rubber_env.domain%> <%=rubber_env.jabber_guest_password%>
+  /usr/sbin/ejabberdctl register <%=rubber_env.app_name%> <%=rubber_env.full_domain%> <%=rubber_env.jabber_password%>
+  /usr/sbin/ejabberdctl register test <%=rubber_env.full_domain%> <%=rubber_env.jabber_guest_password%>
 fi
 

@@ -94,7 +94,7 @@ class Replay < ActiveRecord::Base
 
   def node
     username = RUBBER_CONFIG.app_name
-    server = RUBBER_CONFIG.domain
+    server = RUBBER_CONFIG.full_domain
     "/home/#{server}/#{username}/#{xmlurl(self)}"
   end
 
