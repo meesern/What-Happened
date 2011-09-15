@@ -89,14 +89,14 @@ desc <<-DESC
 Stop the backgroundrb server
 DESC
 task :stop_backgroundrb , :roles => :app do
-  run "#{current_path}/script/backgroundrb/stop"
+  run "cd #{current_path} && bundle exec ./script/backgroundrb stop"
 end
 
 desc <<-DESC
 Start the backgroundrb server
 DESC
 task :start_backgroundrb , :roles => :app do
-  run "#{current_path}/script/backgroundrb/start -d"
+  run "cd #{current_path} && bundle exec ./script/backgroundrb start"
 end
 
 desc <<-DESC
@@ -112,4 +112,5 @@ after "deploy", "deploy:cleanup"
 #RNM extend deploy cold to initialise database
 after "deploy", "restart_backgroundrb"
 after "rubber:create_staging", "db:seed" 
+after "rubber:create_staging", "start_backgroundrb" 
 

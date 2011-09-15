@@ -34,7 +34,7 @@ timezone: UTC
 
 # REQUIRED: the domain all the instances should be associated with
 #
-domain: "#{RUBBER_ENV == 'production' ? 'socksforlife.co.uk':'greenbean'}"
+domain: "#{RUBBER_ENV == 'production' ? 'production.socksforlife.co.uk':'greenbean'}"
 
 # OPTIONAL: See rubber-dns.yml for dns configuration
 # This lets rubber update a dynamic dns service with the instance alias
