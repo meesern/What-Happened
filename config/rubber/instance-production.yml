@@ -1,11 +1,11 @@
 --- 
 - !ruby/object:Rubber::Configuration::InstanceItem 
   domain: socksforlife.co.uk
-  external_host: ec2-107-20-88-156.compute-1.amazonaws.com
-  external_ip: 107.20.88.156
-  instance_id: i-e4872c84
-  internal_host: domU-12-31-39-16-2C-F9.compute-1.internal
-  internal_ip: 10.96.47.7
+  external_host: ec2-50-16-181-145.compute-1.amazonaws.com
+  external_ip: 50.16.181.145
+  instance_id: i-ca3384aa
+  internal_host: ip-10-110-97-103.ec2.internal
+  internal_ip: 10.110.97.103
   name: www
   platform: linux
   roles: 
@@ -45,7 +45,7 @@
     name: mysql_master
     options: {}
 
-  root_device_type: instance-store
+  root_device_type: ebs
   security_groups: 
   - whathappened_production_default
   - whathappened_production_xmpp
