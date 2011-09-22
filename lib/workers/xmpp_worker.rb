@@ -70,7 +70,7 @@ class XmppWorker < BackgrounDRb::MetaWorker
   def xmpp_replay_start(replayid)
     logger.info("starting replay")
     find_replay(replayid)
-    pubstep(@replay.from,@replay.to)
+    pubstep
     true
   end
 
@@ -86,31 +86,51 @@ class XmppWorker < BackgrounDRb::MetaWorker
     @replay = Replay.find(replayid)
   end
 
-  #TODO this is a bit dense and grimy
-  def pubstep(from,to)
-    start,fin = spanify(from,to)
-    report, report2 = @replay.aspect.reports.known_inside(start,fin).limited(2)
-    if !report.nil? && !report2.nil? && @replay.running
-      logger.info("publishing #{report.xml}")
-      publish(@replay.node,[report.xml])
-      later = report2.known
-      later += 1.second if report.known == report2.known
-      delay = later - report.known
-      rate = @replay.rate || 1
-      rate = 1 if rate.zero?
-      delay = delay / rate 
-      delay = @replay.gapskip if (@replay.gapskip > 0 && delay > @replay.gapskip)
-      delay = 0.1 if delay < 0.1
-      logger.info("scheduling for #{delay}secs")
-      add_timer(delay) { 
-        @replay.reload
-        pubstep(later,to) 
-      }
-    else
+  def pubstep
+    @replay.reload
+    delay = @replay.next_step {|xml| 
+      logger.info("publishing #{xml}")
+      publish(@replay.node,[xml])
+    }
+    if delay < 0 or !@replay.running #indicating end
       xmpp_replay_stop(@replay.id)
       publish(@replay.node,["<replay_control id='#{@replay.id}' stopped='1'/>"])
+    else
+      logger.info("scheduling for #{delay}secs")
+      add_timer(delay) { 
+        pubstep
+      }
     end
   end
+
+#  #TODO this is a bit dense and grimy
+#  def pubstep(from, sec ,to)
+#    start,fin = spanify(from,to)
+#    #get the next report in the time period
+#    report = @replay.aspect.next()
+#
+#    report, report2 = @replay.aspect.reports.known_inside(start,fin).by_known.by_second.limited(2)
+#    if !report.nil? && !report2.nil? && @replay.running
+#      logger.info("publishing #{report.xml}")
+#      publish(@replay.node,[report.xml])
+#      later = report2.known
+#      later += 1.second if report.known == report2.known
+#      delay = later - report.known
+#      rate = @replay.rate || 1
+#      rate = 1 if rate.zero?
+#      delay = delay / rate 
+#      delay = @replay.gapskip if (@replay.gapskip > 0 && delay > @replay.gapskip)
+#      delay = 0.1 if delay < 0.1
+#      logger.info("scheduling for #{delay}secs")
+#      add_timer(delay) { 
+#        @replay.reload
+#        pubstep(later,to) 
+#      }
+#    else
+#      xmpp_replay_stop(@replay.id)
+#      publish(@replay.node,["<replay_control id='#{@replay.id}' stopped='1'/>"])
+#    end
+#  end
 
   #
   # Pub-sub replay publishing

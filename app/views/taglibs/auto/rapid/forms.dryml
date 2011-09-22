@@ -63,7 +63,7 @@
 <def tag="form" for="Replay">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="name, rate, gapskip, from, to, playhead, running, playtime, aspect" param/>
+    <field-list fields="name, rate, gapskip, from, to, playhead, running, playtime, aspect, report" param/>
     <div param="actions">
       <submit label="#{ht 'replays.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
@@ -75,7 +75,7 @@
 <def tag="form" for="Report">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="known, measurement, confidence, aspect, clerks_report" param/>
+    <field-list fields="known, second, measurement, confidence, aspect, clerks_report" param/>
     <div param="actions">
       <submit label="#{ht 'reports.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>

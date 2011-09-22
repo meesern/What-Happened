@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110822132115) do
+ActiveRecord::Schema.define(:version => 20110922145206) do
 
   create_table "aspects", :force => true do |t|
     t.string   "name"
@@ -99,9 +99,11 @@ ActiveRecord::Schema.define(:version => 20110822132115) do
     t.datetime "updated_at"
     t.integer  "aspect_id"
     t.datetime "playhead"
+    t.integer  "report_id"
   end
 
   add_index "replays", ["aspect_id"], :name => "index_replays_on_aspect_id"
+  add_index "replays", ["report_id"], :name => "index_replays_on_report_id"
 
   create_table "reports", :force => true do |t|
     t.datetime "known"
@@ -111,6 +113,7 @@ ActiveRecord::Schema.define(:version => 20110822132115) do
     t.datetime "updated_at"
     t.integer  "aspect_id"
     t.integer  "clerks_report_id"
+    t.float    "second",           :default => 0.0
   end
 
   add_index "reports", ["aspect_id"], :name => "index_reports_on_aspect_id"

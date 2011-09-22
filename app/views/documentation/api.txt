@@ -185,7 +185,21 @@ An item must exist before item registration can be used to update the structure.
 
 == Submit Data
 
+Send a post request to
 * {{{http://socksforlife.co.uk/v1/file_a_report/<aspect_id>}}}
+
+With xml data in the following format:
+
+{{{
+    <report>
+      <ment t='2011-07-11 10:31:42 UTC' s='0.00'>....</ment>
+      <ment t='2011-07-11 10:31:42 UTC' s='0.25'>....</ment>
+      <ment t='2011-07-11 10:31:42 UTC' s='0.50'>....</ment>
+      <ment t='2011-07-11 10:31:42 UTC' s='0.75'>....</ment>
+    </report>
+}}}
+
+Each measurement is represented by a 'ment' element.  The 't' attribute carries the ISO 8601 format time at which the measurement was taken.  The optional 's' attribute carries the fraction of a second at which the measurement was taken.  's' defaults to zero and if present must be less than 1 and greater or equal to zero.  The contents of the 'ment' element are stored as the measurement itself.
 
 
 == Retrieve Data
@@ -208,9 +222,9 @@ Specify 'from' and 'until' parameters as well formatted times to restrict the ra
     ========
 
     <report>
-      <ment t='2011-07-11 10:31:42 UTC'>....</ment>
-      <ment t='2011-07-11 10:33:15 UTC'>....</ment>
-      <ment t='2011-07-11 10:34:51 UTC'>....</ment>
+      <ment t='2011-07-11 10:31:42 UTC' s='0'>....</ment>
+      <ment t='2011-07-11 10:33:15 UTC' s='0.5'>....</ment>
+      <ment t='2011-07-11 10:34:51 UTC' s='0'>....</ment>
     </report>
 
 }}}

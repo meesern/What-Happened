@@ -87,14 +87,15 @@ class ClerksReport < ActiveRecord::Base
     self.submitted_records = (submitted_records || 0) + ments.length
     ments.each do |m|
       time = Time.parse(m[:t])
+      second = m[:s].to_f
       #Do not update existing records but rather add a new one unless it
       #is a complete duplicate
-      rep = Report.new( :aspect => aspect, :known => time )
+      rep = Report.new( :aspect => aspect, :known => time, :second => second )
       rep.measurement = m.inner_html
       rep.clerks_report = self  #update if udating the record
       #Avoid duplicates at the expense of a non indexed lookup for each record
       print (dbg_count+=1) 
-      dup = find_existing(rep.known, rep.measurement) unless witness.append_only
+      dup = find_existing(rep.known, rep.second, rep.measurement) unless witness.andand.append_only
       print 'x' unless dup.empty?
       rep.save! if dup.empty?
       #deal with nul instead of zero in first instance
@@ -103,10 +104,10 @@ class ClerksReport < ActiveRecord::Base
 
   end
 
-  def find_existing(time, val)
+  def find_existing(time, second, val)
       aspect.reports.find(:all, :conditions=>
-           ["known = :k and measurement = :m", 
-           {:k=>time, :m=>val}])
+           ["known = :k and second = :s and measurement = :m", 
+           {:k=>time, :s=> second, :m=>val}])
   end
 
 end

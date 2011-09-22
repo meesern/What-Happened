@@ -25,7 +25,7 @@ class Aspect < ActiveRecord::Base
   def report_data(from, to)
     #Limit to first 10000 to prevent timeout
     #TODO implement paging in the API
-    c = self.reports.known_inside(from,to).paginate(:page=>1, :per_page=>MAX_RETURN)
+    c = self.reports.known_inside(from,to).by_known.by_second.paginate(:page=>1, :per_page=>MAX_RETURN)
   end
 
   #Better if DRYer
@@ -117,6 +117,24 @@ class Aspect < ActiveRecord::Base
 
   def view_permitted?(field)
     true
+  end
+
+  #get the first report in time sequence up until fin
+  def first(start, fin)
+    start ||= Time.at(0)
+    fin   ||= Time.now
+    self.reports.start(start,fin).first
+  end
+
+  #get the next report following current in time sequence up until fin
+  def next(from, sec, fin)
+    from ||= Time.at(0)
+    sec  ||= 0
+    fin  ||= Time.now
+    #after is after or equal
+    nxt = self.reports.next(from, sec).first
+    # or it's the fist from the next second
+    nxt ||= self.first(from+1, fin) 
   end
 
 end
