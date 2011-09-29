@@ -1,0 +1,170 @@
+
+<!-- ********************************************* -->
+<!--                   Register                    -->
+<!-- ********************************************* -->
+<section about="Register">
+
+<message from="Joe" to="InfoSys">
+Hi - I'd like to register.
+</message>
+
+<message from="InfoSys" to="Joe">
+Great, please enter your preferred username and a password.
+</message>
+
+<message from="Joe" to="InfoSys">
+I'd like the username: J
+</message>
+
+<message from="InfoSys" to="ObjContainer">
+Report {item:Users, entity:J, auth: none}
+</message>
+
+<message from="ObjContainer" to="InfoSys">
+{entity: J, properties: <notauthorised/>}
+</message>
+
+<message from="InfoSys" to="Joe">
+Username J exists - log in if this is you, or choose another name.
+</message>
+
+<message from="Joe" to="InfoSys">
+I'd like the username: Joe
+</message>
+
+<!-- no authority at this time -->
+<!-- should the whole thing use OC curators?-->
+<message from="InfoSys" to="ObjContainer">
+Report {item:Users, entity:Joe, auth: none}
+</message>
+
+<message from="ObjContainer" to="InfoSys">
+{}
+</message>
+
+<message from="InfoSys" to="Joe">
+Ok, what password?
+</message>
+
+<message from="Joe" to="InfoSys">
+password: Woo
+</message>
+
+<message from="InfoSys" to="ObjContainer">
+Create item:Users, entity:Joe, password: Woo, auth: none
+</message>
+
+<message from="ObjContainer" to="InfoSys">
+{item:Users, entity:Joe, properties }
+</message>
+
+<!-- Authorization really needs sorting! -->
+<message from="InfoSys" to="Joe">
+Ok you're Joe.
+</message>
+
+
+</section>
+
+<!-- ********************************************* -->
+<!--                  Logout                       -->
+<!-- ********************************************* -->
+<section about="Logout">
+
+<message from="Joe" to="InfoSys">
+Hi - I'd like to logout
+</message>
+
+<!-- !!! I don't know what this means in real terms -->
+<message from="InfoSys" to="ObjContainer">
+Revoke item:Users, entity:Joe
+</message>
+
+<!-- Authorization really needs sorting! -->
+<message from="InfoSys" to="Joe">
+Ok 
+</message>
+
+
+</section>
+<!-- ********************************************* -->
+<!--                  Login                        -->
+<!-- ********************************************* -->
+<section about="Login">
+
+<message from="Joe" to="InfoSys">
+Hi - I'd like to login as Joe: Woo.
+</message>
+
+<message from="InfoSys" to="ObjContainer">
+Report {item:Users, entity:Joe, auth: Woo}
+</message>
+
+<message from="ObjContainer" to="InfoSys">
+{item: Users, entity: Joe, properties: some-properties }
+</message>
+
+<!-- Authorization really needs sorting! -->
+<message from="InfoSys" to="Joe">
+Ok you're Joe.
+</message>
+
+</section>
+<!-- ********************************************* -->
+<!--                Visit Website                  -->
+<!-- ********************************************* -->
+<section about="Visit Website">
+
+<message from="InfoSys" to="ObjContainer">
+Report {  }
+</message>
+
+<message from="ObjContainer" to="InfoSys">
+{item: Users, entity: Joe, properties: some-properties }
+</message>
+
+<!-- Authorization really needs sorting! -->
+<message from="InfoSys" to="Joe">
+Ok you're Joe.
+</message>
+
+
+</section>
+<!-- ********************************************* -->
+<!--                Sit at Table                   -->
+<!-- ********************************************* -->
+<section about="Sit at Table">
+
+</section>
+<!-- ********************************************* -->
+<!--                   Order                       -->
+<!-- ********************************************* -->
+<section about="Order">
+
+</section>
+<!-- ********************************************* -->
+<!--                Deliver dishes                 -->
+<!-- ********************************************* -->
+<section about="Deliver dishes">
+
+</section>
+<!-- ********************************************* -->
+<!--                 Present plate                 -->
+<!-- ********************************************* -->
+<section about="Present plate">
+
+</section>
+<!-- ********************************************* -->
+<!--                   Pay/Leave                   -->
+<!-- ********************************************* -->
+<section about="Pay/Leave">
+
+</section>
+<!-- ********************************************* -->
+<!--                 Visit Website                 -->
+<!-- ********************************************* -->
+<section about="Visit Website">
+
+</section>
+
+

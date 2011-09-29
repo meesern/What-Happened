@@ -1,0 +1,525 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Module: ApplicationHelper
+  
+    &mdash; Documentation by YARD 0.7.2
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  relpath = '';
+  if (relpath != '') relpath += '/';
+</script>
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html">Index (A)</a> &raquo; 
+    
+    
+    <span class="title">ApplicationHelper</span>
+  
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a id="class_list_link" href="#">Class List</a>
+  
+    <a id="method_list_link" href="#">Method List</a>
+  
+    <a id="file_list_link" href="#">File List</a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><h1>Module: ApplicationHelper
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+  
+    
+  
+    
+  
+  
+  
+    <dt class="r1 last">Defined in:</dt>
+    <dd class="r1 last">app/helpers/application_helper.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    <p>
+Methods added to this helper will be available to all templates in the
+application.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div>
+
+
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#dayspan-instance_method" title="#dayspan (instance method)">- (Object) <strong>dayspan</strong>(year, dayofyear) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Day of Year is 0..365 here.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#hourspan-instance_method" title="#hourspan (instance method)">- (Object) <strong>hourspan</strong>(year, dayofyear, hourofday) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#minutespan-instance_method" title="#minutespan (instance method)">- (Object) <strong>minutespan</strong>(year, dayofyear, minuteofday) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#spanify-instance_method" title="#spanify (instance method)">- (Object) <strong>spanify</strong>(from, to) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+ensure from and to are valid times.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#time_iterate-instance_method" title="#time_iterate (instance method)">- (Object) <strong>time_iterate</strong>(start_time, end_time, step) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#xmlurl-instance_method" title="#xmlurl (instance method)">- (Object) <strong>xmlurl</strong>(replay) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#yearspan-instance_method" title="#yearspan (instance method)">- (Object) <strong>yearspan</strong>(year) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+    
+    
+      <div class="method_details first">
+  <p class="signature first" id="dayspan-instance_method">
+  
+    - (<tt>Object</tt>) <strong>dayspan</strong>(year, dayofyear) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Day of Year is 0..365 here
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+24
+25
+26
+27</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/helpers/application_helper.rb', line 24</span>
+
+<span class='def def kw'>def</span> <span class='dayspan identifier id'>dayspan</span><span class='lparen token'>(</span><span class='year identifier id'>year</span><span class='comma token'>,</span> <span class='dayofyear identifier id'>dayofyear</span><span class='rparen token'>)</span>
+  <span class='from identifier id'>from</span> <span class='assign token'>=</span> <span class='Time constant id'>Time</span><span class='dot token'>.</span><span class='utc identifier id'>utc</span><span class='lparen token'>(</span><span class='year identifier id'>year</span><span class='rparen token'>)</span><span class='plus op'>+</span><span class='dayofyear identifier id'>dayofyear</span><span class='dot token'>.</span><span class='to_i identifier id'>to_i</span><span class='dot token'>.</span><span class='days identifier id'>days</span>
+  <span class='lbrack token'>[</span><span class='from identifier id'>from</span><span class='comma token'>,</span> <span class='lparen token'>(</span><span class='from identifier id'>from</span> <span class='plus op'>+</span> <span class='float val'>1</span><span class='dot token'>.</span><span class='day identifier id'>day</span><span class='rparen token'>)</span><span class='minus op'>-</span><span class='integer val'>1</span><span class='rbrack token'>]</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="hourspan-instance_method">
+  
+    - (<tt>Object</tt>) <strong>hourspan</strong>(year, dayofyear, hourofday) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+29
+30
+31
+32</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/helpers/application_helper.rb', line 29</span>
+
+<span class='def def kw'>def</span> <span class='hourspan identifier id'>hourspan</span><span class='lparen token'>(</span><span class='year identifier id'>year</span><span class='comma token'>,</span> <span class='dayofyear identifier id'>dayofyear</span><span class='comma token'>,</span> <span class='hourofday identifier id'>hourofday</span><span class='rparen token'>)</span>
+  <span class='from identifier id'>from</span> <span class='assign token'>=</span> <span class='Time constant id'>Time</span><span class='dot token'>.</span><span class='utc identifier id'>utc</span><span class='lparen token'>(</span><span class='year identifier id'>year</span><span class='rparen token'>)</span><span class='plus op'>+</span> <span class='dayofyear identifier id'>dayofyear</span><span class='dot token'>.</span><span class='to_i identifier id'>to_i</span><span class='dot token'>.</span><span class='days identifier id'>days</span> <span class='plus op'>+</span> <span class='hourofday identifier id'>hourofday</span><span class='dot token'>.</span><span class='to_i identifier id'>to_i</span><span class='dot token'>.</span><span class='hours identifier id'>hours</span>
+  <span class='lbrack token'>[</span><span class='from identifier id'>from</span><span class='comma token'>,</span> <span class='lparen token'>(</span><span class='from identifier id'>from</span> <span class='plus op'>+</span> <span class='float val'>1</span><span class='dot token'>.</span><span class='hour identifier id'>hour</span><span class='rparen token'>)</span><span class='minus op'>-</span><span class='integer val'>1</span><span class='rbrack token'>]</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="minutespan-instance_method">
+  
+    - (<tt>Object</tt>) <strong>minutespan</strong>(year, dayofyear, minuteofday) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+34
+35
+36
+37</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/helpers/application_helper.rb', line 34</span>
+
+<span class='def def kw'>def</span> <span class='minutespan identifier id'>minutespan</span><span class='lparen token'>(</span><span class='year identifier id'>year</span><span class='comma token'>,</span> <span class='dayofyear identifier id'>dayofyear</span><span class='comma token'>,</span> <span class='minuteofday identifier id'>minuteofday</span><span class='rparen token'>)</span>
+  <span class='from identifier id'>from</span> <span class='assign token'>=</span> <span class='Time constant id'>Time</span><span class='dot token'>.</span><span class='utc identifier id'>utc</span><span class='lparen token'>(</span><span class='year identifier id'>year</span><span class='rparen token'>)</span><span class='plus op'>+</span> <span class='dayofyear identifier id'>dayofyear</span><span class='dot token'>.</span><span class='to_i identifier id'>to_i</span><span class='dot token'>.</span><span class='days identifier id'>days</span> <span class='plus op'>+</span> <span class='minuteofday identifier id'>minuteofday</span><span class='dot token'>.</span><span class='to_i identifier id'>to_i</span><span class='dot token'>.</span><span class='minutes identifier id'>minutes</span>
+  <span class='lbrack token'>[</span><span class='from identifier id'>from</span><span class='comma token'>,</span> <span class='lparen token'>(</span><span class='from identifier id'>from</span> <span class='plus op'>+</span> <span class='float val'>1</span><span class='dot token'>.</span><span class='minute identifier id'>minute</span><span class='rparen token'>)</span><span class='minus op'>-</span><span class='integer val'>1</span><span class='rbrack token'>]</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="spanify-instance_method">
+  
+    - (<tt>Object</tt>) <strong>spanify</strong>(from, to) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+ensure from and to are valid times
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+11
+12
+13
+14
+15</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/helpers/application_helper.rb', line 11</span>
+
+<span class='def def kw'>def</span> <span class='spanify identifier id'>spanify</span><span class='lparen token'>(</span><span class='from identifier id'>from</span><span class='comma token'>,</span><span class='to identifier id'>to</span><span class='rparen token'>)</span>
+  <span class='fr identifier id'>fr</span> <span class='assign token'>=</span> <span class='Time constant id'>Time</span><span class='dot token'>.</span><span class='parse identifier id'>parse</span><span class='lparen token'>(</span><span class='from identifier id'>from</span><span class='dot token'>.</span><span class='andand identifier id'>andand</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span> <span class='orop op'>||</span> <span class='Time constant id'>Time</span><span class='dot token'>.</span><span class='at identifier id'>at</span><span class='lparen token'>(</span><span class='integer val'>0</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span><span class='rparen token'>)</span>
+  <span class='tw identifier id'>tw</span> <span class='assign token'>=</span> <span class='Time constant id'>Time</span><span class='dot token'>.</span><span class='parse identifier id'>parse</span><span class='lparen token'>(</span><span class='to identifier id'>to</span><span class='dot token'>.</span><span class='andand identifier id'>andand</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span> <span class='orop op'>||</span> <span class='string val'>&quot;now&quot;</span><span class='rparen token'>)</span>
+  <span class='lbrack token'>[</span><span class='fr identifier id'>fr</span><span class='comma token'>,</span><span class='tw identifier id'>tw</span><span class='rbrack token'>]</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="time_iterate-instance_method">
+  
+    - (<tt>Object</tt>) <strong>time_iterate</strong>(start_time, end_time, step) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+39
+40
+41
+42
+43
+44
+45</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/helpers/application_helper.rb', line 39</span>
+
+<span class='def def kw'>def</span> <span class='time_iterate identifier id'>time_iterate</span><span class='lparen token'>(</span><span class='start_time identifier id'>start_time</span><span class='comma token'>,</span> <span class='end_time identifier id'>end_time</span><span class='comma token'>,</span> <span class='step identifier id'>step</span><span class='rparen token'>)</span>
+  <span class='idx identifier id'>idx</span> <span class='assign token'>=</span> <span class='integer val'>0</span>
+  <span class='begin begin kw'>begin</span>
+    <span class='yield yield kw'>yield</span><span class='lparen token'>(</span><span class='start_time identifier id'>start_time</span><span class='comma token'>,</span> <span class='idx identifier id'>idx</span><span class='rparen token'>)</span>
+    <span class='idx identifier id'>idx</span><span class='opasgn op'>+=</span><span class='integer val'>1</span>
+  <span class='end end kw'>end</span> <span class='while while_mod kw'>while</span> <span class='lparen token'>(</span><span class='start_time identifier id'>start_time</span> <span class='opasgn op'>+=</span> <span class='step identifier id'>step</span><span class='rparen token'>)</span> <span class='leq op'>&lt;=</span> <span class='end_time identifier id'>end_time</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="xmlurl-instance_method">
+  
+    - (<tt>Object</tt>) <strong>xmlurl</strong>(replay) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+4
+5
+6
+7
+8</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/helpers/application_helper.rb', line 4</span>
+
+<span class='def def kw'>def</span> <span class='xmlurl identifier id'>xmlurl</span><span class='lparen token'>(</span><span class='replay identifier id'>replay</span><span class='rparen token'>)</span>
+  <span class='name identifier id'>name</span> <span class='assign token'>=</span> <span class='replay identifier id'>replay</span><span class='dot token'>.</span><span class='name identifier id'>name</span>
+  <span class='name identifier id'>name</span> <span class='assign token'>=</span> <span class='replay identifier id'>replay</span><span class='dot token'>.</span><span class='id identifier id'>id</span> <span class='if if_mod kw'>if</span> <span class='name identifier id'>name</span><span class='dot token'>.</span><span class='blank? fid id'>blank?</span>
+  <span class='dstring node'>&quot;replay/#{name}&quot;</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="yearspan-instance_method">
+  
+    - (<tt>Object</tt>) <strong>yearspan</strong>(year) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+17
+18
+19</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/helpers/application_helper.rb', line 17</span>
+
+<span class='def def kw'>def</span> <span class='yearspan identifier id'>yearspan</span><span class='lparen token'>(</span><span class='year identifier id'>year</span><span class='rparen token'>)</span>
+  <span class='lbrack token'>[</span><span class='Time constant id'>Time</span><span class='dot token'>.</span><span class='utc identifier id'>utc</span><span class='lparen token'>(</span><span class='year identifier id'>year</span><span class='rparen token'>)</span><span class='comma token'>,</span> <span class='Time constant id'>Time</span><span class='dot token'>.</span><span class='utc identifier id'>utc</span><span class='lparen token'>(</span><span class='year identifier id'>year</span><span class='dot token'>.</span><span class='to_i identifier id'>to_i</span><span class='plus op'>+</span><span class='integer val'>1</span><span class='rparen token'>)</span><span class='minus op'>-</span><span class='integer val'>1</span><span class='rbrack token'>]</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+    
+    <div id="footer">
+  Generated on Thu Sep 29 10:49:42 2011 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.7.2 (ruby-1.8.7).
+</div>
+
+  </body>
+</html>

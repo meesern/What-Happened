@@ -1,0 +1,1002 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Class: XmppWorker
+  
+    &mdash; Documentation by YARD 0.7.2
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  relpath = '';
+  if (relpath != '') relpath += '/';
+</script>
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html">Index (X)</a> &raquo; 
+    
+    
+    <span class="title">XmppWorker</span>
+  
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a id="class_list_link" href="#">Class List</a>
+  
+    <a id="method_list_link" href="#">Method List</a>
+  
+    <a id="file_list_link" href="#">File List</a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><h1>Class: XmppWorker
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName">BackgrounDRb::MetaWorker</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">BackgrounDRb::MetaWorker</li>
+          
+            <li class="next">XmppWorker</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+  
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">lib/workers/xmpp_worker.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+
+
+  
+
+
+  
+
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#connected%3F-instance_method" title="#connected? (instance method)">- (Boolean) <strong>connected?</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#create-instance_method" title="#create (instance method)">- (Object) <strong>create</strong>(opts = nil) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#create_replay_node-instance_method" title="#create_replay_node (instance method)">- (Object) <strong>create_replay_node</strong>(path) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#create_root_node-instance_method" title="#create_root_node (instance method)">- (Object) <strong>create_root_node</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#find_replay-instance_method" title="#find_replay (instance method)">- (Object) <strong>find_replay</strong>(replayid) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#incomming-instance_method" title="#incomming (instance method)">- (Object) <strong>incomming</strong>(message) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#maintain-instance_method" title="#maintain (instance method)">- (Object) <strong>maintain</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#parse_message-instance_method" title="#parse_message (instance method)">- (Object) <strong>parse_message</strong>(body) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#publish-instance_method" title="#publish (instance method)">- (Object) <strong>publish</strong>(node, mlist) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+publish the list of xml measurements.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#pubstep-instance_method" title="#pubstep (instance method)">- (Object) <strong>pubstep</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#pubsub-instance_method" title="#pubsub (instance method)">- (Object) <strong>pubsub</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Pub-sub replay publishing.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#xmpp_create_node-instance_method" title="#xmpp_create_node (instance method)">- (Object) <strong>xmpp_create_node</strong>(path) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#xmpp_replay_start-instance_method" title="#xmpp_replay_start (instance method)">- (Object) <strong>xmpp_replay_start</strong>(replayid) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#xmpp_replay_stop-instance_method" title="#xmpp_replay_stop (instance method)">- (Object) <strong>xmpp_replay_stop</strong>(replayid) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+    
+    
+      <div class="method_details first">
+  <p class="signature first" id="connected?-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>connected?</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+44
+45
+46</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/workers/xmpp_worker.rb', line 44</span>
+
+<span class='def def kw'>def</span> <span class='connected? fid id'>connected?</span>
+  <span class='$im gvar id'>$im</span><span class='dot token'>.</span><span class='is_connected? fid id'>is_connected?</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="create-instance_method">
+  
+    - (<tt>Object</tt>) <strong>create</strong>(opts = nil) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/workers/xmpp_worker.rb', line 14</span>
+
+<span class='def def kw'>def</span> <span class='create identifier id'>create</span><span class='lparen token'>(</span><span class='opts identifier id'>opts</span> <span class='assign token'>=</span> <span class='nil nil kw'>nil</span><span class='rparen token'>)</span>
+  <span class='comment val'># this method is called, when worker is loaded for the first time</span>
+  <span class='opts identifier id'>opts</span> <span class='opasgn op'>||=</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span>
+  <span class='opts identifier id'>opts</span><span class='lbrack token'>[</span><span class='symbol val'>:username</span><span class='rbrack token'>]</span> <span class='opasgn op'>||=</span> <span class='RUBBER_CONFIG constant id'>RUBBER_CONFIG</span><span class='dot token'>.</span><span class='app_name identifier id'>app_name</span>
+  <span class='opts identifier id'>opts</span><span class='lbrack token'>[</span><span class='symbol val'>:server</span><span class='rbrack token'>]</span>   <span class='opasgn op'>||=</span> <span class='RUBBER_CONFIG constant id'>RUBBER_CONFIG</span><span class='dot token'>.</span><span class='full_domain identifier id'>full_domain</span>
+  <span class='opts identifier id'>opts</span><span class='lbrack token'>[</span><span class='symbol val'>:password</span><span class='rbrack token'>]</span> <span class='opasgn op'>||=</span> <span class='RUBBER_CONFIG constant id'>RUBBER_CONFIG</span><span class='dot token'>.</span><span class='jabber_password identifier id'>jabber_password</span>
+  <span class='$username gvar id'>$username</span> <span class='assign token'>=</span>  <span class='opts identifier id'>opts</span><span class='lbrack token'>[</span><span class='symbol val'>:username</span><span class='rbrack token'>]</span>
+  <span class='$server gvar id'>$server</span> <span class='assign token'>=</span>    <span class='opts identifier id'>opts</span><span class='lbrack token'>[</span><span class='symbol val'>:server</span><span class='rbrack token'>]</span>
+  <span class='$password gvar id'>$password</span> <span class='assign token'>=</span>  <span class='opts identifier id'>opts</span><span class='lbrack token'>[</span><span class='symbol val'>:password</span><span class='rbrack token'>]</span>
+
+  <span class='$im gvar id'>$im</span> <span class='assign token'>=</span> <span class='Client constant id'>Client</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='JID constant id'>JID</span><span class='colon2 op'>::</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='$username gvar id'>$username</span><span class='plus op'>+</span><span class='string val'>&quot;@&quot;</span><span class='plus op'>+</span><span class='$server gvar id'>$server</span><span class='rparen token'>)</span><span class='rparen token'>)</span>
+  <span class='maintain identifier id'>maintain</span>
+  <span class='create_root_node identifier id'>create_root_node</span>
+  <span class='add_periodic_timer identifier id'>add_periodic_timer</span><span class='lparen token'>(</span><span class='integer val'>10</span><span class='rparen token'>)</span> <span class='lbrace token'>{</span> <span class='maintain identifier id'>maintain</span> <span class='rbrace token'>}</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="create_replay_node-instance_method">
+  
+    - (<tt>Object</tt>) <strong>create_replay_node</strong>(path) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+151
+152
+153
+154
+155</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/workers/xmpp_worker.rb', line 151</span>
+
+<span class='def def kw'>def</span> <span class='create_replay_node identifier id'>create_replay_node</span><span class='lparen token'>(</span><span class='path identifier id'>path</span><span class='rparen token'>)</span>
+  <span class='logger identifier id'>logger</span><span class='dot token'>.</span><span class='info identifier id'>info</span><span class='lparen token'>(</span><span class='dstring node'>&quot;Creating node #{path}&quot;</span><span class='rparen token'>)</span>
+  <span class='pubsub identifier id'>pubsub</span><span class='dot token'>.</span><span class='create_node identifier id'>create_node</span><span class='lparen token'>(</span><span class='path identifier id'>path</span><span class='rparen token'>)</span>
+  <span class='path identifier id'>path</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="create_root_node-instance_method">
+  
+    - (<tt>Object</tt>) <strong>create_root_node</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+143
+144
+145
+146
+147
+148
+149</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/workers/xmpp_worker.rb', line 143</span>
+
+<span class='def def kw'>def</span> <span class='create_root_node identifier id'>create_root_node</span>
+  <span class='begin begin kw'>begin</span>
+    <span class='create_replay_node identifier id'>create_replay_node</span><span class='lparen token'>(</span><span class='dstring node'>&quot;/home/#{$server}/#{$username}&quot;</span><span class='rparen token'>)</span>
+    <span class='create_replay_node identifier id'>create_replay_node</span><span class='lparen token'>(</span><span class='dstring node'>&quot;/home/#{$server}/#{$username}/replay&quot;</span><span class='rparen token'>)</span>
+  <span class='rescue rescue kw'>rescue</span>
+  <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="find_replay-instance_method">
+  
+    - (<tt>Object</tt>) <strong>find_replay</strong>(replayid) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+85
+86
+87</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/workers/xmpp_worker.rb', line 85</span>
+
+<span class='def def kw'>def</span> <span class='find_replay identifier id'>find_replay</span><span class='lparen token'>(</span><span class='replayid identifier id'>replayid</span><span class='rparen token'>)</span>
+  <span class='@replay ivar id'>@replay</span> <span class='assign token'>=</span> <span class='Replay constant id'>Replay</span><span class='dot token'>.</span><span class='find identifier id'>find</span><span class='lparen token'>(</span><span class='replayid identifier id'>replayid</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="incomming-instance_method">
+  
+    - (<tt>Object</tt>) <strong>incomming</strong>(message) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/workers/xmpp_worker.rb', line 48</span>
+
+<span class='def def kw'>def</span> <span class='incomming identifier id'>incomming</span><span class='lparen token'>(</span><span class='message identifier id'>message</span><span class='rparen token'>)</span>
+  <span class='begin begin kw'>begin</span>
+    <span class='parse_message identifier id'>parse_message</span><span class='lparen token'>(</span><span class='message identifier id'>message</span><span class='dot token'>.</span><span class='body identifier id'>body</span><span class='rparen token'>)</span> <span class='unless unless_mod kw'>unless</span> <span class='message identifier id'>message</span><span class='dot token'>.</span><span class='body identifier id'>body</span><span class='dot token'>.</span><span class='nil? fid id'>nil?</span>
+  <span class='rescue rescue kw'>rescue</span> 
+    <span class='comment val'>#Catch errors as ordinary crash reporting does not work from the</span>
+    <span class='comment val'>#xmpp4r callback</span>
+    <span class='puts identifier id'>puts</span> <span class='$! gvar id'>$!</span>
+    <span class='raise identifier id'>raise</span>
+  <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="maintain-instance_method">
+  
+    - (<tt>Object</tt>) <strong>maintain</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/workers/xmpp_worker.rb', line 30</span>
+
+<span class='def def kw'>def</span> <span class='maintain identifier id'>maintain</span>
+  <span class='unless unless kw'>unless</span> <span class='connected? fid id'>connected?</span>
+    <span class='begin begin kw'>begin</span>
+      <span class='$im gvar id'>$im</span><span class='dot token'>.</span><span class='connect identifier id'>connect</span>
+      <span class='$im gvar id'>$im</span><span class='dot token'>.</span><span class='auth identifier id'>auth</span><span class='lparen token'>(</span><span class='$password gvar id'>$password</span><span class='rparen token'>)</span>
+      <span class='$im gvar id'>$im</span><span class='dot token'>.</span><span class='add_message_callback identifier id'>add_message_callback</span> <span class='lbrace token'>{</span> <span class='bitor op'>|</span><span class='message identifier id'>message</span><span class='bitor op'>|</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='incomming identifier id'>incomming</span><span class='lparen token'>(</span><span class='message identifier id'>message</span><span class='rparen token'>)</span> <span class='rbrace token'>}</span>
+      <span class='$im gvar id'>$im</span><span class='dot token'>.</span><span class='send identifier id'>send</span><span class='lparen token'>(</span><span class='Presence constant id'>Presence</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='nil nil kw'>nil</span><span class='comma token'>,</span><span class='string val'>&quot;Available&quot;</span><span class='rparen token'>)</span><span class='rparen token'>)</span>
+    <span class='rescue rescue kw'>rescue</span>
+      <span class='ev identifier id'>ev</span> <span class='assign token'>=</span> <span class='$! gvar id'>$!</span>
+      <span class='puts identifier id'>puts</span><span class='lparen token'>(</span><span class='dstring node'>&quot;Jabber connection failed with: #{ev}&quot;</span><span class='rparen token'>)</span>
+    <span class='end end kw'>end</span>
+  <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="parse_message-instance_method">
+  
+    - (<tt>Object</tt>) <strong>parse_message</strong>(body) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+59
+60
+61
+62
+63</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/workers/xmpp_worker.rb', line 59</span>
+
+<span class='def def kw'>def</span> <span class='parse_message identifier id'>parse_message</span><span class='lparen token'>(</span><span class='body identifier id'>body</span><span class='rparen token'>)</span>
+  <span class='comment val'>#ClerksReport.file( Hpricot(body).to_plain_text )</span>
+  <span class='comment val'># Bogus aspect id</span>
+  <span class='ClerksReport constant id'>ClerksReport</span><span class='dot token'>.</span><span class='file identifier id'>file</span><span class='lparen token'>(</span> <span class='body identifier id'>body</span><span class='comma token'>,</span> <span class='integer val'>3</span> <span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="publish-instance_method">
+  
+    - (<tt>Object</tt>) <strong>publish</strong>(node, mlist) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+publish the list of xml measurements
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+158
+159
+160
+161
+162</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/workers/xmpp_worker.rb', line 158</span>
+
+<span class='def def kw'>def</span> <span class='publish identifier id'>publish</span><span class='lparen token'>(</span><span class='node identifier id'>node</span><span class='comma token'>,</span> <span class='mlist identifier id'>mlist</span><span class='rparen token'>)</span>
+  <span class='item identifier id'>item</span> <span class='assign token'>=</span> <span class='Jabber constant id'>Jabber</span><span class='colon2 op'>::</span><span class='PubSub constant id'>PubSub</span><span class='colon2 op'>::</span><span class='Item constant id'>Item</span><span class='dot token'>.</span><span class='new identifier id'>new</span>
+  <span class='mlist identifier id'>mlist</span><span class='dot token'>.</span><span class='each identifier id'>each</span><span class='lbrace token'>{</span> <span class='bitor op'>|</span><span class='m identifier id'>m</span><span class='bitor op'>|</span> <span class='item identifier id'>item</span><span class='dot token'>.</span><span class='add identifier id'>add</span><span class='lparen token'>(</span><span class='REXML constant id'>REXML</span><span class='colon2 op'>::</span><span class='Document constant id'>Document</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='m identifier id'>m</span><span class='rparen token'>)</span><span class='rparen token'>)</span> <span class='rbrace token'>}</span>
+  <span class='pubsub identifier id'>pubsub</span><span class='dot token'>.</span><span class='publish_item_to identifier id'>publish_item_to</span><span class='lparen token'>(</span><span class='node identifier id'>node</span><span class='comma token'>,</span><span class='item identifier id'>item</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="pubstep-instance_method">
+  
+    - (<tt>Object</tt>) <strong>pubstep</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/workers/xmpp_worker.rb', line 89</span>
+
+<span class='def def kw'>def</span> <span class='pubstep identifier id'>pubstep</span>
+  <span class='@replay ivar id'>@replay</span><span class='dot token'>.</span><span class='reload identifier id'>reload</span>
+  <span class='delay identifier id'>delay</span> <span class='assign token'>=</span> <span class='@replay ivar id'>@replay</span><span class='dot token'>.</span><span class='next_step identifier id'>next_step</span> <span class='lbrace token'>{</span><span class='bitor op'>|</span><span class='xml identifier id'>xml</span><span class='bitor op'>|</span> 
+    <span class='logger identifier id'>logger</span><span class='dot token'>.</span><span class='info identifier id'>info</span><span class='lparen token'>(</span><span class='dstring node'>&quot;publishing #{xml}&quot;</span><span class='rparen token'>)</span>
+    <span class='publish identifier id'>publish</span><span class='lparen token'>(</span><span class='@replay ivar id'>@replay</span><span class='dot token'>.</span><span class='node identifier id'>node</span><span class='comma token'>,</span><span class='lbrack token'>[</span><span class='xml identifier id'>xml</span><span class='rbrack token'>]</span><span class='rparen token'>)</span>
+  <span class='rbrace token'>}</span>
+  <span class='if if kw'>if</span> <span class='delay identifier id'>delay</span> <span class='lt op'>&lt;</span> <span class='integer val'>0</span> <span class='or or kw'>or</span> <span class='notop op'>!</span><span class='@replay ivar id'>@replay</span><span class='dot token'>.</span><span class='running identifier id'>running</span> <span class='comment val'>#indicating end</span>
+    <span class='xmpp_replay_stop identifier id'>xmpp_replay_stop</span><span class='lparen token'>(</span><span class='@replay ivar id'>@replay</span><span class='dot token'>.</span><span class='id identifier id'>id</span><span class='rparen token'>)</span>
+    <span class='publish identifier id'>publish</span><span class='lparen token'>(</span><span class='@replay ivar id'>@replay</span><span class='dot token'>.</span><span class='node identifier id'>node</span><span class='comma token'>,</span><span class='lbrack token'>[</span><span class='dstring node'>&quot;&lt;replay_control id='#{@replay.id}' stopped='1'/&gt;&quot;</span><span class='rbrack token'>]</span><span class='rparen token'>)</span>
+  <span class='else else kw'>else</span>
+    <span class='logger identifier id'>logger</span><span class='dot token'>.</span><span class='info identifier id'>info</span><span class='lparen token'>(</span><span class='dstring node'>&quot;scheduling for #{delay}secs&quot;</span><span class='rparen token'>)</span>
+    <span class='add_timer identifier id'>add_timer</span><span class='lparen token'>(</span><span class='delay identifier id'>delay</span><span class='rparen token'>)</span> <span class='lbrace token'>{</span> 
+      <span class='pubstep identifier id'>pubstep</span>
+    <span class='rbrace token'>}</span>
+  <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="pubsub-instance_method">
+  
+    - (<tt>Object</tt>) <strong>pubsub</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Pub-sub replay publishing
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+139
+140
+141</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/workers/xmpp_worker.rb', line 139</span>
+
+<span class='def def kw'>def</span> <span class='pubsub identifier id'>pubsub</span>
+  <span class='@lpubsub ivar id'>@lpubsub</span> <span class='opasgn op'>||=</span> <span class='PubSub constant id'>PubSub</span><span class='colon2 op'>::</span><span class='ServiceHelper constant id'>ServiceHelper</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='$im gvar id'>$im</span><span class='comma token'>,</span> <span class='dstring node'>&quot;pubsub.#{$server}&quot;</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="xmpp_create_node-instance_method">
+  
+    - (<tt>Object</tt>) <strong>xmpp_create_node</strong>(path) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+65
+66
+67
+68</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/workers/xmpp_worker.rb', line 65</span>
+
+<span class='def def kw'>def</span> <span class='xmpp_create_node identifier id'>xmpp_create_node</span><span class='lparen token'>(</span><span class='path identifier id'>path</span><span class='rparen token'>)</span>
+  <span class='create_replay_node identifier id'>create_replay_node</span><span class='lparen token'>(</span><span class='path identifier id'>path</span><span class='rparen token'>)</span>
+  <span class='true true kw'>true</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="xmpp_replay_start-instance_method">
+  
+    - (<tt>Object</tt>) <strong>xmpp_replay_start</strong>(replayid) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+70
+71
+72
+73
+74
+75</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/workers/xmpp_worker.rb', line 70</span>
+
+<span class='def def kw'>def</span> <span class='xmpp_replay_start identifier id'>xmpp_replay_start</span><span class='lparen token'>(</span><span class='replayid identifier id'>replayid</span><span class='rparen token'>)</span>
+  <span class='logger identifier id'>logger</span><span class='dot token'>.</span><span class='info identifier id'>info</span><span class='lparen token'>(</span><span class='string val'>&quot;starting replay&quot;</span><span class='rparen token'>)</span>
+  <span class='find_replay identifier id'>find_replay</span><span class='lparen token'>(</span><span class='replayid identifier id'>replayid</span><span class='rparen token'>)</span>
+  <span class='pubstep identifier id'>pubstep</span>
+  <span class='true true kw'>true</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="xmpp_replay_stop-instance_method">
+  
+    - (<tt>Object</tt>) <strong>xmpp_replay_stop</strong>(replayid) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+77
+78
+79
+80
+81
+82
+83</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/workers/xmpp_worker.rb', line 77</span>
+
+<span class='def def kw'>def</span> <span class='xmpp_replay_stop identifier id'>xmpp_replay_stop</span><span class='lparen token'>(</span><span class='replayid identifier id'>replayid</span><span class='rparen token'>)</span>
+  <span class='logger identifier id'>logger</span><span class='dot token'>.</span><span class='info identifier id'>info</span><span class='lparen token'>(</span><span class='string val'>&quot;stopping replay&quot;</span><span class='rparen token'>)</span>
+  <span class='find_replay identifier id'>find_replay</span><span class='lparen token'>(</span><span class='replayid identifier id'>replayid</span><span class='rparen token'>)</span>
+  <span class='@replay ivar id'>@replay</span><span class='dot token'>.</span><span class='running identifier id'>running</span> <span class='assign token'>=</span> <span class='false false kw'>false</span>
+  <span class='@replay ivar id'>@replay</span><span class='dot token'>.</span><span class='save! fid id'>save!</span>
+  <span class='true true kw'>true</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+    
+    <div id="footer">
+  Generated on Thu Sep 29 10:49:41 2011 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.7.2 (ruby-1.8.7).
+</div>
+
+  </body>
+</html>

@@ -1,0 +1,884 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Class: Aspect
+  
+    &mdash; Documentation by YARD 0.7.2
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  relpath = '';
+  if (relpath != '') relpath += '/';
+</script>
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html">Index (A)</a> &raquo; 
+    
+    
+    <span class="title">Aspect</span>
+  
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a id="class_list_link" href="#">Class List</a>
+  
+    <a id="method_list_link" href="#">Method List</a>
+  
+    <a id="file_list_link" href="#">File List</a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><h1>Class: Aspect
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName">ActiveRecord::Base</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">ActiveRecord::Base</li>
+          
+            <li class="next">Aspect</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+  
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">app/models/aspect.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+
+  <h2>Constant Summary</h2>
+  
+    <dl class="constants">
+      
+        <dt id="MAX_RETURN-constant" class="">MAX_RETURN =
+          
+        </dt>
+        <dd><pre class="code"><span class='integer val'>10000</span>
+</pre></dd>
+      
+    </dl>
+  
+
+
+  
+
+
+  
+
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#create_permitted%3F-instance_method" title="#create_permitted? (instance method)">- (Boolean) <strong>create_permitted?</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+&#8212; Permissions &#8212; #.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#destroy_permitted%3F-instance_method" title="#destroy_permitted? (instance method)">- (Boolean) <strong>destroy_permitted?</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#first-instance_method" title="#first (instance method)">- (Object) <strong>first</strong>(start, fin) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+get the first report in time sequence up until fin.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#next-instance_method" title="#next (instance method)">- (Object) <strong>next</strong>(from, sec, fin) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+get the next report following current in time sequence up until fin.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#report_counts-instance_method" title="#report_counts (instance method)">- (Object) <strong>report_counts</strong>(level, t_start, t_end) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Better if DRYer.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#report_data-instance_method" title="#report_data (instance method)">- (Object) <strong>report_data</strong>(from, to) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#tree-instance_method" title="#tree (instance method)">- (Object) <strong>tree</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#update_permitted%3F-instance_method" title="#update_permitted? (instance method)">- (Boolean) <strong>update_permitted?</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#view_permitted%3F-instance_method" title="#view_permitted? (instance method)">- (Boolean) <strong>view_permitted?</strong>(field) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+    
+    
+      <div class="method_details first">
+  <p class="signature first" id="create_permitted?-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>create_permitted?</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+&#8212; Permissions &#8212; #
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+106
+107
+108</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/aspect.rb', line 106</span>
+
+<span class='def def kw'>def</span> <span class='create_permitted? fid id'>create_permitted?</span>
+  <span class='acting_user identifier id'>acting_user</span><span class='dot token'>.</span><span class='administrator? fid id'>administrator?</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="destroy_permitted?-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>destroy_permitted?</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+114
+115
+116</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/aspect.rb', line 114</span>
+
+<span class='def def kw'>def</span> <span class='destroy_permitted? fid id'>destroy_permitted?</span>
+  <span class='acting_user identifier id'>acting_user</span><span class='dot token'>.</span><span class='administrator? fid id'>administrator?</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="first-instance_method">
+  
+    - (<tt>Object</tt>) <strong>first</strong>(start, fin) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+get the first report in time sequence up until fin
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+123
+124
+125
+126
+127</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/aspect.rb', line 123</span>
+
+<span class='def def kw'>def</span> <span class='first identifier id'>first</span><span class='lparen token'>(</span><span class='start identifier id'>start</span><span class='comma token'>,</span> <span class='fin identifier id'>fin</span><span class='rparen token'>)</span>
+  <span class='start identifier id'>start</span> <span class='opasgn op'>||=</span> <span class='Time constant id'>Time</span><span class='dot token'>.</span><span class='at identifier id'>at</span><span class='lparen token'>(</span><span class='integer val'>0</span><span class='rparen token'>)</span>
+  <span class='fin identifier id'>fin</span>   <span class='opasgn op'>||=</span> <span class='Time constant id'>Time</span><span class='dot token'>.</span><span class='now identifier id'>now</span>
+  <span class='self self kw'>self</span><span class='dot token'>.</span><span class='reports identifier id'>reports</span><span class='dot token'>.</span><span class='start identifier id'>start</span><span class='lparen token'>(</span><span class='start identifier id'>start</span><span class='comma token'>,</span><span class='fin identifier id'>fin</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='first identifier id'>first</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="next-instance_method">
+  
+    - (<tt>Object</tt>) <strong>next</strong>(from, sec, fin) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+get the next report following current in time sequence up until fin
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+130
+131
+132
+133
+134
+135
+136
+137
+138</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/aspect.rb', line 130</span>
+
+<span class='def def kw'>def</span> <span class='next next kw'>next</span><span class='lparen token'>(</span><span class='from identifier id'>from</span><span class='comma token'>,</span> <span class='sec identifier id'>sec</span><span class='comma token'>,</span> <span class='fin identifier id'>fin</span><span class='rparen token'>)</span>
+  <span class='from identifier id'>from</span> <span class='opasgn op'>||=</span> <span class='Time constant id'>Time</span><span class='dot token'>.</span><span class='at identifier id'>at</span><span class='lparen token'>(</span><span class='integer val'>0</span><span class='rparen token'>)</span>
+  <span class='sec identifier id'>sec</span>  <span class='opasgn op'>||=</span> <span class='integer val'>0</span>
+  <span class='fin identifier id'>fin</span>  <span class='opasgn op'>||=</span> <span class='Time constant id'>Time</span><span class='dot token'>.</span><span class='now identifier id'>now</span>
+  <span class='comment val'>#after is after or equal</span>
+  <span class='nxt identifier id'>nxt</span> <span class='assign token'>=</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='reports identifier id'>reports</span><span class='dot token'>.</span><span class='next identifier id'>next</span><span class='lparen token'>(</span><span class='from identifier id'>from</span><span class='comma token'>,</span> <span class='sec identifier id'>sec</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='first identifier id'>first</span>
+  <span class='comment val'># or it's the fist from the next second</span>
+  <span class='nxt identifier id'>nxt</span> <span class='opasgn op'>||=</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='first identifier id'>first</span><span class='lparen token'>(</span><span class='from identifier id'>from</span><span class='plus op'>+</span><span class='integer val'>1</span><span class='comma token'>,</span> <span class='fin identifier id'>fin</span><span class='rparen token'>)</span> 
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="report_counts-instance_method">
+  
+    - (<tt>Object</tt>) <strong>report_counts</strong>(level, t_start, t_end) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Better if DRYer
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/aspect.rb', line 32</span>
+
+<span class='def def kw'>def</span> <span class='report_counts identifier id'>report_counts</span><span class='lparen token'>(</span><span class='level identifier id'>level</span><span class='comma token'>,</span> <span class='t_start identifier id'>t_start</span><span class='comma token'>,</span> <span class='t_end identifier id'>t_end</span><span class='rparen token'>)</span>
+  <span class='t_start identifier id'>t_start</span>  <span class='opasgn op'>||=</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='reports identifier id'>reports</span><span class='dot token'>.</span><span class='by_known identifier id'>by_known</span><span class='dot token'>.</span><span class='first identifier id'>first</span><span class='dot token'>.</span><span class='andand identifier id'>andand</span><span class='dot token'>.</span><span class='known identifier id'>known</span>
+  <span class='t_end identifier id'>t_end</span>    <span class='opasgn op'>||=</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='reports identifier id'>reports</span><span class='dot token'>.</span><span class='by_known identifier id'>by_known</span><span class='dot token'>.</span><span class='last identifier id'>last</span><span class='dot token'>.</span><span class='andand identifier id'>andand</span><span class='dot token'>.</span><span class='known identifier id'>known</span>
+  <span class='counts identifier id'>counts</span> <span class='assign token'>=</span> <span class='lbrack token'>[</span><span class='rbrack token'>]</span>
+  <span class='comment val'>#stop if we have no counts</span>
+  <span class='return return kw'>return</span> <span class='counts identifier id'>counts</span> <span class='if if_mod kw'>if</span> <span class='t_start identifier id'>t_start</span><span class='dot token'>.</span><span class='nil? fid id'>nil?</span>
+  <span class='comment val'>#otherwise scan at the requested granularity</span>
+  <span class='case case kw'>case</span> <span class='level identifier id'>level</span>
+  <span class='when when kw'>when</span> <span class='symbol val'>:history</span>
+    <span class='lparen token'>(</span><span class='t_start identifier id'>t_start</span><span class='dot token'>.</span><span class='year identifier id'>year</span><span class='dot2 op'>..</span><span class='t_end identifier id'>t_end</span><span class='dot token'>.</span><span class='year identifier id'>year</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='year identifier id'>year</span><span class='bitor op'>|</span>
+      <span class='from identifier id'>from</span><span class='comma token'>,</span><span class='to identifier id'>to</span> <span class='assign token'>=</span> <span class='yearspan identifier id'>yearspan</span><span class='lparen token'>(</span><span class='year identifier id'>year</span><span class='rparen token'>)</span>
+      <span class='count identifier id'>count</span> <span class='assign token'>=</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='reports identifier id'>reports</span><span class='dot token'>.</span><span class='known_inside identifier id'>known_inside</span><span class='lparen token'>(</span><span class='from identifier id'>from</span><span class='comma token'>,</span><span class='to identifier id'>to</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='length identifier id'>length</span>
+      <span class='counts identifier id'>counts</span> <span class='lshft op'>&lt;&lt;</span> <span class='lbrace token'>{</span><span class='symbol val'>:year=</span><span class='gt op'>&gt;</span><span class='year identifier id'>year</span><span class='comma token'>,</span> <span class='symbol val'>:count=</span><span class='gt op'>&gt;</span><span class='count identifier id'>count</span><span class='rbrace token'>}</span> <span class='unless unless_mod kw'>unless</span> <span class='count identifier id'>count</span><span class='dot token'>.</span><span class='zero? fid id'>zero?</span>
+    <span class='end end kw'>end</span>
+  <span class='when when kw'>when</span> <span class='symbol val'>:year</span>
+    <span class='this_block identifier id'>this_block</span> <span class='assign token'>=</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='reports identifier id'>reports</span><span class='dot token'>.</span><span class='known_inside identifier id'>known_inside</span><span class='lparen token'>(</span><span class='t_start identifier id'>t_start</span><span class='comma token'>,</span><span class='t_end identifier id'>t_end</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='by_known identifier id'>by_known</span><span class='lparen token'>(</span><span class='symbol val'>:asc</span><span class='rparen token'>)</span>
+    <span class='counts identifier id'>counts</span> <span class='assign token'>=</span> <span class='lbrack token'>[</span><span class='rbrack token'>]</span>
+    <span class='count identifier id'>count</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span>
+    <span class='last_div identifier id'>last_div</span> <span class='assign token'>=</span> <span class='nil nil kw'>nil</span>
+    <span class='this_block identifier id'>this_block</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='report identifier id'>report</span><span class='bitor op'>|</span>
+      <span class='this_div identifier id'>this_div</span> <span class='assign token'>=</span> <span class='report identifier id'>report</span><span class='dot token'>.</span><span class='known identifier id'>known</span><span class='dot token'>.</span><span class='yday identifier id'>yday</span>
+      <span class='if if kw'>if</span> <span class='lparen token'>(</span><span class='this_div identifier id'>this_div</span> <span class='neq op'>!=</span> <span class='last_div identifier id'>last_div</span><span class='rparen token'>)</span>
+        <span class='counts identifier id'>counts</span> <span class='lshft op'>&lt;&lt;</span> <span class='count identifier id'>count</span> <span class='unless unless_mod kw'>unless</span> <span class='count identifier id'>count</span><span class='dot token'>.</span><span class='empty? fid id'>empty?</span>
+        <span class='count identifier id'>count</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span><span class='symbol val'>:year=</span><span class='gt op'>&gt;</span><span class='report identifier id'>report</span><span class='dot token'>.</span><span class='known identifier id'>known</span><span class='dot token'>.</span><span class='year identifier id'>year</span><span class='comma token'>,</span> 
+          <span class='symbol val'>:day=</span><span class='gt op'>&gt;</span><span class='this_div identifier id'>this_div</span><span class='comma token'>,</span> <span class='symbol val'>:count</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='integer val'>1</span><span class='rbrace token'>}</span>
+        <span class='last_div identifier id'>last_div</span> <span class='assign token'>=</span> <span class='this_div identifier id'>this_div</span>
+      <span class='else else kw'>else</span>
+        <span class='count identifier id'>count</span><span class='lbrack token'>[</span><span class='symbol val'>:count</span><span class='rbrack token'>]</span> <span class='opasgn op'>+=</span> <span class='integer val'>1</span>
+      <span class='end end kw'>end</span>
+    <span class='end end kw'>end</span>
+    <span class='counts identifier id'>counts</span> <span class='lshft op'>&lt;&lt;</span> <span class='count identifier id'>count</span> <span class='unless unless_mod kw'>unless</span> <span class='count identifier id'>count</span><span class='dot token'>.</span><span class='empty? fid id'>empty?</span>
+  <span class='when when kw'>when</span> <span class='symbol val'>:day</span>
+    <span class='this_day identifier id'>this_day</span> <span class='assign token'>=</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='reports identifier id'>reports</span><span class='dot token'>.</span><span class='known_inside identifier id'>known_inside</span><span class='lparen token'>(</span><span class='t_start identifier id'>t_start</span><span class='comma token'>,</span><span class='t_end identifier id'>t_end</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='by_known identifier id'>by_known</span><span class='lparen token'>(</span><span class='symbol val'>:asc</span><span class='rparen token'>)</span>
+    <span class='counts identifier id'>counts</span> <span class='assign token'>=</span> <span class='lbrack token'>[</span><span class='rbrack token'>]</span>
+    <span class='count identifier id'>count</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span>
+    <span class='last_minute identifier id'>last_minute</span> <span class='assign token'>=</span> <span class='nil nil kw'>nil</span>
+    <span class='this_day identifier id'>this_day</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='report identifier id'>report</span><span class='bitor op'>|</span>
+      <span class='this_minute identifier id'>this_minute</span> <span class='assign token'>=</span> <span class='report identifier id'>report</span><span class='dot token'>.</span><span class='known identifier id'>known</span><span class='dot token'>.</span><span class='hour identifier id'>hour</span><span class='mult op'>*</span><span class='integer val'>60</span><span class='plus op'>+</span><span class='report identifier id'>report</span><span class='dot token'>.</span><span class='known identifier id'>known</span><span class='dot token'>.</span><span class='min identifier id'>min</span>
+      <span class='if if kw'>if</span> <span class='lparen token'>(</span><span class='this_minute identifier id'>this_minute</span> <span class='neq op'>!=</span> <span class='last_minute identifier id'>last_minute</span><span class='rparen token'>)</span>
+        <span class='counts identifier id'>counts</span> <span class='lshft op'>&lt;&lt;</span> <span class='count identifier id'>count</span> <span class='unless unless_mod kw'>unless</span> <span class='count identifier id'>count</span><span class='dot token'>.</span><span class='empty? fid id'>empty?</span>
+        <span class='count identifier id'>count</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span><span class='symbol val'>:year=</span><span class='gt op'>&gt;</span><span class='report identifier id'>report</span><span class='dot token'>.</span><span class='known identifier id'>known</span><span class='dot token'>.</span><span class='year identifier id'>year</span><span class='comma token'>,</span> 
+          <span class='symbol val'>:day=</span><span class='gt op'>&gt;</span><span class='report identifier id'>report</span><span class='dot token'>.</span><span class='known identifier id'>known</span><span class='dot token'>.</span><span class='yday identifier id'>yday</span><span class='comma token'>,</span> <span class='symbol val'>:minute=</span><span class='gt op'>&gt;</span><span class='this_minute identifier id'>this_minute</span><span class='comma token'>,</span> <span class='symbol val'>:count</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='integer val'>1</span><span class='rbrace token'>}</span>
+        <span class='last_minute identifier id'>last_minute</span> <span class='assign token'>=</span> <span class='this_minute identifier id'>this_minute</span>
+        <span class='break break kw'>break</span> <span class='if if_mod kw'>if</span> <span class='lparen token'>(</span><span class='counts identifier id'>counts</span><span class='dot token'>.</span><span class='length identifier id'>length</span> <span class='geq op'>&gt;=</span> <span class='MAX_RETURN constant id'>MAX_RETURN</span><span class='rparen token'>)</span>
+      <span class='else else kw'>else</span>
+        <span class='count identifier id'>count</span><span class='lbrack token'>[</span><span class='symbol val'>:count</span><span class='rbrack token'>]</span> <span class='opasgn op'>+=</span> <span class='integer val'>1</span>
+      <span class='end end kw'>end</span>
+    <span class='end end kw'>end</span>
+    <span class='counts identifier id'>counts</span> <span class='lshft op'>&lt;&lt;</span> <span class='count identifier id'>count</span> <span class='unless unless_mod kw'>unless</span> <span class='count identifier id'>count</span><span class='dot token'>.</span><span class='empty? fid id'>empty?</span>
+  <span class='when when kw'>when</span> <span class='symbol val'>:minute</span>
+    <span class='this_minute identifier id'>this_minute</span> <span class='assign token'>=</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='reports identifier id'>reports</span><span class='dot token'>.</span><span class='known_inside identifier id'>known_inside</span><span class='lparen token'>(</span><span class='t_start identifier id'>t_start</span><span class='comma token'>,</span><span class='t_end identifier id'>t_end</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='by_known identifier id'>by_known</span><span class='lparen token'>(</span><span class='symbol val'>:asc</span><span class='rparen token'>)</span>
+    <span class='counts identifier id'>counts</span> <span class='assign token'>=</span> <span class='lbrack token'>[</span><span class='rbrack token'>]</span>
+    <span class='count identifier id'>count</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span>
+    <span class='last_second identifier id'>last_second</span> <span class='assign token'>=</span> <span class='nil nil kw'>nil</span>
+    <span class='this_minute identifier id'>this_minute</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='report identifier id'>report</span><span class='bitor op'>|</span>
+      <span class='this_second identifier id'>this_second</span> <span class='assign token'>=</span> <span class='report identifier id'>report</span><span class='dot token'>.</span><span class='known identifier id'>known</span><span class='dot token'>.</span><span class='sec identifier id'>sec</span>
+      <span class='if if kw'>if</span> <span class='lparen token'>(</span><span class='this_second identifier id'>this_second</span> <span class='neq op'>!=</span> <span class='last_second identifier id'>last_second</span><span class='rparen token'>)</span>
+        <span class='counts identifier id'>counts</span> <span class='lshft op'>&lt;&lt;</span> <span class='count identifier id'>count</span> <span class='unless unless_mod kw'>unless</span> <span class='count identifier id'>count</span><span class='dot token'>.</span><span class='empty? fid id'>empty?</span>
+        <span class='count identifier id'>count</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span><span class='symbol val'>:year=</span><span class='gt op'>&gt;</span><span class='report identifier id'>report</span><span class='dot token'>.</span><span class='known identifier id'>known</span><span class='dot token'>.</span><span class='year identifier id'>year</span><span class='comma token'>,</span> 
+          <span class='symbol val'>:day=</span><span class='gt op'>&gt;</span><span class='report identifier id'>report</span><span class='dot token'>.</span><span class='known identifier id'>known</span><span class='dot token'>.</span><span class='yday identifier id'>yday</span><span class='comma token'>,</span> <span class='symbol val'>:minute=</span><span class='gt op'>&gt;</span><span class='report identifier id'>report</span><span class='dot token'>.</span><span class='known identifier id'>known</span><span class='dot token'>.</span><span class='hour identifier id'>hour</span><span class='mult op'>*</span><span class='integer val'>60</span><span class='plus op'>+</span><span class='report identifier id'>report</span><span class='dot token'>.</span><span class='known identifier id'>known</span><span class='dot token'>.</span><span class='min identifier id'>min</span><span class='comma token'>,</span>
+          <span class='symbol val'>:second=</span><span class='gt op'>&gt;</span><span class='this_second identifier id'>this_second</span><span class='comma token'>,</span> <span class='symbol val'>:count</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='integer val'>1</span><span class='rbrace token'>}</span>
+        <span class='last_second identifier id'>last_second</span> <span class='assign token'>=</span> <span class='this_second identifier id'>this_second</span>
+        <span class='break break kw'>break</span> <span class='if if_mod kw'>if</span> <span class='lparen token'>(</span><span class='counts identifier id'>counts</span><span class='dot token'>.</span><span class='length identifier id'>length</span> <span class='geq op'>&gt;=</span> <span class='MAX_RETURN constant id'>MAX_RETURN</span><span class='rparen token'>)</span>
+      <span class='else else kw'>else</span>
+        <span class='count identifier id'>count</span><span class='lbrack token'>[</span><span class='symbol val'>:count</span><span class='rbrack token'>]</span> <span class='opasgn op'>+=</span> <span class='integer val'>1</span>
+      <span class='end end kw'>end</span>
+    <span class='end end kw'>end</span>
+    <span class='counts identifier id'>counts</span> <span class='lshft op'>&lt;&lt;</span> <span class='count identifier id'>count</span> <span class='unless unless_mod kw'>unless</span> <span class='count identifier id'>count</span><span class='dot token'>.</span><span class='empty? fid id'>empty?</span>
+  <span class='end end kw'>end</span>
+  <span class='counts identifier id'>counts</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="report_data-instance_method">
+  
+    - (<tt>Object</tt>) <strong>report_data</strong>(from, to) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+25
+26
+27
+28
+29</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/aspect.rb', line 25</span>
+
+<span class='def def kw'>def</span> <span class='report_data identifier id'>report_data</span><span class='lparen token'>(</span><span class='from identifier id'>from</span><span class='comma token'>,</span> <span class='to identifier id'>to</span><span class='rparen token'>)</span>
+  <span class='comment val'>#Limit to first 10000 to prevent timeout</span>
+  <span class='comment val'>#TODO implement paging in the API</span>
+  <span class='c identifier id'>c</span> <span class='assign token'>=</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='reports identifier id'>reports</span><span class='dot token'>.</span><span class='known_inside identifier id'>known_inside</span><span class='lparen token'>(</span><span class='from identifier id'>from</span><span class='comma token'>,</span><span class='to identifier id'>to</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='by_known identifier id'>by_known</span><span class='dot token'>.</span><span class='by_second identifier id'>by_second</span><span class='dot token'>.</span><span class='paginate identifier id'>paginate</span><span class='lparen token'>(</span><span class='symbol val'>:page=</span><span class='gt op'>&gt;</span><span class='integer val'>1</span><span class='comma token'>,</span> <span class='symbol val'>:per_page=</span><span class='gt op'>&gt;</span><span class='MAX_RETURN constant id'>MAX_RETURN</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="tree-instance_method">
+  
+    - (<tt>Object</tt>) <strong>tree</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+20
+21
+22</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/aspect.rb', line 20</span>
+
+<span class='def def kw'>def</span> <span class='tree identifier id'>tree</span>
+  <span class='self self kw'>self</span><span class='dot token'>.</span><span class='attributes identifier id'>attributes</span><span class='dot token'>.</span><span class='except identifier id'>except</span> <span class='string val'>&quot;created_at&quot;</span><span class='comma token'>,</span><span class='string val'>&quot;updated_at&quot;</span><span class='comma token'>,</span><span class='string val'>&quot;item_id&quot;</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="update_permitted?-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>update_permitted?</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+110
+111
+112</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/aspect.rb', line 110</span>
+
+<span class='def def kw'>def</span> <span class='update_permitted? fid id'>update_permitted?</span>
+  <span class='acting_user identifier id'>acting_user</span><span class='dot token'>.</span><span class='administrator? fid id'>administrator?</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="view_permitted?-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>view_permitted?</strong>(field) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+118
+119
+120</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/aspect.rb', line 118</span>
+
+<span class='def def kw'>def</span> <span class='view_permitted? fid id'>view_permitted?</span><span class='lparen token'>(</span><span class='field identifier id'>field</span><span class='rparen token'>)</span>
+  <span class='true true kw'>true</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+    
+    <div id="footer">
+  Generated on Thu Sep 29 10:49:41 2011 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.7.2 (ruby-1.8.7).
+</div>
+
+  </body>
+</html>
