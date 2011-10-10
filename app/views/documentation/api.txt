@@ -59,7 +59,7 @@ Keys can be generated at
 
 == Items
 
-The list of items and their associated entities and aspects accessible for the current user or with the given API Key: 
+The list of items and their associated entities and aspects accessible for the current user or with the given API Key:
 
 * {{{http://socksforlife.co.uk/v1/items}}}
 
