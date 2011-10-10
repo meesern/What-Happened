@@ -192,11 +192,23 @@ With xml data in the following format:
 
 {{{
     <report>
-      <ment t='2011-07-11 10:31:42 UTC' s='0.00'>....</ment>
-      <ment t='2011-07-11 10:31:42 UTC' s='0.25'>....</ment>
-      <ment t='2011-07-11 10:31:42 UTC' s='0.50'>....</ment>
-      <ment t='2011-07-11 10:31:42 UTC' s='0.75'>....</ment>
+      <ment t='2011-07-11 10:31:42 UTC' s='0.00'>...</ment>
+      <ment t='2011-07-11 10:31:42 UTC' s='0.25'>...</ment>
+      <ment t='2011-07-11 10:31:42 UTC' s='0.50'>...</ment>
+      <ment t='2011-07-11 10:31:42 UTC' s='0.75'>...</ment>
     </report>
+}}}
+
+or JSON data in the following format:
+
+{{{
+
+   [
+    {"t":"2011-10-10T14:36:07+01:00", "s":0.0, "ment":{...}},
+    {"t":"2011-10-10T14:36:07+01:00", "s":0.4, "ment":{...}},
+    {"t":"2011-10-10T14:36:07+01:00", "s":0.8, "ment":{...}},
+   ]
+
 }}}
 
 Each measurement is represented by a 'ment' element.  The 't' attribute carries the ISO 8601 format time at which the measurement was taken.  The optional 's' attribute carries the fraction of a second at which the measurement was taken.  's' defaults to zero and if present must be less than 1 and greater or equal to zero.  The contents of the 'ment' element are stored as the measurement itself.

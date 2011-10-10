@@ -7,19 +7,35 @@ ActionController::Routing::Routes.draw do |map|
   Hobo.add_routes(map)
 
   #Data interface
-  map.connect 'v1/file_a_report/:aspect', :controller => 'clerks_reports', :action => 'file', :method => 'post'
+  #  JSON
+  map.connect 'v1/file_a_report/:aspect', :controller => 'clerks_reports', :action => 'file_json', :method => 'post'
+  map.connect 'v1/data/:aspect', :controller => 'aspects', :action => 'data_json'
 
-  map.connect 'v1/data/:aspect', :controller => 'aspects', :action => 'data'
+  #  XML
+  map.connect 'v1/xml/file_a_report/:aspect', :controller => 'clerks_reports', :action => 'file_xml', :method => 'post'
+  map.connect 'v1/xml/data/:aspect', :controller => 'aspects', :action => 'data_xml'
 
   #Counts interface
-  map.connect 'v1/counts/:aspect/:year/:day/:minute', :controller => 'aspects', :action => 'counts'
-  map.connect 'v1/counts/:aspect/:year/:day', :controller => 'aspects', :action => 'counts'
-  map.connect 'v1/counts/:aspect/:year', :controller => 'aspects', :action => 'counts'
-  map.connect 'v1/counts/:aspect', :controller => 'aspects', :action => 'counts'
+  #  JSON
+  map.connect 'v1/counts/:aspect/:year/:day/:minute', :controller => 'aspects', :action => 'counts_json'
+  map.connect 'v1/counts/:aspect/:year/:day', :controller => 'aspects', :action => 'counts_json'
+  map.connect 'v1/counts/:aspect/:year', :controller => 'aspects', :action => 'counts_json'
+  map.connect 'v1/counts/:aspect', :controller => 'aspects', :action => 'counts_json'
+
+  #  XML
+  map.connect 'v1/xml/counts/:aspect/:year/:day/:minute', :controller => 'aspects', :action => 'counts_xml'
+  map.connect 'v1/xml/counts/:aspect/:year/:day', :controller => 'aspects', :action => 'counts_xml'
+  map.connect 'v1/xml/counts/:aspect/:year', :controller => 'aspects', :action => 'counts_xml'
+  map.connect 'v1/xml/counts/:aspect', :controller => 'aspects', :action => 'counts_xml'
 
   #items interface
-  map.connect 'v1/items/',       :controller => 'items',   :action => 'apiindex', :method => 'get'
-  map.connect 'v1/items/:id',  :controller => 'items',   :action => 'apicreate', :method => 'post'
+  #  JSON
+  map.connect 'v1/items/',       :controller => 'items',   :action => 'apiindex_json', :method => 'get'
+  map.connect 'v1/items/:id',  :controller => 'items',   :action => 'apicreate_json', :method => 'post'
+
+  #  XML
+  map.connect 'v1/xml/items/',       :controller => 'items',   :action => 'apiindexi_xml', :method => 'get'
+  map.connect 'v1/xml/items/:id',  :controller => 'items',   :action => 'apicreate_xml', :method => 'post'
   
   #replay interface
   map.connect 'v1/replay-create/:aspect',     :controller => 'replays',   :action => 'create', :method => 'post'

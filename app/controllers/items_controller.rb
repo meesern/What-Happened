@@ -1,51 +1,74 @@
 class ItemsController < ApplicationController
 
   hobo_model_controller
-  before_filter :allow_cross_domain_access, :only=>[:apiindex, :apicreate]
+  before_filter :allow_cross_domain_access
 
   auto_actions :all
 
   # Get current item tree for api
-  def apiindex
+  def apiindex_xml
     #TODO authentication
     tree = Item.tree
     xml = XmlSimple.xml_out({'items'=>tree}, 
                             "RootName"=>'itemtree', 
                             'NoAttr'=>true, 
                             'SuppressEmpty'=>nil)
-    xmlresponse(xml)
+    txtresponse(xml)
   end
 
+  # Get current item tree for api
+  def apiindex_json
+    tree = Item.tree
+    json = JSON.generate(tree)
+    txtresponse(json)
+  end
   
-  #
   # Create an item tree 
-  def apicreate
+  def apicreate_json
+    apicreate(:json)
+  end
+
+  # Create an item tree 
+  def apicreate_xml
+    apicreate(:xml)
+  end
+
+  protected
+  # Create an item tree 
+  # @param[Symbol] encoding :json or :xml
+  def apicreate(encoding)
     #TODO authentication
     logger.info("Creation data for item #{params[:id]} is #{params[:data]}")
     @item = Item.find params[:id]
     if @item.nil?
       render :text => "Error: item with id #{params[:id]} not found."
     else
-      #Find out what we know.
-      #All members of struct are arrays (do not use ForceArray = false)
-      struct = XmlSimple.xml_in(params[:data])
-      #Valdate
+      if (encoding == :json)
+        #Find out what we know.
+        struct = JSON.parse(params[:data]).with_indifferent_access
+      else
+        struct = XmlSimple.xml_in(params[:data])
+      end
+      #Validate
       render :text => @error_message unless valid(struct)
       #Create structure
       tree = self.tree_create(struct)
 
-      xml = XmlSimple.xml_out(tree, 
+      if (encoding == :json)
+        resp = JSON.generate(tree)
+      else
+        resp = XmlSimple.xml_out(tree, 
                             "RootName"=>'entitytree', 
                             'NoAttr'=>true, 
                             'SuppressEmpty'=>nil)
-      xmlresponse(xml)
+      end
+      txtresponse(resp)
     end
   end
 
-  protected
-  def xmlresponse(xml)
-    logger.info "responding with #{xml}"
-    render :text => xml
+  def txtresponse(txt)
+    logger.info "responding with #{txt}"
+    render :text => txt
   end
 
   def valid(struct)

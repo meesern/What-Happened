@@ -13,24 +13,44 @@ class AspectsController < ApplicationController
     end
   end
 
+  def data_xml
+    data(:xml)
+  end
+
+  def data_json
+    data(:json)
+  end
+
   #
   # Return the report data for an aspect
   #
-  def data
+    def data(encoding)
     a = Aspect.find params[:aspect]
     from,to = spanify(params[:from], params[:until])
     data =  a.report_data(from,to)
-    c = data.map { |r| 
-      r.xml
-    }
-    xml = "<report>\n#{c}</report>\n"
-    render :text => xml
+    if encoding == :xml
+      c = data.map { |r| 
+        r.xml
+      }
+      resp = "<report>\n#{c}</report>\n"
+    else
+      resp = JSON.generate(data)
+    render :text => resp
   end
 
   #
   # Return the counts profile for an aspect
   #
-  def counts
+  def counts_xml
+    counts(:xml)
+  end
+
+  def counts_json
+    counts(:json)
+  end
+
+  protected
+  def counts(encoding)
     @aspect = Aspect.find params[:aspect]
     from = params[:from]
     to = params[:until]
@@ -63,24 +83,22 @@ class AspectsController < ApplicationController
       end
     end while counts.length < at_least && level != 'stop'
 
-    prepare_counts(counts)
+    if (encoding == :json)
+      prepare_json_counts(counts)
+    else
+      prepare_xml_counts(counts)
+    end
   end
-
-  #def thing
-  #  render :json => @object
-  #end
-  #
-  #def thing
-  #  render :xml => @object
-  #end
-
-  protected
 
   def counts_in_history(level, from, to)
     @aspect.report_counts(level, from, to)
   end
 
-  def prepare_counts(data)
+  def prepare_json_counts(data)
+    render :text => JSON.generate(data)
+  end
+
+  def prepare_xml_counts(data)
     c = data.map do |point| 
       %Q(<count year='#{point[:year]}' \
          #{("day='"+point[:day].to_s+"'") if point[:day]} \
