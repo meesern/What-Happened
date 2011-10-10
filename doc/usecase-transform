@@ -1,0 +1,3 @@
+
+xsltproc --encoding utf-8 usecase_to_html.xsl usecases.xml > usecases.html
+

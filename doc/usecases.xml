@@ -1,65 +1,68 @@
-
+<?xml version="1.0" encoding="UTF-8" ?>
+<usecases>
 <!-- ********************************************* -->
 <!--                   Register                    -->
 <!-- ********************************************* -->
 <section about="Register">
 
-<message from="Joe" to="InfoSys">
+<message from="Joe" to="Website">
 Hi - I'd like to register.
 </message>
 
-<message from="InfoSys" to="Joe">
+<message from="Website" to="Joe">
 Great, please enter your preferred username and a password.
 </message>
 
-<message from="Joe" to="InfoSys">
+<message from="Joe" to="Website">
 I'd like the username: J
 </message>
 
-<message from="InfoSys" to="ObjContainer">
-Report {item:Users, entity:J, auth: none}
+<message from="Website" to="ObjContainer">
+Find_properties {item:Users, entity:J, auth: none}
 </message>
 
-<message from="ObjContainer" to="InfoSys">
-{entity: J, properties: <notauthorised/>}
+<message from="ObjContainer" to="Website">
+{entity: J, properties: {encrypted}}
 </message>
 
-<message from="InfoSys" to="Joe">
+<message from="Website" to="Joe">
 Username J exists - log in if this is you, or choose another name.
 </message>
 
-<message from="Joe" to="InfoSys">
+<message from="Joe" to="Website">
 I'd like the username: Joe
 </message>
 
 <!-- no authority at this time -->
 <!-- should the whole thing use OC curators?-->
-<message from="InfoSys" to="ObjContainer">
-Report {item:Users, entity:Joe, auth: none}
+<message from="Website" to="ObjContainer">
+Find_properties {item:Users, entity:Joe, auth: none}
 </message>
 
-<message from="ObjContainer" to="InfoSys">
+<message from="ObjContainer" to="Website">
 {}
 </message>
 
-<message from="InfoSys" to="Joe">
+<message from="Website" to="Joe">
 Ok, what password?
 </message>
 
-<message from="Joe" to="InfoSys">
+<message from="Joe" to="Website">
 password: Woo
 </message>
 
-<message from="InfoSys" to="ObjContainer">
-Create item:Users, entity:Joe, password: Woo, auth: none
+<message from="Website" to="ObjContainer">
+Create entity: Joe, item: Users, password: Woo
+Create property{ entity: Joe, QRCode: Joes code, name: Joe: phone number: 0111 }
+Create aspect: Joe's Location
 </message>
 
-<message from="ObjContainer" to="InfoSys">
-{item:Users, entity:Joe, properties }
+<message from="ObjContainer" to="Website">
+[item:Users, entity:Joe, properties{encrypted} ]
+[aspect: Joe's Location]
 </message>
 
-<!-- Authorization really needs sorting! -->
-<message from="InfoSys" to="Joe">
+<message from="Website" to="Joe">
 Ok you're Joe.
 </message>
 
@@ -71,17 +74,16 @@ Ok you're Joe.
 <!-- ********************************************* -->
 <section about="Logout">
 
-<message from="Joe" to="InfoSys">
+<message from="Joe" to="Website">
 Hi - I'd like to logout
 </message>
 
-<!-- !!! I don't know what this means in real terms -->
-<message from="InfoSys" to="ObjContainer">
-Revoke item:Users, entity:Joe
+<message from="Website" to="ObjContainer">
+Revoke auth tokens for item:Users, entity:Joe
 </message>
 
 <!-- Authorization really needs sorting! -->
-<message from="InfoSys" to="Joe">
+<message from="Website" to="Joe">
 Ok 
 </message>
 
@@ -92,20 +94,20 @@ Ok
 <!-- ********************************************* -->
 <section about="Login">
 
-<message from="Joe" to="InfoSys">
+<message from="Joe" to="Website">
 Hi - I'd like to login as Joe: Woo.
 </message>
 
-<message from="InfoSys" to="ObjContainer">
-Report {item:Users, entity:Joe, auth: Woo}
+<message from="Website" to="ObjContainer">
+Find_properties {item:Users, entity:Joe, auth: ???}
 </message>
 
-<message from="ObjContainer" to="InfoSys">
-{item: Users, entity: Joe, properties: some-properties }
+<message from="ObjContainer" to="Website">
+{item: Users, entity: Joe, properties: {name:.. phone:...etc.} }
 </message>
 
 <!-- Authorization really needs sorting! -->
-<message from="InfoSys" to="Joe">
+<message from="Website" to="Joe">
 Ok you're Joe.
 </message>
 
@@ -115,19 +117,25 @@ Ok you're Joe.
 <!-- ********************************************* -->
 <section about="Visit Website">
 
-<message from="InfoSys" to="ObjContainer">
-Report {  }
+<message from="Website" to="ObjContainer">
+Get { find_aspect_for { Aspect: /Location/, Entity: Joe } }
 </message>
 
-<message from="ObjContainer" to="InfoSys">
-{item: Users, entity: Joe, properties: some-properties }
+<message from="ObjContainer" to="Website">
+{aspect_id: 1987, name: Joe's Location}
 </message>
 
-<!-- Authorization really needs sorting! -->
-<message from="InfoSys" to="Joe">
-Ok you're Joe.
+<message from="Website" to="ObjContainer">
+Get { find_reports_for { Aspect: 1987, Since: 1 month } }
 </message>
 
+<message from="ObjContainer" to="Website">
+{report: 234234, Table 9, Thursday 27th}
+</message>
+
+<message from="Website" to="Joe">
+You were at table 9 last thursday
+</message>
 
 </section>
 <!-- ********************************************* -->
@@ -135,36 +143,170 @@ Ok you're Joe.
 <!-- ********************************************* -->
 <section about="Sit at Table">
 
+<message from="Joe" to="table-1-camera">
+This is my QR Code
+</message>
+
+<message from="table-1-camera" to="InfoSys">
+Found QR code: code
+</message>
+
+<message from="InfoSys" to="ObjContainer">
+Get { find_properties_for { type: users, QR: code } }
+</message>
+
+<message from="ObjContainer" to="InfoSys">
+{item: Users, entity: Joe, properties: {QR: code, some-properties} }
+</message>
+
+<message from="InfoSys" to="table-1-lights">
+QR-code recognized.
+</message>
+
 </section>
 <!-- ********************************************* -->
 <!--                   Order                       -->
 <!-- ********************************************* -->
 <section about="Order">
+<repeat>
 
+<message from="waiter" to="kitchen-camera">
+Tag for table 1
+</message>
+
+<message from="waiter" to="kitchen-camera">
+Plate with fish
+</message>
+
+<message from="kitchen-camera" to="InfoSys">
+Found Table code: table and Plate code: plate
+</message>
+
+<message from="InfoSys" to="ObjContainer">
+Get { find_report_for { type: plates, table: table, code: plate, since: 1 hour ago} }
+</message>
+
+<message from="ObjContainer" to="InfoSys">
+{report: {time: 10:30, some-properties} }
+</message>
+
+<message from="InfoSys" to="kitchen-sounder">
+not ok
+</message>
+
+<message from="waiter" to="kitchen-camera">
+Remove plate with fish
+Place plage with duck
+</message>
+
+<message from="kitchen-camera" to="InfoSys">
+Found Table code: table and Plate code: plate2
+</message>
+
+<message from="InfoSys" to="ObjContainer">
+Get { find_report_for { type: plates, table: table, code: plate2, since: 1 hour ago} }
+</message>
+
+<message from="ObjContainer" to="InfoSys">
+{report: nil}
+</message>
+
+<message from="InfoSys" to="kitchen-sounder">
+ok
+</message>
+
+</repeat>
 </section>
 <!-- ********************************************* -->
 <!--                Deliver dishes                 -->
 <!-- ********************************************* -->
 <section about="Deliver dishes">
+<repeat>
 
+<message from="waiter" to="kitchen-camera">
+Tag for Pad Thai
+</message>
+
+<message from="waiter" to="kitchen-camera">
+Plate with duck
+</message>
+
+<message from="kitchen-camera" to="InfoSys">
+Found food code: pad-thai and Plate code: plate
+</message>
+
+<message from="InfoSys" to="ObjContainer">
+report { Entity: food, aspect: location, {kitchen} }
+report { Entity: plate, aspect: location, {kitchen} }
+</message>
+
+<message from="InfoSys" to="kitchen-sounder">
+ok
+</message>
+
+</repeat>
 </section>
 <!-- ********************************************* -->
 <!--                 Present plate                 -->
 <!-- ********************************************* -->
 <section about="Present plate">
 
-</section>
-<!-- ********************************************* -->
-<!--                   Pay/Leave                   -->
-<!-- ********************************************* -->
-<section about="Pay/Leave">
+<message from="Joe" to="table-1-camera">
+Present plate with duck
+</message>
+
+<message from="table-1-camera" to="InfoSys">
+Found plate code: plate
+</message>
+
+<message from="InfoSys" to="ObjContainer">
+report { Entity: plate, aspect: location, {table-1} }
+</message>
+
+<message from="InfoSys" to="ObjContainer">
+Get { find_report_for { type: plates, location: kitchen, code: plate, since: 1 hour ago} co-incident {type: food, location: kitchen } co-incident {type: users, location: table-1}
+</message>
+
+<message from="ObjContainer" to="InfoSys">
+{report: {type: plates, location: kitchen, code: plate, time: 10:31}, {type: food, location: kitchen, code: pad-thai, time: 10:30}, {users: Joe {...}, Bob{...}}
+</message>
+
+<message from="InfoSys" to="table-1-lights">
+ok
+</message>
+
+<message from="InfoSys" to="Joes-phone">
+Dish is Pad-Thai
+</message>
 
 </section>
+
 <!-- ********************************************* -->
 <!--                 Visit Website                 -->
 <!-- ********************************************* -->
 <section about="Visit Website">
 
+<message from="Website" to="ObjContainer">
+Get { find_aspect_for { Aspect: /Location/, Entity: Joe } }
+</message>
+
+<message from="ObjContainer" to="Website">
+{aspect_id: 1987, name: Joe's Location, {Table:1, Time: 10:30} }
+</message>
+
+<message from="Website" to="ObjContainer">
+Get { find_report_for { type: plates, location: table-1, code: plate, between: 10:30 and 11:30} co-incident {type: food, location: kitchen } }
+</message>
+
+<message from="ObjContainer" to="Website">
+{report: {type: plates, location: kitchen, code: plate, time: 10:31}, {type: food, location: kitchen, code: pad-thai, time: 10:30}, {users: Joe {...}, Bob{...}} {type: plates, location: kitchen, code: plate2, time: 10:32}, {type: food, location: kitchen, code: pandan-chicken, time: 10:32}}
+</message>
+
+<message from="Website" to="Joe">
+You were at table 1 last sunday, At the table were Pad Thai and Pandan Chicken.
+</message>
+
 </section>
+</usecases>
 
 
