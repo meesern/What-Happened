@@ -61,6 +61,12 @@ class Report < ActiveRecord::Base
     "<ment t='#{self.known}' s='#{self.second}'>#{message}</ment>" 
   end
 
+  def json
+    message = self.measurement
+    message = message[1..-2] if message[0] == ?"
+    { :t => self.known, :s => self.second, :ment => message }
+  end
+
   #The floating point second difference in time until 'later' report
   def delta(later)
     t1_msb = self.known

@@ -16,6 +16,7 @@ class ClerksReportsController < ApplicationController
     logger.info("Data for aspect #{params[:aspect]} is #{params[:data]}")
     aspect = Aspect.find(params[:aspect])
     ClerksReport.file(params[:data], encoding, aspect)
+    render :text => "Data Received"
   end
 
 end

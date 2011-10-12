@@ -34,7 +34,11 @@ class AspectsController < ApplicationController
       }
       resp = "<report>\n#{c}</report>\n"
     else
-      resp = JSON.generate(data)
+      c = data.map { |r|
+        r.json
+      }
+      resp = JSON.generate(c)
+    end
     render :text => resp
   end
 

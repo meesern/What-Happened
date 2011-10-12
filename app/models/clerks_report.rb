@@ -91,6 +91,7 @@ class ClerksReport < ActiveRecord::Base
     self.submitted_records = (submitted_records || 0) + ments.length
     ments.each do |m|
       save_measurement(m, m.inner_html)
+    end
   end
 
   # Parse the reported blob for JSON measurement.  The blob can contain
@@ -99,10 +100,11 @@ class ClerksReport < ActiveRecord::Base
   def parse_json(blob)
     #parse the JSON to a hash that does not care if we access keys
     #as symbols or strings
-    struct = JSON.parse(blob).with_indifferent_access
+    struct = JSON.parse(blob)
     self.submitted_records = (submitted_records || 0) + struct.length
     struct.each do |m|
-      save_measurement(m, m[:ment])
+      save_measurement(m.with_indifferent_access, m[:ment])
+    end
   end
 
   # Take a measurement and save it
@@ -118,7 +120,7 @@ class ClerksReport < ActiveRecord::Base
 
       rep.clerks_report = self  #update if updating the record
       #Avoid duplicates at the expense of a non indexed lookup for each record
-      print (dbg_count+=1)+"-" 
+      print "#{@dbg_count+=1}-" 
       dup = find_existing(rep.known, rep.second, rep.measurement) unless witness.andand.append_only
       print 'x' unless dup.empty?
       rep.save! if dup.empty?
@@ -133,7 +135,7 @@ class ClerksReport < ActiveRecord::Base
   #
   def work( params )
     print "."
-    dbg_count = 0
+    @dbg_count = 0
     self.witness = params[:witness]
     self.aspect = params[:aspect]
     #ignore witness for now
@@ -142,6 +144,7 @@ class ClerksReport < ActiveRecord::Base
       parse_xml(params[:blob])
     else
       parse_json(params[:blob])
+    end
   end
 
   # Find an existing report (if the record is updatable).  By default

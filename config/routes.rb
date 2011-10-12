@@ -34,7 +34,7 @@ ActionController::Routing::Routes.draw do |map|
   map.connect 'v1/items/:id',  :controller => 'items',   :action => 'apicreate_json', :method => 'post'
 
   #  XML
-  map.connect 'v1/xml/items/',       :controller => 'items',   :action => 'apiindexi_xml', :method => 'get'
+  map.connect 'v1/xml/items/',       :controller => 'items',   :action => 'apiindex_xml', :method => 'get'
   map.connect 'v1/xml/items/:id',  :controller => 'items',   :action => 'apicreate_xml', :method => 'post'
   
   #replay interface
