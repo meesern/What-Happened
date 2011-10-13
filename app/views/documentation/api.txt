@@ -71,6 +71,25 @@ The list of items and their associated entities and aspects accessible for the c
     response
     ========
 
+   [
+     {"name":"Tea Service", "entities":
+        [ {"name": "plate 1", "id": 6 "aspects":
+             [ { "name": "camera 1", "id": 60, "description":"" },
+               { "name": "camera 2", "id": 61, "description":"" }
+             ]},
+          {"name": "plate 2", "id": 7 "aspects":
+             [ { "name": "camera 1", "id": 62, "description":"" },
+               { "name": "camera 2", "id": 63, "description":"" }
+             ]}
+        ],
+      "id":1,
+      "user_id":1,
+      "description": "My dinner plates with funky dtouch designs."
+     }
+   ]
+    
+Or in XML
+
   <itemtree>
   <items>
     <name>Tea Service</name>
@@ -129,6 +148,18 @@ An item must exist before item registration can be used to update the structure.
     item_request
     ============
 
+   {
+     "id": 3472,
+     "name":"Tea Service", "entities":
+        [ {"name": "Plate 1", "id": 23867 "aspects":
+             [{ "name": "Camera 1 Location", "id": 87234 }]
+          },
+          {"name": "Plate 2", "id": 2 "aspects", "description": "The big round one!"}
+        ],
+   }
+    
+Or in XML
+
     <item>
       <id>3472</id>
       <name>Tea Service</name>
@@ -154,6 +185,18 @@ An item must exist before item registration can be used to update the structure.
 
     response
     ========
+
+   {
+     "id": 3472,
+     "name":"Tea Service", "entities":
+        [ {"name": "Plate 1", "id": 23867 "aspects":
+             [{ "name": "Camera 1 Location", "id": 87234 }]
+          },
+          {"name": "Plate 2", "id": 2 "aspects", "description": "The big round one!"}
+        ],
+   }
+
+Or in XML
 
     <item>
       <id>3472</id>
