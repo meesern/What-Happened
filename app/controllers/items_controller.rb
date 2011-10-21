@@ -95,9 +95,9 @@ class ItemsController < ApplicationController
     i = 0
     struct['entities'].each do |e|
       me = nil
-      me = @item.entities.find(e['id'][0]) unless e['id'].nil?
-      me ||= @item.entities.find_by_name(e['name'][0])
-      me ||= @item.entities.build(:name=>e['name'][0])
+      me = @item.entities.find(e['id']) unless e['id'].nil?
+      me ||= @item.entities.find_by_name(e['name'])
+      me ||= @item.entities.build(:name=>e['name'])
       if me.changed?
         me.save! 
         me.reload #get our new id
@@ -108,9 +108,9 @@ class ItemsController < ApplicationController
       j = 0
       e['aspects'].each do |a|
         ma = nil
-        ma = me.aspects.find(a['id'][0]) unless a['id'].nil?
-        ma ||= me.aspects.find_by_name(a['name'][0]) 
-        ma ||= me.aspects.build(:name=>a['name'][0])
+        ma = me.aspects.find(a['id']) unless a['id'].nil?
+        ma ||= me.aspects.find_by_name(a['name']) 
+        ma ||= me.aspects.build(:name=>a['name'])
         if ma.changed?
           ma.save! 
           ma.reload #get our new id

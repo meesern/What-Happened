@@ -28,8 +28,8 @@ class Aspect < ActiveRecord::Base
 
   #Better if DRYer
   def report_counts(level, t_start, t_end)
-    t_start  ||= self.reports.by_known.first.andand.known
-    t_end    ||= self.reports.by_known.last.andand.known
+    t_start  ||= SfReport.aspect_first_known(self.id).andand.known
+    t_end    ||= SfReport.aspect_last_known(self.id).andand.known
     counts = []
     #stop if we have no counts
     return counts if t_start.nil?
@@ -38,11 +38,11 @@ class Aspect < ActiveRecord::Base
     when :history
       (t_start.year..t_end.year).each do |year|
         from,to = yearspan(year)
-        count = self.reports.known_inside(from,to).length
+        count = SfReport.aspect_count_known_inside(self.id, from, to)
         counts << {:year=>year, :count=>count} unless count.zero?
       end
     when :year
-      this_block = self.reports.known_inside(t_start,t_end).by_known(:asc)
+      this_block = SfReport.aspect_known_inside(self.id, t_start, t_end)
       counts = []
       count = {}
       last_div = nil
@@ -59,7 +59,7 @@ class Aspect < ActiveRecord::Base
       end
       counts << count unless count.empty?
     when :day
-      this_day = self.reports.known_inside(t_start,t_end).by_known(:asc)
+      this_day = SfReport.aspect_known_inside(self.id, t_start, t_end)
       counts = []
       count = {}
       last_minute = nil
@@ -77,7 +77,7 @@ class Aspect < ActiveRecord::Base
       end
       counts << count unless count.empty?
     when :minute
-      this_minute = self.reports.known_inside(t_start,t_end).by_known(:asc)
+      this_minute = SfReport.aspect_known_inside(self.id, t_start, t_end)
       counts = []
       count = {}
       last_second = nil
@@ -115,6 +115,10 @@ class Aspect < ActiveRecord::Base
 
   def view_permitted?(field)
     true
+  end
+
+  def destroy
+    #TODO destroy associated reports
   end
 
   #get the first report in time sequence up until fin

@@ -33,6 +33,21 @@ class SfReport
     self.where( :aspect => aspect, :known.gte => from, :known.lt => to).limit(30000)
   end
 
+  def self.aspect_first_known(aspect)
+    #this is a bit ugly really.  map is require to enumerate the array
+    #of one in order to resolve the query.
+    self.where(:aspect => aspect).sort(:known).limit(1).map{|r|r}[0]
+  end
+
+  def self.aspect_last_known(aspect)
+    self.where(:aspect => aspect).sort(:known.desc).limit(1).map{|r|r}[0]
+  end
+
+  def self.aspect_count_known_inside(aspect,from,to)
+    #would rather do this by map reduce
+    self.aspect_known_inside(aspect, from, to).count
+  end
+
   def measurement=(ment)
     unless ment.class == Hash
       if ment.class == String
