@@ -7,17 +7,18 @@ gem "builder", "<3.0.0"      #stop zerigo_dns conflicting with rubber
 gem "ParseTree"
 gem "ruby2ruby"
 gem "mysql"
-gem "rails", "2.3.11"
+gem "rails", "2.3.14"
 gem "hobo"
 gem "hpricot"
 gem "xmpp4r"
+#gem "ruby-debug19"
 gem "ruby-debug"
 gem "flutie"
 gem "haml"
 gem "WikiCreole"
 gem "maruku"
 gem "RedCloth"
-gem 'pacecar', :git => 'git://github.com/thoughtbot/pacecar.git', :branch => 'rails2'
+gem 'pacecar', :git => 'git://github.com/ghazel/pacecar.git', :branch => 'rails2'
 gem "packet"    #for backgroundRb
 gem "chronic"   #for backgroundRb
 gem "sqlite3"   #for backgroundRb
@@ -29,5 +30,7 @@ gem "fog", "0.7.0"   #for backup
 gem "mail", "2.2.15" #for backup
 gem "xml-simple"
 gem "json"
-
+gem "bson_ext"
+gem "mongodb" 
+gem "mongo_mapper", :git => 'git://github.com/jnunemaker/mongomapper.git', :branch => 'rails2'
 

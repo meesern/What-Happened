@@ -3,6 +3,7 @@
 require 'rubygems'
 require 'bundler/setup'
 require 'pacecar'
+require 'sf_report'
 
 class ClerksReport < ActiveRecord::Base
   hobo_model # Don't put anything above this
@@ -102,23 +103,23 @@ class ClerksReport < ActiveRecord::Base
     #as symbols or strings
     struct = JSON.parse(blob)
     self.submitted_records = (submitted_records || 0) + struct.length
-    struct.each do |m|
-      save_measurement(m.with_indifferent_access, m[:ment])
-    end
+    struct.each { |m|
+      save_measurement(m.with_indifferent_access)
+    }
   end
 
   # Take a measurement and save it
   # @param [Hash] m the outer layer containing :t and :s
   # @param [Hash] filling the client provided measurement
-  def save_measurement(m, filling)
+  def save_measurement(m)
       time = Time.parse(m[:t])
       second = m[:s].to_f
       #Do not update existing records but rather add a new one unless it
       #is a complete duplicate
-      rep = Report.new( :aspect => aspect, :known => time, :second => second )
-      rep.measurement = filling
+      rep = SfReport.new( :aspect => aspect_id, :known => time, :second => second )
+      rep.measurement = m[:ment]
 
-      rep.clerks_report = self  #update if updating the record
+      rep.event = self.id  #update if updating the record
       #Avoid duplicates at the expense of a non indexed lookup for each record
       print "#{@dbg_count+=1}-" 
       dup = find_existing(rep.known, rep.second, rep.measurement) unless witness.andand.append_only
@@ -156,6 +157,8 @@ class ClerksReport < ActiveRecord::Base
   # @return[Report] the matching report if one exists.
   #
   def find_existing(time, second, val)
+    return []
+    #TODO find existing in Mongo not SQL
       aspect.reports.find(:all, :conditions=>
            ["known = :k and second = :s and measurement = :m", 
            {:k=>time, :s=> second, :m=>val}])

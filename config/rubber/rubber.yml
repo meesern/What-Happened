@@ -204,7 +204,9 @@ gems: [
      andand,
      xml-simple,
      json,
-     [fog, 0.7.0]
+     [fog, 0.7.0],
+     bson_ext,
+     mongodb
 ]
 
 # OPTIONAL: A string prepended to shell command strings that cause multi

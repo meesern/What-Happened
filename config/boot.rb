@@ -3,6 +3,12 @@
 
 RAILS_ROOT = "#{File.dirname(__FILE__)}/.." unless defined?(RAILS_ROOT)
 
+# Following two lines required to get ruby 1.9 YAML parser to be backward
+# compatible with existing gems  Apparently the new yaml engine is better
+# in some ways so might be useful to remove and fix old YAML in the future
+#require 'yaml'
+#YAML::ENGINE.yamler= 'syck'
+
 module Rails
   class << self
     def boot!

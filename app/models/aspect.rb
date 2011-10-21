@@ -23,9 +23,7 @@ class Aspect < ActiveRecord::Base
 
 
   def report_data(from, to)
-    #Limit to first 10000 to prevent timeout
-    #TODO implement paging in the API
-    c = self.reports.known_inside(from,to).by_known.by_second.paginate(:page=>1, :per_page=>MAX_RETURN)
+    c = SfReport.aspect_known_inside(self.id, from, to)
   end
 
   #Better if DRYer
