@@ -16,5 +16,5 @@ test:
 
 production:
   <<: *defaults
-  database: whathappened-test
+  database: whathappened-prod
 
