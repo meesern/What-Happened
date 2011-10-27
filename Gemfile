@@ -2,6 +2,7 @@
 #And in rubber.yml
 
 source "http://rubygems.org"
+gem "ZenTest", "4.4.2"       #Stops griping about old rubygems
 gem "capistrano", "<2.8.0"   #stop bundle installing 2.8.0 which doesn't work
 gem "builder", "<3.0.0"      #stop zerigo_dns conflicting with rubber
 gem "ParseTree"

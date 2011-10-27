@@ -19,6 +19,7 @@ end
 #set :deploy_via, :copy
 #NOTE Using git fails with "Instance not found for host production" since the instance-production.yml is not in git unless push_instance_config is true.
 set :scm, :git
+set :branch, "json"
 set :repository, "git://github.com/meesern/What-Happened.git"
 set :deploy_via, :remote_cache
 
