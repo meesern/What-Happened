@@ -171,6 +171,7 @@ packages: [postfix, build-essential, git-core, ec2-ami-tools,
            ejabberd,
            libxslt-dev,
            libxml2-dev,
+           mongodb-server,
            screen ]
 
 # OPTIONAL: gem sources to setup for rubygems
