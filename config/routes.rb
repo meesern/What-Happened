@@ -41,6 +41,9 @@ ActionController::Routing::Routes.draw do |map|
   map.connect 'v1/replay-create/:aspect',     :controller => 'replays',   :action => 'create', :method => 'post'
   map.connect 'v1/replay-control/:replay',  :controller => 'replays',   :action => 'control', :method => 'post'
 
+  #Exception logger
+  map.connect "logged_exceptions/:action/:id/", :controller=> 'logged_exceptions'
+
   # The priority is based upon order of creation: first created -> highest priority.
 
   # Sample of regular route:

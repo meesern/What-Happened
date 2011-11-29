@@ -26,6 +26,14 @@ class Aspect < ActiveRecord::Base
     c = SfReport.aspect_known_inside(self.id, from, to)
   end
 
+  def sfreports
+    SfReport.aspect_all(self.id)
+  end
+
+  def sfreport_count
+    SfReport.aspect_count(self.id)
+  end
+
   #Better if DRYer
   def report_counts(level, t_start, t_end)
     t_start  ||= SfReport.aspect_first_known(self.id).andand.known

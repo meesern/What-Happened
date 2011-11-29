@@ -16,12 +16,33 @@
 </page>
 </def>
 
+<extend tag="card" for="Aspect">
+  <old-card: merge>
+    <body: replace>
+      <body: param>
+        <ht key="reports.collection.count" count="&this.sfreport_count">
+           <%=this.sfreport_count %> Reports
+        </ht>
+      </body:>
+    </body:>
+  </old-card:>
+</extend>
+
 <extend tag="show-page" for="Aspect">
   <old-show-page merge>
     <collection: replace>
-      <page-nav with="&@reports" param="top-page-nav"/>
-      <collection with="&@reports" />
-      <page-nav with="&@reports" param="bottom-page-nav"/>
+      <page-nav with="&@sfreports" param="top-page-nav"/>
+      <table>
+          <tr>
+            <th>created_at</th><th>entity</th><th>event</th><th>item</th><th>known</th><th>second</th><th>measurement</th><th>updated_at</th>
+          </tr>
+        <repeat with="&@sfreports" >
+          <tr>
+            <td><view:created_at/></td><td><view:entity/></td><td><view:event/></td><td><view:item/></td><td><view:known/></td><td><view:second/></td><td><%=h(this.measurement.inspect)%></td><td><view:updated_at/></td>
+          </tr>
+        </repeat>
+      </table>
+      <page-nav with="&@sfreports" param="bottom-page-nav"/>
     </collection>
   </old-show-page>
 </extend>

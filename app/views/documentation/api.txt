@@ -2,7 +2,7 @@
 = What Happened API
 
 == Overview
-Results are returned as XML.  There will be future support for JSON.
+Results are returned as JSON.  There is limited support for XML.
 
 
 == Object Model
@@ -316,6 +316,8 @@ Where the returned granularity is variable the granularity chosen can be inferre
 The purpose of this call is to allow an application to display only timespans which contain interesting data.
 
 Records with counts of zero are not returned.
+
+*Note* These reports are now JSON
 
 =====example 1:
 {{{

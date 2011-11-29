@@ -33,6 +33,14 @@ class SfReport
     self.where( :aspect => aspect, :known.gte => from, :known.lt => to).limit(30000)
   end
 
+  def self.aspect_all(aspect)
+    self.where( :aspect => aspect ).limit(30000)
+  end
+
+  def self.aspect_count(aspect)
+    self.where( :aspect => aspect ).count
+  end
+
   def self.aspect_first_known(aspect)
     #this is a bit ugly really.  map is require to enumerate the array
     #of one in order to resolve the query.

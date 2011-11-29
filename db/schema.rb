@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110922145206) do
+ActiveRecord::Schema.define(:version => 20111028144827) do
 
   create_table "aspects", :force => true do |t|
     t.string   "name"
@@ -75,6 +75,17 @@ ActiveRecord::Schema.define(:version => 20110922145206) do
   end
 
   add_index "items", ["user_id"], :name => "index_items_on_user_id"
+
+  create_table "logged_exceptions", :force => true do |t|
+    t.string   "exception_class"
+    t.string   "controller_name"
+    t.string   "action_name"
+    t.text     "message"
+    t.text     "backtrace"
+    t.text     "environment"
+    t.text     "request"
+    t.datetime "created_at"
+  end
 
   create_table "properties", :force => true do |t|
     t.text     "box"
