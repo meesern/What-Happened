@@ -6,10 +6,10 @@
   <navigation class="main-nav" merge-attrs param="default">
     <nav-item href="#{base_url}/">Home</nav-item>
     <nav-item with="&Aspect"><ht key="aspects.nav_item">Aspects</ht></nav-item>
+    <nav-item with="&ClerksReport"><ht key="clerks_reports.nav_item">Clerks Reports</ht></nav-item>
     <nav-item with="&Entity"><ht key="entities.nav_item">Entities</ht></nav-item>
     <nav-item with="&Item"><ht key="items.nav_item">Items</ht></nav-item>
     <nav-item with="&Property"><ht key="properties.nav_item">Properties</ht></nav-item>
-    <nav-item with="&Replay"><ht key="replays.nav_item">Replays</ht></nav-item>
   </navigation>
 </def>
 

@@ -7,7 +7,7 @@ Results are returned as JSON.  There is limited support for XML.
 
 == Object Model
 
-| User: 	| Curates data about an Item. |
+| Curator: 	| Curates data about an Item. |
 | Item: 	| A composite of one or more physical entities (for example a Building may be composed of rooms).|
 | Entity: 	| A uniquely identifiable thing|
 | Property:	| Static information about an entity|
@@ -31,7 +31,9 @@ The API sets out to correctly use HTTP response codes for HTTP API request statu
 
 == Authentication
 
-Users are authenticated by password and have access rights only to Items, Entities, Properties, Aspects, Witnesses and Reports that they create.
+A curator is expected to be an organisational entity such as a restaurant or building management company.  The notion of an individual user if appropriate is expected to be implemented by the client (user of the object container service) by creating 'user' properties for items or entities.
+
+Curators are authenticated by password and have access rights only to Items, Entities, Properties, Aspects, Witnesses and Reports that they create.
 
 <**//Future//**>
 
@@ -399,5 +401,71 @@ Once a replay is running, after publishing each message the service waits the ti
 If the specified rate results in attempting to deliver messages faster than it is possible then all messages will still be attempted and the actual rate will be lower than that specified.
 
 A replay will run indefinitely if data is submitted to the stream at a faster rate than the replay and an end time is not specified.
+
+
+== Submit Properties 
+
+Properties are static (non-timeseries) datum which may be stored against an item or entity.  Each property is a JSON document that must have a non-blank string element called 'type'.  'type' will be used to restrict queries on the database.  The remaining aspects of your propery should be encoded as a hash named 'property'.  'property' may be structured in any way and should be smaller than 2Mb.
+
+To store a property send a post request to one of
+* {{{http://socksforlife.co.uk/v1/entity_property/<entity_id>}}}
+* {{{http://socksforlife.co.uk/v1/item_property/<item_id>}}}
+
+
+with JSON data in the following format:
+
+{{{
+
+  {"type":"<type-sting>", "property":{...}},
+
+}}}
+
+Which must be passed as a parameter called 'data'
+
+Entity properties will also be stored with the item to which they belong allowing an entity property to be queried by item.
+
+Each property is assigned an identity in the _id field.  If the _id field is specified it must be unique in the database.  If the id field is found in the database then the existing property will be updated (provided that it matched the entity and item fields).  Note that the requirement to match entity and item fields means that a property can not be 'moved' between entities.
+
+
+=====example:
+{{{
+
+    curl --request POST --data 'data={"type": "user", "name": "Bob"}' http://www.socksforlife.co.uk/v1/entity_property/6
+
+    response
+    ========
+    Data Received
+
+}}}
+
+
+== Retrieve Properties
+
+* {{{http://socksforlife.co.uk/v1/properties}}}
+
+Specify 'entity' or 'item' parameters to restrict the results to properties of that type.  Data is limited to 10000 properties per query.  Results are always qualified by curator.
+
+
+| Parameter | Format                                  | Notes |
+| item      | numeric                                 | Constrain results to an item |
+| entity    | numeric                                 | Constrain restults to an entity |
+| type      | string                                  | Omit to specify all properties. |
+| query     | json query                              | optional |
+
+'query' is a json query used to qualify the data.  *Note* The security and user models need developing.  
+
+
+=====example:
+{{{
+
+    curl --request GET http://socksforlife.co.uk/v1/properties?type="user"\&query="{name: james}"
+
+    response
+    ========
+
+    {
+    }
+
+}}}
 
 
