@@ -434,7 +434,7 @@ Each property is assigned an identity in the _id field.  If the _id field is spe
 
     response
     ========
-    Data Received
+    _id: "4edcef24b3bdf44419000003"
 
 }}}
 
@@ -465,6 +465,25 @@ Specify 'entity' or 'item' parameters to restrict the results to properties of t
 
     {
     }
+
+}}}
+
+
+== Delete Properties
+
+* {{{http://socksforlife.co.uk/v1/delete_property/<_id>}}}
+
+Specify the id of the property to delete.
+
+
+=====example:
+{{{
+
+    curl --request GET http://socksforlife.co.uk/v1/delete_property/4edcef24b3bdf44419000003
+
+    response
+    ========
+    Deleted
 
 }}}
 

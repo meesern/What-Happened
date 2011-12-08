@@ -33,6 +33,8 @@ ActionController::Routing::Routes.draw do |map|
   map.connect 'v1/entity_property/:id', :controller => 'api', :action => 'file_entity_property', :method => 'post'
   map.connect 'v1/item_property/:id', :controller => 'api', :action => 'file_item_property', :method => 'post'
   map.connect 'v1/properties', :controller => 'api', :action => 'query'
+  map.connect 'v1/properties', :controller => 'api', :action => 'query', :method => 'post'
+  map.connect 'v1/delete_property/:id', :controller => 'api', :action => 'delete_property'
 
   #items interface
   #  JSON

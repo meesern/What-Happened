@@ -73,28 +73,57 @@ class ApiController < ApplicationController
       entity = Entity.find(params[:id])
       file_property(entity.item, entity)
     rescue 
-      api_excp($!.message)
+      api_excp
     end
   end
 
   def file_item_property
     begin
-      item = Entity.find(params[:id])
+      item = Item.find(params[:id])
       file_property(item, nil)
     rescue 
-      api_excp($!.message)
+      api_excp
     end
   end
 
   def query()
-    render :text => "Will implement soon."
+    begin
+      #TODO add user constraint
+      query = {}
+      unless params[:query].blank?
+        query = JSON.parse(params[:query])
+      end
+      #Avoid introducing key into query hash if blank.  We do not want to
+      #search on entity = nil
+      query.merge!({:entity => params[:entity].to_i}) unless params[:entity].blank?
+      query.merge!({:item => params[:item].to_i}) unless params[:item].blank?
+      query.merge!({:type => params[:type].to_i}) unless params[:type].blank?
+
+      props = SfProperty.where( query ).limit(10000)
+      #resolve the query and (re)render as json
+      render :json => props.resolve
+    rescue
+      api_excp
+    end
+  end
+
+  def delete_property
+    begin
+      if SfProperty.delete(params[:id])
+        render :text => "Deleted" 
+      else
+        api_error("Not Found")
+      end
+    rescue 
+      api_excp
+    end
   end
 
   protected
 
   def api_excp(msg)
       raise $! if DEV_ERRORS
-      api_error(msg)
+      api_error($!.message)
   end
 
   def api_error(msg)
@@ -109,7 +138,7 @@ class ApiController < ApplicationController
       prop = SfProperty.store(data)
       render :text => "_id: #{prop._id.to_s}"
     rescue
-      api_excp($!.message)
+      api_excp
     end
   end
 

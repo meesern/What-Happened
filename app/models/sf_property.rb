@@ -13,7 +13,7 @@ class SfProperty
 
   validates_presence_of :type
 
-  #creat a new property or update an existing one
+  #create a new property or update an existing one
   def self.store(data)
     #data[:_id] ||= data[:id]
     prop = self.find(data[:_id]) 
@@ -31,4 +31,14 @@ class SfProperty
     prop
   end
 
+  def self.delete(id)
+    self.find(id).andand.delete
+  end
+
+end
+
+class Plucky::Query
+  def resolve
+    self.map{|i|i}
+  end
 end
