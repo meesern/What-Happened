@@ -271,19 +271,19 @@ class ApiController < ApplicationController
         #Day of year is 1..366 in params
         from,to = minutespan( 
                     params[:year], params[:day].to_i-1, params[:minute]) if from.nil?
-        counts = counts_in_history(:minute, from, to)
+        counts = counts_in_history('second', from, to)
         level = 'stop'
       when params[:day] || level == 'minute'
         #Day of year is 1..366 in params
         from,to = dayspan(params[:year], params[:day].to_i-1) if from.nil?
-        counts = counts_in_history(:day, from, to)
+        counts = counts_in_history('minute', from, to)
         level = 'second'
       when params[:year] || level == 'day'
         from,to = yearspan(params[:year]) if from.nil?
-        counts = counts_in_history(:year, from, to)
+        counts = counts_in_history('day', from, to)
         level = 'minute'
       else
-        counts = counts_in_history(:history, nil, nil)
+        counts = counts_in_history('day', nil, nil)
         from,to = spanify(from,to)
         level = 'day'
       end

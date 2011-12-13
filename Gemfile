@@ -34,4 +34,5 @@ gem "json"
 gem "bson_ext"
 gem "mongodb" 
 gem "mongo_mapper", :git => 'git://github.com/jnunemaker/mongomapper.git', :branch => 'rails2'
+gem "SystemTimer"
 

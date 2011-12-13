@@ -44,11 +44,11 @@ class SfReport
   def self.aspect_first_known(aspect)
     #this is a bit ugly really.  map is require to enumerate the array
     #of one in order to resolve the query.
-    self.where(:aspect => aspect).sort(:known).limit(1).map{|r|r}[0]
+    self.where(:aspect => aspect).sort(:known).limit(1).to_a[0]
   end
 
   def self.aspect_last_known(aspect)
-    self.where(:aspect => aspect).sort(:known.desc).limit(1).map{|r|r}[0]
+    self.where(:aspect => aspect).sort(:known.desc).limit(1).to_a[0]
   end
 
   def self.aspect_count_known_inside(aspect,from,to)

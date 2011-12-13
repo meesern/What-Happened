@@ -34,75 +34,20 @@ class Aspect < ActiveRecord::Base
     SfReport.aspect_count(self.id)
   end
 
-  #Better if DRYer
   def report_counts(level, t_start, t_end)
+    SfReportCounts.update
     t_start  ||= SfReport.aspect_first_known(self.id).andand.known
     t_end    ||= SfReport.aspect_last_known(self.id).andand.known
     counts = []
     #stop if we have no counts
     return counts if t_start.nil?
     #otherwise scan at the requested granularity
-    case level
-    when :history
-      (t_start.year..t_end.year).each do |year|
-        from,to = yearspan(year)
-        count = SfReport.aspect_count_known_inside(self.id, from, to)
-        counts << {:year=>year, :count=>count} unless count.zero?
-      end
-    when :year
-      this_block = SfReport.aspect_known_inside(self.id, t_start, t_end)
-      counts = []
-      count = {}
-      last_div = nil
-      this_block.each do |report|
-        this_div = report.known.yday
-        if (this_div != last_div)
-          counts << count unless count.empty?
-          count = {:year=>report.known.year, 
-            :day=>this_div, :count => 1}
-          last_div = this_div
-        else
-          count[:count] += 1
-        end
-      end
-      counts << count unless count.empty?
-    when :day
-      this_day = SfReport.aspect_known_inside(self.id, t_start, t_end)
-      counts = []
-      count = {}
-      last_minute = nil
-      this_day.each do |report|
-        this_minute = report.known.hour*60+report.known.min
-        if (this_minute != last_minute)
-          counts << count unless count.empty?
-          count = {:year=>report.known.year, 
-            :day=>report.known.yday, :minute=>this_minute, :count => 1}
-          last_minute = this_minute
-          break if (counts.length >= MAX_RETURN)
-        else
-          count[:count] += 1
-        end
-      end
-      counts << count unless count.empty?
-    when :minute
-      this_minute = SfReport.aspect_known_inside(self.id, t_start, t_end)
-      counts = []
-      count = {}
-      last_second = nil
-      this_minute.each do |report|
-        this_second = report.known.sec
-        if (this_second != last_second)
-          counts << count unless count.empty?
-          count = {:year=>report.known.year, 
-            :day=>report.known.yday, :minute=>report.known.hour*60+report.known.min,
-            :second=>this_second, :count => 1}
-          last_second = this_second
-          break if (counts.length >= MAX_RETURN)
-        else
-          count[:count] += 1
-        end
-      end
-      counts << count unless count.empty?
+    sfcounts = SfReportCounts.count_between(self.id, level.to_s, t_start, t_end)
+    sfcounts.each do |sfcount|
+        report = Time.at(sfcount['time']/1000.0)
+        counts << {:year=>report.year, 
+          :day=>report.yday, :minute=>report.hour*60+report.min,
+          :second=>report.sec, :count => sfcount['count']}
     end
     counts
   end
