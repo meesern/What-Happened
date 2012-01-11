@@ -16,7 +16,7 @@ class SfProperty
   #create a new property or update an existing one
   def self.store(data)
     #data[:_id] ||= data[:id]
-    prop = self.find(data[:_id]) 
+    prop = self.find(data[:_id]) unless data[:_id].blank?
     if (prop)
       #cover the case of spurious records with no id
       prop._id ||= BSON::ObjectId.new  
@@ -39,6 +39,6 @@ end
 
 class Plucky::Query
   def resolve
-    self.map{|i|i}
+    self.to_a
   end
 end

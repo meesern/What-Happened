@@ -121,7 +121,7 @@ class ApiController < ApplicationController
 
   protected
 
-  def api_excp(msg)
+  def api_excp
       raise $! if DEV_ERRORS
       api_error($!.message)
   end
@@ -134,12 +134,8 @@ class ApiController < ApplicationController
     data = JSON.parse(params[:data]).with_indifferent_access 
     data[:entity] = entity.andand.id
     data[:item] = item.andand.id
-    begin
-      prop = SfProperty.store(data)
-      render :text => "_id: #{prop._id.to_s}"
-    rescue
-      api_excp
-    end
+    prop = SfProperty.store(data)
+    render :text => "_id: #{prop._id.to_s}"
   end
 
   # Create an item tree 
