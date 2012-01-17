@@ -95,9 +95,11 @@ cloud_providers:
     # Ubuntu 10.04 Lucid	base install	64-bit	ami-fa01f193
     #
     # m1.small or m1.large or m1.xlarge
-    image_type: m1.large
-    #image_id: "#{ %w{m1.small c1.medium}.include?(image_type) ? 'ami-7000f019' : 'ami-fa01f193' }"
-    image_id: 'ami-cef405a7'
+    #image_type: m1.large
+    image_type: m1.small
+    #image_id: "#{ %w{m1.small c1.medium}.include?(image_type) ? 'ami-7000f019' : 'ami-cef405a7' }"
+    #image_id: 'ami-cef405a7'  #good for m1.large
+    image_id: 'ami-ccf405a5'  #good for m1.small
 
     # OPTIONAL: EC2 spot instance request support.
     #

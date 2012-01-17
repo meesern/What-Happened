@@ -2,16 +2,16 @@
 
 @font-face {
   font-family: "AG Rounded Thai";
-  src: url("/static.busaba.com/assets/249/ag_rounded_bold_thai-webfont.eot");
-  src: local("☺"), url("/static.busaba.com/assets/265/ag_rounded_bold_thai-webfont.woff") format("woff"), url("/static.busaba.com/assets/261/ag_rounded_bold_thai-webfont.ttf") format("truetype"), url("/static.busaba.com/assets/257/ag_rounded_bold_thai-webfont.svgz") format("svg"), url("/static.busaba.com/assets/253/ag_rounded_bold_thai-webfont.svg") format("svg");
+  src: url("../static.busaba.com/assets/249/ag_rounded_bold_thai-webfont.eot");
+  src: local("☺"), url("../static.busaba.com/assets/265/ag_rounded_bold_thai-webfont.woff") format("woff"), url("../static.busaba.com/assets/261/ag_rounded_bold_thai-webfont.ttf") format("truetype"), url("../static.busaba.com/assets/257/ag_rounded_bold_thai-webfont.svgz") format("svg"), url("../static.busaba.com/assets/253/ag_rounded_bold_thai-webfont.svg") format("svg");
   font-weight: bold;
   font-style: normal;
 }
 
 @font-face {
   font-family: "VAG Rounded";
-  src: url("/static.busaba.com/assets/269/vagrounded-bold-webfont.eot");
-  src: local("☺"), url("/static.busaba.com/assets/285/vagrounded-bold-webfont.woff") format("woff"), url("/static.busaba.com/assets/281/vagrounded-bold-webfont.ttf") format("truetype"), url("/static.busaba.com/assets/277/vagrounded-bold-webfont.svgz") format("svg"), url("/static.busaba.com/assets/273/vagrounded-bold-webfont.svg") format("svg");
+  src: url("../static.busaba.com/assets/269/vagrounded-bold-webfont.eot");
+  src: local("☺"), url("../static.busaba.com/assets/285/vagrounded-bold-webfont.woff") format("woff"), url("../static.busaba.com/assets/281/vagrounded-bold-webfont.ttf") format("truetype"), url("../static.busaba.com/assets/277/vagrounded-bold-webfont.svgz") format("svg"), url("../static.busaba.com/assets/273/vagrounded-bold-webfont.svg") format("svg");
   font-weight: bold;
   font-style: normal;
 }
@@ -20,24 +20,24 @@
 
 .collapsed>hgroup>h2 a,
 .collapsed>hgroup>h3 a {
-  background-image: url("/static.busaba.com/assets/93/arrow_down.png");
+  background-image: url("../static.busaba.com/assets/93/arrow_down.png");
 }
 
 .open>hgroup>h2 a,
 .open>hgroup>h3 a {
-  background-image: url("/static.busaba.com/assets/145/cross.png");
+  background-image: url("../static.busaba.com/assets/145/cross.png");
 }
 
 #news a[rel], #news a.rel,
 #recipes a[rel], #recipes a.rel {
-  background-image: url("/static.busaba.com/assets/117/arrow_left.png");
+  background-image: url("../static.busaba.com/assets/117/arrow_left.png");
 }
 
 #news a[rel="next"], #news a.next,
 #recipes a[rel="next"], #recipes a.next,
 input[type="submit"], input.submit,
 .aux nav a {
-  background-image: url("/static.busaba.com/assets/141/arrow_right.png");
+  background-image: url("../static.busaba.com/assets/141/arrow_right.png");
 }
 
 #news a[rel="prev"].disabled,#news a.prev.disabled,
@@ -48,7 +48,7 @@ input[type="submit"], input.submit,
 #recipes a[rel="prev"]:hover,#recipes a.prev:hover,
 #recipes a[rel="prev"]:focus,#recipes a.prev:focus,
 #news a[rel="prev"]:focus, #news a.prev:focus {
-  background-image: url("/static.busaba.com/assets/97/arrow_left_gray.png");
+  background-image: url("../static.busaba.com/assets/97/arrow_left_gray.png");
 }
 
 #news a[rel="next"].disabled, #news a.next.disabled,
@@ -62,90 +62,90 @@ input[type="submit"], input.submit,
 input[type="submit"]:hover, input.submit:hover,
 input[type="submit"]:focus, input.submit:focus,
 .aux nav a:hover, .aux nav a:focus {
-  background-image: url("/static.busaba.com/assets/121/arrow_right_gray.png");
+  background-image: url("../static.busaba.com/assets/121/arrow_right_gray.png");
 }
 
 #news a[rel="prev"]:active, #news a.prev:active,
 #recipes a[rel="prev"]:active, #recipes a.prev:active {
-  background-image: url("/static.busaba.com/assets/113/arrow_left_white.png");
+  background-image: url("../static.busaba.com/assets/113/arrow_left_white.png");
 }
 
 #news a[rel="next"]:active,#news a.next:active,
 #recipes a[rel="next"]:active,#recipes a.next:active,
 input[type="submit"]:active,input.submit:active,
 .aux nav a:active {
-  background-image: url("/static.busaba.com/assets/137/arrow_right_white.png");
+  background-image: url("../static.busaba.com/assets/137/arrow_right_white.png");
 }
 
 .backnav a {
-  background-image: url("/static.busaba.com/assets/117/arrow_left.png");
+  background-image: url("../static.busaba.com/assets/117/arrow_left.png");
 }
 
 .backnav a:hover {
-  background-image: url("/static.busaba.com/assets/97/arrow_left_gray.png");
+  background-image: url("../static.busaba.com/assets/97/arrow_left_gray.png");
 }
 
 .backnav a:active {
-  background-image: url("/static.busaba.com/assets/113/arrow_left_white.png");
+  background-image: url("../static.busaba.com/assets/113/arrow_left_white.png");
 }
 
 #reviews a.prev_page {
-  background-image: url("/static.busaba.com/assets/109/arrow_left_small.png");
+  background-image: url("../static.busaba.com/assets/109/arrow_left_small.png");
 }
 
 #reviews a.next_page {
-  background-image: url("/static.busaba.com/assets/133/arrow_right_small.png");
+  background-image: url("../static.busaba.com/assets/133/arrow_right_small.png");
 }
 
 #reviews a.prev_page:hover,
 #reviews a.prev_page:focus {
-  background-image: url("/static.busaba.com/assets/101/arrow_left_small_gray.png");
+  background-image: url("../static.busaba.com/assets/101/arrow_left_small_gray.png");
 }
 
 #reviews a.next_page:hover,
 #reviews a.next_page:focus {
-  background-image: url("/static.busaba.com/assets/125/arrow_right_small_gray.png");
+  background-image: url("../static.busaba.com/assets/125/arrow_right_small_gray.png");
 }
 
 #reviews a.prev_page:active {
-  background-image: url("/static.busaba.com/assets/105/arrow_left_small_white.png");
+  background-image: url("../static.busaba.com/assets/105/arrow_left_small_white.png");
 }
 
 #reviews a.next_page:active {
-  background-image: url("/static.busaba.com/assets/129/arrow_right_small_white.png");
+  background-image: url("../static.busaba.com/assets/129/arrow_right_small_white.png");
 }
 
 #teasers a[rel],#teasers a.rel {
-  background-image: url("/static.busaba.com/assets/201/arrow_left_large.png");
+  background-image: url("../static.busaba.com/assets/201/arrow_left_large.png");
 }
 
 #teasers a[rel="next"],#teasers a.next {
-  background-image: url("/static.busaba.com/assets/213/arrow_right_large.png");
+  background-image: url("../static.busaba.com/assets/213/arrow_right_large.png");
 }
 
 #teasers a[rel="next"]:hover,#teasers a.next:hover {
-  background-image: url("/static.busaba.com/assets/217/arrow_right_large_gray.png");
+  background-image: url("../static.busaba.com/assets/217/arrow_right_large_gray.png");
 }
 
 #teasers a[rel="next"]:active, #teasers a.next:active {
-  background-image: url("/static.busaba.com/assets/221/arrow_right_large_white.png");
+  background-image: url("../static.busaba.com/assets/221/arrow_right_large_white.png");
 }
 
 #teasers a[rel="prev"]:hover, #teasers a.prev:hover {
-  background-image: url("/static.busaba.com/assets/205/arrow_left_large_gray.png");
+  background-image: url("../static.busaba.com/assets/205/arrow_left_large_gray.png");
 }
 
 #teasers a[rel="prev"]:active, #teasers a.prev:active {
-  background-image: url("/static.busaba.com/assets/209/arrow_left_large_white.png");
+  background-image: url("../static.busaba.com/assets/209/arrow_left_large_white.png");
 }
 
-#twitter a {background-image: url('/static.busaba.com/assets/622/bu_tw_normal.png');}
-#twitter a:hover {background-image: url('/static.busaba.com/assets/618/bu_tw_hover.png');}
-#facebook a {background-image: url('/static.busaba.com/assets/614/bu_fb_normal.png');}
-#facebook a {background-image: url('/static.busaba.com/assets/610/bu_fb_hover.png');}
+#twitter a {background-image: url('../static.busaba.com/assets/622/bu_tw_normal.png');}
+#twitter a:hover {background-image: url('../static.busaba.com/assets/618/bu_tw_hover.png');}
+#facebook a {background-image: url('../static.busaba.com/assets/614/bu_fb_normal.png');}
+#facebook a {background-image: url('../static.busaba.com/assets/610/bu_fb_hover.png');}
 
 #wifi-login {
-  background-image: url("/static.busaba.com/assets/529/header.jpg");
+  background-image: url("../static.busaba.com/assets/529/header.jpg");
 }
 
 body, section, #menus .tools {
